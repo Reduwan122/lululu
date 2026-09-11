@@ -1,0 +1,36 @@
+export const AppTheme = {
+  dark: {
+    bg: '#121212',
+    green: '#1E6B4E',
+    greenDark: '#14503A',
+    card: '#1E1E1E',
+    cardAlt: '#2A2A2A',
+    white: '#FFFFFF',
+    onGreen: '#FFFFFF',
+    greyText: '#B8C4BE',
+    accent: '#3FA97B',
+    danger: '#E15B5B',
+    border: '#2A2A2A',
+    active: '#3FA97B',
+    inactive: '#8A9690',
+    overlay: 'rgba(0,0,0,0.4)',
+  },
+  light: {
+    bg: '#F3F6F4',
+    green: '#1E6B4E',
+    greenDark: '#14503A',
+    card: '#FFFFFF',
+    cardAlt: '#EDF2EF',
+    white: '#17211C',
+    onGreen: '#FFFFFF',
+    greyText: '#5C6B62',
+    accent: '#218A5D',
+    danger: '#D14343',
+    border: '#E1E7E3',
+    active: '#1E6B4E',
+    inactive: '#8B968F',
+    overlay: 'rgba(0,0,0,0.35)',
+  },
+};
+
+export type ThemeColors = typeof AppTheme.dark;
