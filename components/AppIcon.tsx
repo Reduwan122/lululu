@@ -41,9 +41,11 @@ export function AppIcon({
 
   if (library === 'mci') {
     return <MaterialCommunityIcons name={name} size={size} color={color} />;
+    return <MaterialCommunityIcons name={name} size={size} color={color} style={style as any} />;
   }
 
   return <Ionicons name={name} size={size} color={color} />;
+  return <Ionicons name={name} size={size} color={color} style={style as any} />;
 }
 
 export default AppIcon;
