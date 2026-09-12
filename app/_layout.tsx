@@ -2,30 +2,18 @@ import React, { useEffect } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { Stack, useRouter, useSegments } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useFonts } from 'expo-font';
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-  FontAwesome,
-  Feather,
-  AntDesign,
-  Entypo,
-  SimpleLineIcons,
-  Octicons,
-} from '@expo/vector-icons';
 import * as SplashScreen from 'expo-splash-screen';
 import { EmployeeProvider, useEmployee } from '../context/EmployeeContext';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
-function RootNavigation({ fontsLoaded }: { fontsLoaded: boolean }) {
+function RootNavigation() {
   const { session, loading } = useEmployee();
   const router = useRouter();
   const segments = useSegments();
 
   useEffect(() => {
-    if (loading || !fontsLoaded) return;
+    if (loading) return;
 
     SplashScreen.hideAsync().catch(() => {});
 
@@ -36,9 +24,9 @@ function RootNavigation({ fontsLoaded }: { fontsLoaded: boolean }) {
     } else if (session && inAuthGroup) {
       router.replace('/(tabs)');
     }
-  }, [session, loading, fontsLoaded, segments]);
+  }, [session, loading, segments]);
 
-  if (loading || !fontsLoaded) {
+  if (loading) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#14200D' }}>
         <ActivityIndicator size="large" color="#1E6B4E" />
@@ -50,24 +38,10 @@ function RootNavigation({ fontsLoaded }: { fontsLoaded: boolean }) {
 }
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({
-    ...Ionicons.font,
-    ...MaterialCommunityIcons.font,
-    ...MaterialIcons.font,
-    ...FontAwesome.font,
-    ...Feather.font,
-    ...AntDesign.font,
-    ...Entypo.font,
-    ...SimpleLineIcons.font,
-    ...Octicons.font,
-  });
-
-  const isReady = fontsLoaded || !!fontError;
-
   return (
     <SafeAreaProvider>
       <EmployeeProvider>
-        <RootNavigation fontsLoaded={isReady} />
+        <RootNavigation />
       </EmployeeProvider>
     </SafeAreaProvider>
   );

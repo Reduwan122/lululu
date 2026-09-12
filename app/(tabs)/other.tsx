@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '../../components/AppIcon';
 import { useAppColors } from '../../hooks/useAppColors';
 
 const preferredServices = [

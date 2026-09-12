@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import { useLocalSearchParams, router, Stack } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '../components/AppIcon';
 
 export default function IdCardViewer() {
   const { url } = useLocalSearchParams<{ url: string }>();
