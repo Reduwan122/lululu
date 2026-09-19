@@ -62,6 +62,60 @@ export const TabOtherIcon = ({ size = 24, color = '#8E9590', ...props }: Extract
   </Svg>
 );
 
+// View Digital Documents: 100% Authentic 4 Outlined Rounded Squares (matching media_1789855990348.png)
+export const GridOutlineIcon = ({ size = 26, color = '#1E6B4E', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+    <Rect
+      x="2.75"
+      y="2.75"
+      width="7.75"
+      height="7.75"
+      rx="1.75"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Rect
+      x="13.5"
+      y="2.75"
+      width="7.75"
+      height="7.75"
+      rx="1.75"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Rect
+      x="2.75"
+      y="13.5"
+      width="7.75"
+      height="7.75"
+      rx="1.75"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Rect
+      x="13.5"
+      y="13.5"
+      width="7.75"
+      height="7.75"
+      rx="1.75"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. QUICK ACCESS SPECIFIC ICONS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -365,6 +419,8 @@ export const extractedIconRegistry: Record<string, React.ComponentType<Extracted
   'service-layer-group': IconLayerGroup,
   'service-pencil': IconPencil,
   'empty-people': IconEmptyPeople,
+  'grid-outline': GridOutlineIcon,
+  'view-digital-documents': GridOutlineIcon,
 
   // Additional Profile / Settings Icons
   'icon-copy': IconCopy,
