@@ -36,7 +36,7 @@ export default function TabLayout() {
         options={{
           title: 'Services',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="grid-outline" size={22} color={color} />
+            <AppIcon name="construct-outline" size={22} color={color} />
           ),
         }}
       />
@@ -63,7 +63,7 @@ export default function TabLayout() {
         options={{
           title: 'Other',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="ellipsis-horizontal" size={22} color={color} />
+            <AppIcon name="grid-outline" size={22} color={color} />
           ),
         }}
       />

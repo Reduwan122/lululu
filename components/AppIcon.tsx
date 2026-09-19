@@ -13,97 +13,73 @@ export const customIcons: Record<string, any> = {
   'profile-user': require('../assets/images/profile_user.png'),
 };
 
-// 1. Equalizer / Sliders (Top Header Left 1)
-const SvgTuneVertical = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 1. Home Tab Icon
+const SvgHome = ({ size = 24, color = '#22C55E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Line x1="6" y1="3" x2="6" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Line x1="12" y1="3" x2="12" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Line x1="18" y1="3" x2="18" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Line x1="4" y1="8" x2="8" y2="8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-    <Line x1="10" y1="16" x2="14" y2="16" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-    <Line x1="16" y1="11" x2="20" y2="11" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-  </Svg>
-);
-
-// 2. Globe with Lat/Long (Top Header Left 2)
-const SvgGlobe = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.8" />
     <Path
-      d="M12 3a13 13 0 0 1 4 9 13 13 0 0 1-4 9 13 13 0 0 1-4-9 13 13 0 0 1 4-9z"
+      d="M3 10.5L12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 14 20v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5A1.5 1.5 0 0 1 8.5 21.5h-4A1.5 1.5 0 0 1 3 20v-9.5z"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
+      strokeLinecap="round"
       strokeLinejoin="round"
+      fill={color === '#22C55E' || color === '#23A365' || color === '#1EAE66' ? color : 'none'}
     />
-    <Line x1="3" y1="12" x2="21" y2="12" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
   </Svg>
 );
 
-// 3. Notification Bell (Top Header Right 1)
-const SvgBell = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 2. Services Tab Icon (Crossed Tools / Wrench & Screwdriver)
+const SvgServices = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
-      d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"
+      d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.4 6.4a2 2 0 0 1-2.8-2.8l6.4-6.4a6 6 0 0 1 7.9-7.9l-4 3.6z"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </Svg>
-);
-
-// 4. Search Magnifying Glass (Top Header Right 2)
-const SvgSearch = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="11" cy="11" r="7" stroke={color} strokeWidth="1.8" />
-    <Line x1="16.5" y1="16.5" x2="21" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-  </Svg>
-);
-
-// 5. Chevron Right Arrow
-const SvgChevronRight = ({ size = 20, color = '#8C9991' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M9 18l6-6-6-6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </Svg>
-);
-
-// 6. User Outline (Avatar Placeholder)
-const SvgUserOutline = ({ size = 24, color = '#8C9991' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="8" r="4" stroke={color} strokeWidth="1.8" />
-    <Path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-  </Svg>
-);
-
-// 7. Chat Speech Bubble (Survey Banner & FAB)
-const SvgChatBubble = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
-      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+      d="M5 19l4-4M19 5l-2 2"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
-      strokeLinejoin="round"
     />
   </Svg>
 );
 
-// 8. Digital ID Credit Card (My Digital Documents)
-const SvgCreditCard = ({ size = 36, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size * 0.72} viewBox="0 0 40 28" fill="none">
-    <Rect x="2" y="2" width="36" height="24" rx="4" stroke={color} strokeWidth="2.2" />
-    <Line x1="2" y1="9" x2="38" y2="9" stroke={color} strokeWidth="2.2" />
-    <Rect x="6" y="15" width="8" height="6" rx="1.5" stroke={color} strokeWidth="2" />
+// 3. Family Tab Icon (Users / People)
+const SvgFamily = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+    <Circle cx="9" cy="7" r="4" stroke={color} strokeWidth={1.8} strokeLinecap="round" />
+    <Path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
   </Svg>
 );
 
-// 9. Car Outline (My Vehicles)
-const SvgCar = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 4. Workers Tab Icon (Briefcase)
+const SvgWorkers = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Rect x="2" y="7" width="20" height="14" rx="2" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+    <Path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// 5. Other Tab Icon (4-Square Grid)
+const SvgOther = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Rect x="3" y="3" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
+    <Rect x="14" y="3" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
+    <Rect x="14" y="14" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
+    <Rect x="3" y="14" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
+  </Svg>
+);
+
+// 6. Car Outline (My Vehicles)
+const SvgCar = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
       d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11M3 11h18v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1H8v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -112,115 +88,92 @@ const SvgCar = ({ size = 24, color = '#166444' }: { size?: number; color?: strin
   </Svg>
 );
 
-// 10. Fingerprint (Authentication Services)
-const SvgFingerprint = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
+// 7. Fingerprint (Authentication Services)
+const SvgFingerprint = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
       d="M12 2a9.96 9.96 0 0 0-7.07 2.93A10 10 0 0 0 2 12c0 2.2.72 4.24 1.93 5.88M12 6a5.98 5.98 0 0 0-4.24 1.76A6 6 0 0 0 6 12c0 1.33.43 2.55 1.16 3.54M12 10a2 2 0 0 0-2 2c0 .44.14.85.39 1.18M12 2c2.76 0 5.26 1.12 7.07 2.93A10 10 0 0 1 22 12c0 4.14-2.52 7.69-6.13 9.21M12 6c1.66 0 3.16.67 4.24 1.76A6 6 0 0 1 18 12c0 2.76-1.68 5.13-4.08 6.14M12 10a2 2 0 0 1 2 2c0 .88-.57 1.63-1.37 1.89"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
     />
   </Svg>
 );
 
-// 11. Airplane (Absher Travel)
-const SvgAirplane = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
+// 8. Folded Map (Absher Travel)
+const SvgMap = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
-      d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 20 2.5s-3.5-1-5 .5L11.5 6.5 3.3 4.7a1 1 0 0 0-1.1 1.4l3.5 4.3-3.2 3.2L1 13.1a.8.8 0 0 0-1.1.2.8.8 0 0 0 .2 1.1l2.5 1.8 1.8 2.5a.8.8 0 0 0 1.1.2.8.8 0 0 0 .2-1.1l-.5-1.5 3.2-3.2 4.3 3.5a1 1 0 0 0 1.4-1.1l-1.8-8.2"
-      transform="rotate(-45 12 12)"
+      d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3zM9 3v15M15 6v15"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
     />
   </Svg>
 );
 
-// 12. Alert Circle / Exclamation (Report Minor Accidents)
-const SvgAlertCircle = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
+// 9. Report Minor Accident (Car with Siren Light on Roof)
+const SvgAccidentCar = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
-    <Line x1="12" y1="8" x2="12" y2="12" stroke={color} strokeWidth="2" strokeLinecap="round" />
-    <Circle cx="12" cy="16" r="1" fill={color} />
-  </Svg>
-);
-
-// 13. Account Circle Outline (Update Resident Profile)
-const SvgAccountCircle = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.8" />
-    <Circle cx="12" cy="9" r="3.2" stroke={color} strokeWidth="1.8" />
-    <Path d="M6 18.5c1.5-2.5 3.6-3.7 6-3.7s4.5 1.2 6 3.7" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-  </Svg>
-);
-
-// 14. Shield Outline (My Weapons)
-const SvgShield = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    {/* Siren light */}
+    <Path d="M11 2h2v2h-2z" fill={color} />
+    <Path d="M8 3.2l1 1.3M16 3.2l-1 1.3" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
+    {/* Car body */}
     <Path
-      d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+      d="M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M3 12h18v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1H8v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z"
       stroke={color}
-      strokeWidth="1.8"
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
+    />
+    <Circle cx="7.5" cy="15" r="1.5" fill={color} />
+    <Circle cx="16.5" cy="15" r="1.5" fill={color} />
+  </Svg>
+);
+
+// 10. Update Resident Photo (User in Circle)
+const SvgUserCircle = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Circle cx="12" cy="12" r="10" stroke={color} strokeWidth={1.8} />
+    <Circle cx="12" cy="9" r="3.3" stroke={color} strokeWidth={1.8} />
+    <Path
+      d="M6 18.5c1.5-2.6 3.7-3.8 6-3.8s4.5 1.2 6 3.8"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
     />
   </Svg>
 );
 
-// 15. Home Tab Icon
-const SvgHome = ({ size = 24, color = '#22C55E' }: { size?: number; color?: string }) => (
+// 11. My Weapons (Handgun / Pistol Silhouette)
+const SvgPistol = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
-      d="M3 10.5L12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 14 20v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5A1.5 1.5 0 0 1 8.5 21.5h-4A1.5 1.5 0 0 1 3 20v-9.5z"
-      stroke={color}
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill={color === '#22C55E' || color === '#23A365' || color === '#1EAE66' ? color : 'none'}
+      d="M21 8h-9l-1-2H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4l1 7a2 2 0 0 0 2 1.8h3a1 1 0 0 0 1-1l.7-6.8H21a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm-9 4h-2l-.5-2.5h2.5L12 12z"
+      fill={color}
     />
   </Svg>
 );
 
-// 16. Services Tab Icon (4 Squares Grid)
-const SvgGrid = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
+// 12. Chat Speech Bubble with 3 Dots (Survey Banner & FAB)
+const SvgChatDots = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="3" y="3" width="7.5" height="7.5" rx="2" stroke={color} strokeWidth="1.8" />
-    <Rect x="13.5" y="3" width="7.5" height="7.5" rx="2" stroke={color} strokeWidth="1.8" />
-    <Rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2" stroke={color} strokeWidth="1.8" />
-    <Rect x="3" y="13.5" width="7.5" height="7.5" rx="2" stroke={color} strokeWidth="1.8" />
+    <Path
+      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+      stroke={color}
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Circle cx="8.5" cy="11.5" r="1.1" fill={color} />
+    <Circle cx="12" cy="11.5" r="1.1" fill={color} />
+    <Circle cx="15.5" cy="11.5" r="1.1" fill={color} />
   </Svg>
 );
 
-// 17. Family Tab Icon (People / Users)
-const SvgFamily = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    <Circle cx="9" cy="7" r="4" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </Svg>
-);
-
-// 18. Workers Tab Icon (Briefcase)
-const SvgWorkers = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="2" y="7" width="20" height="14" rx="2.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    <Path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </Svg>
-);
-
-// 19. Other Tab Icon (3 Horizontal Dots)
-const SvgDots = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Circle cx="5" cy="12" r="1.8" fill={color} />
-    <Circle cx="12" cy="12" r="1.8" fill={color} />
-    <Circle cx="19" cy="12" r="1.8" fill={color} />
-  </Svg>
-);
-
-// 20. Settings Gear
-const SvgSettings = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 13. Settings Gear
+const SvgSettings = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Circle cx="12" cy="12" r="3" stroke={color} strokeWidth="1.8" />
     <Path
@@ -233,8 +186,43 @@ const SvgSettings = ({ size = 24, color = '#166444' }: { size?: number; color?: 
   </Svg>
 );
 
-// 21. Document Outline with Text Lines (My Documents)
-const SvgDocumentText = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
+// 14. Notification Bell
+const SvgBell = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+// 15. Search Magnifying Glass
+const SvgSearch = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Circle cx="11" cy="11" r="7" stroke={color} strokeWidth="1.8" />
+    <Line x1="16.5" y1="16.5" x2="21" y2="21" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+  </Svg>
+);
+
+// 16. Arrow Back
+const SvgArrowBack = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M19 12H5M12 19l-7-7 7-7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// 17. Close X
+const SvgClose = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M18 6L6 18M6 6l12 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// 18. Document Outline
+const SvgDocumentText = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Path
       d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
@@ -253,135 +241,103 @@ const SvgDocumentText = ({ size = 26, color = '#166444' }: { size?: number; colo
   </Svg>
 );
 
-// 22. Arrow Back
-const SvgArrowBack = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 19. User Outline
+const SvgUserOutline = ({ size = 24, color = '#8C9991' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M19 12H5M12 19l-7-7 7-7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <Circle cx="12" cy="8" r="4" stroke={color} strokeWidth="1.8" />
+    <Path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
   </Svg>
 );
 
-// 23. Close X
-const SvgClose = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
+// 20. Chevron Right Arrow
+const SvgChevronRight = ({ size = 20, color = '#8C9991' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M18 6L6 18M6 6l12 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <Path d="M9 18l6-6-6-6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </Svg>
 );
 
-// 24. Public Services Icons
-const SvgCheckbox = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+// 21. 3 Horizontal Dots
+const SvgDots = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="3" y="3" width="18" height="18" rx="4" stroke={color} strokeWidth="1.8" />
-    <Path d="M9 12l2 2 4-4" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <Circle cx="5" cy="12" r="1.8" fill={color} />
+    <Circle cx="12" cy="12" r="1.8" fill={color} />
+    <Circle cx="19" cy="12" r="1.8" fill={color} />
   </Svg>
 );
 
-const SvgBook = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5z" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-  </Svg>
-);
-
-const SvgCalendar = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="3" y="4" width="18" height="18" rx="3" stroke={color} strokeWidth="1.8" />
-    <Line x1="16" y1="2" x2="16" y2="6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Line x1="8" y1="2" x2="8" y2="6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
-    <Line x1="3" y1="10" x2="21" y2="10" stroke={color} strokeWidth="1.8" />
-  </Svg>
-);
-
-// Icon mapping dictionary
 const iconMap: Record<string, React.ComponentType<any>> = {
-  // Top Header Icons
-  'tune-vertical': SvgTuneVertical,
-  'tune': SvgTuneVertical,
-  'sliders': SvgTuneVertical,
-  'globe': SvgGlobe,
-  'globe-outline': SvgGlobe,
-  'notifications': SvgBell,
-  'notifications-outline': SvgBell,
-  'bell': SvgBell,
-  'search': SvgSearch,
-  'search-outline': SvgSearch,
-  'settings': SvgSettings,
-  'settings-outline': SvgSettings,
-  'gear': SvgSettings,
-  'arrow-back': SvgArrowBack,
-  'arrow-back-outline': SvgArrowBack,
-  'close': SvgClose,
-  'close-outline': SvgClose,
-
-  // General & Navigation
-  'chevron-forward': SvgChevronRight,
-  'chevron-right': SvgChevronRight,
-  'person': SvgUserOutline,
-  'person-outline': SvgUserOutline,
-  'user': SvgUserOutline,
-
-  // Chat & Survey
-  'chatbubble': SvgChatBubble,
-  'chatbubble-outline': SvgChatBubble,
-  'chatbubble-ellipses': SvgChatBubble,
-  'chatbubble-ellipses-outline': SvgChatBubble,
-  'message': SvgChatBubble,
-  'comment': SvgChatBubble,
-
-  // Digital ID & Documents
-  'card': SvgCreditCard,
-  'card-outline': SvgCreditCard,
-  'credit-card': SvgCreditCard,
-  'credit-card-outline': SvgCreditCard,
-
-  // Quick Access
-  'car': SvgCar,
-  'car-outline': SvgCar,
-  'fingerprint': SvgFingerprint,
-  'finger-print': SvgFingerprint,
-  'finger-print-outline': SvgFingerprint,
-  'airplane': SvgAirplane,
-  'airplane-outline': SvgAirplane,
-  'plane': SvgAirplane,
-  'map': SvgAirplane, // fallback if caller requested map
-  'alert-circle': SvgAlertCircle,
-  'alert-circle-outline': SvgAlertCircle,
-  'account-circle': SvgAccountCircle,
-  'account-circle-outline': SvgAccountCircle,
-  'person-circle': SvgAccountCircle,
-  'person-circle-outline': SvgAccountCircle,
-  'shield': SvgShield,
-  'shield-outline': SvgShield,
-  'shield-check': SvgShield,
-  'shield-check-outline': SvgShield,
-
-  // Tabs
+  // Navigation & Tabs
   'home': SvgHome,
   'home-outline': SvgHome,
-  'services': SvgGrid,
-  'grid': SvgGrid,
-  'grid-outline': SvgGrid,
-  'apps': SvgGrid,
-  'apps-outline': SvgGrid,
-  'construct': SvgGrid,
-  'construct-outline': SvgGrid,
+  'services': SvgServices,
+  'construct': SvgServices,
+  'construct-outline': SvgServices,
+  'wrench': SvgServices,
   'family': SvgFamily,
   'people': SvgFamily,
   'people-outline': SvgFamily,
   'workers': SvgWorkers,
   'briefcase': SvgWorkers,
   'briefcase-outline': SvgWorkers,
-  'other': SvgDots,
+  'other': SvgOther,
+  'grid': SvgOther,
+  'grid-outline': SvgOther,
+  'apps': SvgOther,
+  'apps-outline': SvgOther,
   'ellipsis-horizontal': SvgDots,
   'dots-horizontal': SvgDots,
   'more-horizontal': SvgDots,
 
-  // Public Services
-  'checkbox-outline': SvgCheckbox,
-  'book-outline': SvgBook,
-  'calendar-outline': SvgCalendar,
+  // Header Actions
+  'search': SvgSearch,
+  'search-outline': SvgSearch,
+  'settings': SvgSettings,
+  'settings-outline': SvgSettings,
+  'gear': SvgSettings,
+  'notifications': SvgBell,
+  'notifications-outline': SvgBell,
+  'bell': SvgBell,
+
+  // Quick Access & Services
+  'car': SvgCar,
+  'car-outline': SvgCar,
+  'fingerprint': SvgFingerprint,
+  'finger-print': SvgFingerprint,
+  'finger-print-outline': SvgFingerprint,
+  'map': SvgMap,
+  'map-outline': SvgMap,
+  'car-emergency': SvgAccidentCar,
+  'car-sport': SvgAccidentCar,
+  'car-sport-outline': SvgAccidentCar,
+  'person-circle': SvgUserCircle,
+  'person-circle-outline': SvgUserCircle,
+  'account-circle': SvgUserCircle,
+  'account-circle-outline': SvgUserCircle,
+  'pistol': SvgPistol,
+  'pistol-outline': SvgPistol,
+  'gun': SvgPistol,
+  'weapon': SvgPistol,
+
+  // Chat & Survey
+  'chatbubble': SvgChatDots,
+  'chatbubble-outline': SvgChatDots,
+  'chatbubble-ellipses': SvgChatDots,
+  'chatbubble-ellipses-outline': SvgChatDots,
+  'message': SvgChatDots,
+  'comment': SvgChatDots,
+
+  // Common
+  'person': SvgUserOutline,
+  'person-outline': SvgUserOutline,
+  'user': SvgUserOutline,
+  'chevron-forward': SvgChevronRight,
+  'chevron-right': SvgChevronRight,
+  'arrow-back': SvgArrowBack,
+  'arrow-back-outline': SvgArrowBack,
+  'close': SvgClose,
+  'close-outline': SvgClose,
   'document-text': SvgDocumentText,
   'document-text-outline': SvgDocumentText,
-  'file-text': SvgDocumentText,
-  'document': SvgDocumentText,
 };
 
 export interface AppIconProps {
@@ -396,7 +352,7 @@ export interface AppIconProps {
 export function AppIcon({
   name,
   size = 24,
-  color = '#166444',
+  color = '#1E6B4E',
   style,
   pngKey,
 }: AppIconProps) {
@@ -411,7 +367,7 @@ export function AppIcon({
     );
   }
 
-  const SvgComponent = iconMap[name] || iconMap[name?.toLowerCase()] || SvgGrid;
+  const SvgComponent = iconMap[name] || iconMap[name?.toLowerCase()] || SvgOther;
 
   return (
     <View style={style as any}>
@@ -423,7 +379,7 @@ export function AppIcon({
 export const Ionicons = ({
   name,
   size = 24,
-  color = '#166444',
+  color = '#1E6B4E',
   style,
 }: {
   name: string;
