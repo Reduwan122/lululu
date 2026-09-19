@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
+  Image,
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router, Stack } from 'expo-router';
@@ -15,10 +16,10 @@ export default function WelcomeScreen() {
   const insets = useSafeAreaInsets();
 
   const publicServices = [
-    { label: 'Query Hajj Eligibility', icon: 'checkbox-outline' },
-    { label: 'Civil Registry Query', icon: 'card-outline' },
-    { label: 'Absher Guide', icon: 'book-outline' },
-    { label: 'Appointments', icon: 'calendar-outline' },
+    { label: 'Manage Digital\nIdentity', icon: 'person-outline' },
+    { label: 'View Digital\nDocuments', icon: 'grid-outline' },
+    { label: 'Authentication\nServices', icon: 'finger-print-outline' },
+    { label: 'My Documents', icon: 'document-text-outline' },
   ];
 
   return (
@@ -30,8 +31,9 @@ export default function WelcomeScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Top Header with curved bottom */}
+        {/* Top Header Section */}
         <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
+          {/* Header Action Icons (Settings, Notifications) */}
           <View style={styles.headerTopRow}>
             <View style={{ flex: 1 }} />
             <TouchableOpacity
@@ -39,31 +41,31 @@ export default function WelcomeScreen() {
               onPress={() => router.push('/settings')}
               activeOpacity={0.7}
             >
-              <AppIcon name="settings-outline" size={22} color="#166444" />
+              <AppIcon name="settings-outline" size={22} color="#1E6B4E" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconBtn} activeOpacity={0.7}>
-              <AppIcon name="notifications-outline" size={22} color="#166444" />
+              <AppIcon name="notifications-outline" size={22} color="#1E6B4E" />
             </TouchableOpacity>
           </View>
 
           {/* Absher & Saudi Emblem Logos */}
           <View style={styles.logoRow}>
-            <AppIcon
-              name="business-outline"
-              pngKey="logo-1"
-              size={64}
+            <Image
+              source={require('../assets/icons/logo1.png')}
               style={styles.logo1}
+              resizeMode="contain"
             />
-            <AppIcon
-              name="apps-outline"
-              pngKey="logo-2"
-              size={64}
+            <Image
+              source={require('../assets/icons/logo2.png')}
               style={styles.logo2}
+              resizeMode="contain"
             />
           </View>
 
-          <Text style={styles.appTitle}>Absher E-Services</Text>
+          {/* Screen Title */}
+          <Text style={styles.appTitle}>Absher E-Services 24/7</Text>
 
+          {/* Log In Button */}
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={() => router.push('/login')}
@@ -82,6 +84,7 @@ export default function WelcomeScreen() {
             </TouchableOpacity>
           </View>
 
+          {/* 2x2 Public Services Grid */}
           <View style={styles.grid}>
             {publicServices.map((item, idx) => (
               <TouchableOpacity
@@ -89,7 +92,7 @@ export default function WelcomeScreen() {
                 style={styles.gridCard}
                 activeOpacity={0.8}
               >
-                <AppIcon name={item.icon} size={28} color="#166444" />
+                <AppIcon name={item.icon} size={26} color="#1E6B4E" />
                 <Text style={styles.gridTitle}>{item.label}</Text>
               </TouchableOpacity>
             ))}
@@ -98,10 +101,7 @@ export default function WelcomeScreen() {
           {/* Footer Branding */}
           <View style={styles.footerContainer}>
             <Text style={styles.footerText}>
-              Powered by National Information Center
-            </Text>
-            <Text style={styles.footerSubText}>
-              All rights are reserved by the Ministry of Interior
+              {'Powered by  National Information center\nAll rights are reserved by the Ministry of Interior'}
             </Text>
           </View>
         </View>
@@ -113,17 +113,15 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#F3F6F4',
+    backgroundColor: '#F4F7F5',
   },
   scrollContent: {
     paddingBottom: 40,
   },
   header: {
     backgroundColor: '#D8ECE1',
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
     paddingBottom: 24,
-    borderBottomLeftRadius: 28,
-    borderBottomRightRadius: 28,
     alignItems: 'center',
   },
   headerTopRow: {
@@ -131,26 +129,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   iconBtn: {
-    padding: 6,
-    marginLeft: 6,
+    padding: 4,
+    marginLeft: 14,
   },
   logoRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 4,
+    marginTop: 8,
     marginBottom: 16,
   },
   logo1: {
     width: 48,
-    height: 64,
+    height: 68,
   },
   logo2: {
-    width: 64,
-    height: 64,
+    width: 68,
+    height: 68,
     marginLeft: 16,
   },
   appTitle: {
@@ -163,8 +161,8 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: '100%',
+    height: 48,
     backgroundColor: '#1E6B4E',
-    paddingVertical: 14,
     borderRadius: 24,
     alignItems: 'center',
     justifyContent: 'center',
@@ -181,13 +179,13 @@ const styles = StyleSheet.create({
   },
   publicSection: {
     paddingHorizontal: 16,
-    paddingTop: 20,
+    paddingTop: 24,
   },
   publicHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 14,
+    marginBottom: 16,
   },
   sectionTitle: {
     fontSize: 18,
@@ -222,7 +220,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: '#18251C',
-    lineHeight: 18,
+    lineHeight: 19,
     marginTop: 14,
   },
   footerContainer: {
@@ -233,11 +231,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#5C6B64',
     textAlign: 'center',
-  },
-  footerSubText: {
-    fontSize: 11,
-    color: '#8A9690',
-    marginTop: 6,
-    textAlign: 'center',
+    lineHeight: 18,
   },
 });

@@ -219,7 +219,55 @@ const SvgDots = ({ size = 24, color = '#8E9590' }: { size?: number; color?: stri
   </Svg>
 );
 
-// 20. Public Services Icons
+// 20. Settings Gear
+const SvgSettings = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Circle cx="12" cy="12" r="3" stroke={color} strokeWidth="1.8" />
+    <Path
+      d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+// 21. Document Outline with Text Lines (My Documents)
+const SvgDocumentText = ({ size = 26, color = '#166444' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path
+      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <Path
+      d="M14 2v6h6M16 13H8M16 17H8M10 9H8"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+// 22. Arrow Back
+const SvgArrowBack = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M19 12H5M12 19l-7-7 7-7" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// 23. Close X
+const SvgClose = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Path d="M18 6L6 18M6 6l12 12" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </Svg>
+);
+
+// 24. Public Services Icons
 const SvgCheckbox = ({ size = 24, color = '#166444' }: { size?: number; color?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
     <Rect x="3" y="3" width="18" height="18" rx="4" stroke={color} strokeWidth="1.8" />
@@ -255,6 +303,13 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   'bell': SvgBell,
   'search': SvgSearch,
   'search-outline': SvgSearch,
+  'settings': SvgSettings,
+  'settings-outline': SvgSettings,
+  'gear': SvgSettings,
+  'arrow-back': SvgArrowBack,
+  'arrow-back-outline': SvgArrowBack,
+  'close': SvgClose,
+  'close-outline': SvgClose,
 
   // General & Navigation
   'chevron-forward': SvgChevronRight,
@@ -323,6 +378,10 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   'checkbox-outline': SvgCheckbox,
   'book-outline': SvgBook,
   'calendar-outline': SvgCalendar,
+  'document-text': SvgDocumentText,
+  'document-text-outline': SvgDocumentText,
+  'file-text': SvgDocumentText,
+  'document': SvgDocumentText,
 };
 
 export interface AppIconProps {
