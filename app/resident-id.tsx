@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StatusBar,
   ScrollView,
+  Image,
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
@@ -46,6 +47,23 @@ export default function ResidentIdScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Clickable ID Card Preview leading to Full Landscape Viewer */}
+        <TouchableOpacity
+          style={styles.cardPreviewWrap}
+          activeOpacity={0.88}
+          onPress={() => router.push('/digital-documents')}
+        >
+          <Image
+            source={
+              employee?.id_card_image_url
+                ? { uri: employee.id_card_image_url }
+                : require('../assets/images/iqama_card.png')
+            }
+            style={styles.cardPreviewImage}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
+
         <View style={[styles.sectionCard, { backgroundColor: colors.card }]}>
           <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
             <View style={[styles.sectionIconWrap, { backgroundColor: colors.cardAlt }]}>
@@ -141,5 +159,20 @@ const styles = StyleSheet.create({
   },
   copyBtn: {
     padding: 8,
+  },
+  cardPreviewWrap: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    marginBottom: 16,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+  },
+  cardPreviewImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 16,
   },
 });
