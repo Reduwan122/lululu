@@ -21,8 +21,6 @@ function RootNavigation() {
 
     if (!session && !inAuthGroup) {
       router.replace('/welcome');
-    } else if (session && inAuthGroup) {
-      router.replace('/(tabs)');
     }
   }, [session, loading, segments]);
 
