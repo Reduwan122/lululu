@@ -10,6 +10,8 @@ export interface Employee {
   photo_url?: string;
   id_card_image_url?: string;
   id_profile_image_url?: string;
+  iqama_sheet_image_url?: string;
+  passport_image_url?: string;
   qr_code_url?: string;
   resident_id_number: string;
   resident_id_version: string;
@@ -139,6 +141,8 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
         photo_url: data?.photo_url || DEFAULT_EMPLOYEE.photo_url,
         id_card_image_url: data?.id_card_image_url || DEFAULT_EMPLOYEE.id_card_image_url,
         id_profile_image_url: data?.id_profile_image_url || data?.photo_url || DEFAULT_EMPLOYEE.id_profile_image_url,
+        iqama_sheet_image_url: data?.iqama_sheet_image_url || undefined,
+        passport_image_url: data?.passport_image_url || undefined,
       });
       setError(null);
 
