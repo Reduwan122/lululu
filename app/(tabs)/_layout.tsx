@@ -1,6 +1,12 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { AppIcon } from '../../components/AppIcon';
+import {
+  TabHomeIcon,
+  TabServicesIcon,
+  TabFamilyIcon,
+  TabWorkersIcon,
+  TabOtherIcon,
+} from '../../components/ExtractedIcons';
 
 export default function TabLayout() {
   return (
@@ -28,7 +34,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="home" size={24} color={color} />
+            <TabHomeIcon size={24} color={color} />
           ),
         }}
       />
@@ -37,7 +43,7 @@ export default function TabLayout() {
         options={{
           title: 'Services',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="services" size={24} color={color} />
+            <TabServicesIcon size={24} color={color} />
           ),
         }}
       />
@@ -46,7 +52,7 @@ export default function TabLayout() {
         options={{
           title: 'Family',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="family" size={24} color={color} />
+            <TabFamilyIcon size={24} color={color} />
           ),
         }}
       />
@@ -55,7 +61,7 @@ export default function TabLayout() {
         options={{
           title: 'Workers',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="workers" size={24} color={color} />
+            <TabWorkersIcon size={24} color={color} />
           ),
         }}
       />
@@ -64,7 +70,7 @@ export default function TabLayout() {
         options={{
           title: 'Other',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="other" size={24} color={color} />
+            <TabOtherIcon size={24} color={color} />
           ),
         }}
       />

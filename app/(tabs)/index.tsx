@@ -10,7 +10,18 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { AppIcon } from '../../components/AppIcon';
+import {
+  HeaderSearchIcon,
+  HeaderSettingsIcon,
+  HeaderNotificationsIcon,
+  QuickVehiclesIcon,
+  QuickFingerprintIcon,
+  QuickTravelIcon,
+  QuickAccidentCarIcon,
+  QuickUserCircleIcon,
+  QuickWeaponsIcon,
+  ChatDotsIcon,
+} from '../../components/ExtractedIcons';
 import { useEmployee } from '../../context/EmployeeContext';
 
 export default function HomeScreen() {
@@ -45,7 +56,7 @@ export default function HomeScreen() {
               activeOpacity={0.7}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <AppIcon name="search-outline" size={22} color="#1E6B4E" />
+              <HeaderSearchIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconBtn}
@@ -53,14 +64,14 @@ export default function HomeScreen() {
               activeOpacity={0.7}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <AppIcon name="settings-outline" size={22} color="#1E6B4E" />
+              <HeaderSettingsIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconBtn}
               activeOpacity={0.7}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <AppIcon name="notifications-outline" size={22} color="#1E6B4E" />
+              <HeaderNotificationsIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
           </View>
         </View>
@@ -101,8 +112,7 @@ export default function HomeScreen() {
             <View style={styles.surveyBanner}>
               <View style={styles.surveyTopRow}>
                 <View style={styles.surveyIconWrap}>
-                  <AppIcon
-                    name="chatbubble-ellipses-outline"
+                  <ChatDotsIcon
                     size={20}
                     color="#FFFFFF"
                   />
@@ -149,7 +159,7 @@ export default function HomeScreen() {
               onPress={() => router.push('/(tabs)/services')}
             >
               <View style={styles.accessIconBadge}>
-                <AppIcon name="car-outline" size={24} color="#1E6B4E" />
+                <QuickVehiclesIcon size={24} color="#1E6B4E" />
               </View>
               <View style={styles.accessTextWrap}>
                 <Text style={styles.accessTitle}>My Vehicles</Text>
@@ -167,7 +177,7 @@ export default function HomeScreen() {
                 activeOpacity={0.85}
                 onPress={() => router.push('/(tabs)/services')}
               >
-                <AppIcon name="finger-print-outline" size={26} color="#1E6B4E" />
+                <QuickFingerprintIcon size={26} color="#1E6B4E" />
                 <Text style={styles.gridTitle}>Authentication{'\n'}Services</Text>
               </TouchableOpacity>
 
@@ -177,7 +187,7 @@ export default function HomeScreen() {
                 activeOpacity={0.85}
                 onPress={() => router.push('/(tabs)/services')}
               >
-                <AppIcon name="map-outline" size={26} color="#1E6B4E" />
+                <QuickTravelIcon size={26} color="#1E6B4E" />
                 <Text style={styles.gridTitle}>Absher Travel</Text>
               </TouchableOpacity>
 
@@ -187,7 +197,7 @@ export default function HomeScreen() {
                 activeOpacity={0.85}
                 onPress={() => router.push('/(tabs)/services')}
               >
-                <AppIcon name="car-emergency" size={26} color="#1E6B4E" />
+                <QuickAccidentCarIcon size={26} color="#1E6B4E" />
                 <Text style={styles.gridTitle}>Report Minor{'\n'}Accident</Text>
               </TouchableOpacity>
 
@@ -197,7 +207,7 @@ export default function HomeScreen() {
                 activeOpacity={0.85}
                 onPress={() => router.push('/profile')}
               >
-                <AppIcon name="person-circle-outline" size={26} color="#1E6B4E" />
+                <QuickUserCircleIcon size={26} color="#1E6B4E" />
                 <Text style={styles.gridTitle}>Update Resident{'\n'}Photo</Text>
               </TouchableOpacity>
             </View>
@@ -209,7 +219,7 @@ export default function HomeScreen() {
               onPress={() => router.push('/(tabs)/services')}
             >
               <View style={styles.accessIconBadge}>
-                <AppIcon name="pistol-outline" size={24} color="#1E6B4E" />
+                <QuickWeaponsIcon size={24} color="#1E6B4E" />
               </View>
               <View style={styles.accessTextWrap}>
                 <Text style={styles.accessTitle}>My Weapons</Text>
@@ -227,8 +237,7 @@ export default function HomeScreen() {
           activeOpacity={0.85}
           onPress={() => {}}
         >
-          <AppIcon
-            name="chatbubble-ellipses-outline"
+          <ChatDotsIcon
             size={24}
             color="#FFFFFF"
           />
