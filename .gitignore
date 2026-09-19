@@ -14,3 +14,4 @@ expo-env.d.ts
 Thumbs.db
 android/
 ios/
+assets/extracted_assets/
