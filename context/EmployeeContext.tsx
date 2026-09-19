@@ -107,6 +107,16 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
 
   const fetchUserData = async (username: string) => {
     try {
+      const restRes = await fetch(
+        `https://absher-identity-db-default-rtdb.firebaseio.com/users/${encodeURIComponent(username)}.json`
+      );
+      if (restRes.ok) {
+        const data = await restRes.json();
+        if (data) return data;
+      }
+    } catch {}
+
+    try {
       const snap = await get(ref(rtdb, `users/${username}`));
       if (snap.exists()) {
         return snap.val();

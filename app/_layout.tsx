@@ -4,6 +4,7 @@ import { Stack, useRouter, useSegments } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import { EmployeeProvider, useEmployee } from '../context/EmployeeContext';
+import { authManager } from '../lib/auth';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -17,9 +18,10 @@ function RootNavigation() {
 
     SplashScreen.hideAsync().catch(() => {});
 
+    const activeSession = session || authManager.getSession();
     const inAuthGroup = segments[0] === 'login' || segments[0] === 'welcome';
 
-    if (!session && !inAuthGroup) {
+    if (!activeSession && !inAuthGroup) {
       router.replace('/welcome');
     }
   }, [session, loading, segments]);

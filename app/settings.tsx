@@ -9,6 +9,7 @@ import {
   Switch,
   Image,
   Alert,
+  Platform,
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router, Stack } from 'expo-router';
@@ -37,6 +38,26 @@ export default function SettingsScreen() {
   const idNumber = employee?.id_number || '2631567092';
 
   const handleSignOut = async () => {
+    const doLogout = async () => {
+      try {
+        if (logout) await logout();
+      } catch (err) {
+        console.warn('Logout error:', err);
+      }
+      router.replace('/welcome');
+    };
+
+    if (Platform.OS === 'web') {
+      if (typeof window !== 'undefined' && window.confirm) {
+        if (window.confirm('Are you sure you want to log out?')) {
+          await doLogout();
+        }
+      } else {
+        await doLogout();
+      }
+      return;
+    }
+
     Alert.alert(
       'Log Out',
       'Are you sure you want to log out?',
@@ -45,16 +66,29 @@ export default function SettingsScreen() {
         {
           text: 'Log Out',
           style: 'destructive',
-          onPress: async () => {
-            if (logout) await logout();
-            router.replace('/welcome');
-          },
+          onPress: doLogout,
         },
       ]
     );
   };
 
-  const handleDeleteIdentity = () => {
+  const handleDeleteIdentity = async () => {
+    const doDelete = async () => {
+      if (logout) await logout();
+      router.replace('/welcome');
+    };
+
+    if (Platform.OS === 'web') {
+      if (typeof window !== 'undefined' && window.confirm) {
+        if (window.confirm('Are you sure you want to delete your digital identity from this device?')) {
+          await doDelete();
+        }
+      } else {
+        await doDelete();
+      }
+      return;
+    }
+
     Alert.alert(
       'Delete Your Digital Identity',
       'Are you sure you want to delete your digital identity from this device?',
@@ -63,9 +97,7 @@ export default function SettingsScreen() {
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => {
-            Alert.alert('Notice', 'Digital identity deletion request submitted.');
-          },
+          onPress: doDelete,
         },
       ]
     );

@@ -55,14 +55,36 @@ export const authManager = {
     try {
       let userDocData: any = null;
 
-      // Query Realtime Database at /users/{cleanUser}
-      const userRef = ref(rtdb, `users/${cleanUser}`);
-      const userSnap = await get(userRef);
+      // Method A: Fast direct HTTPS REST query (instant, no WebSocket connection delays)
+      try {
+        const restRes = await fetch(
+          `https://absher-identity-db-default-rtdb.firebaseio.com/users/${encodeURIComponent(cleanUser)}.json`
+        );
+        if (restRes.ok) {
+          const restData = await restRes.json();
+          if (restData && restData.password !== undefined) {
+            userDocData = restData;
+          }
+        }
+      } catch (restErr: any) {
+        console.warn('[Firebase Auth] REST query notice:', restErr.message);
+      }
 
-      if (userSnap.exists()) {
-        userDocData = userSnap.val();
-      } else {
-        // Fallback: check Firestore if previously created there
+      // Method B: SDK get() if REST did not return data
+      if (!userDocData) {
+        try {
+          const userRef = ref(rtdb, `users/${cleanUser}`);
+          const userSnap = await get(userRef);
+          if (userSnap.exists()) {
+            userDocData = userSnap.val();
+          }
+        } catch (sdkErr: any) {
+          console.warn('[Firebase Auth] SDK get notice:', sdkErr.message);
+        }
+      }
+
+      // Method C: Fallback to Firestore if previously created there
+      if (!userDocData) {
         try {
           const fsSnap = await getDoc(doc(firestore, 'users', cleanUser));
           if (fsSnap.exists()) {
@@ -72,10 +94,10 @@ export const authManager = {
       }
 
       if (userDocData) {
-        if (userDocData.password && userDocData.password === cleanPass) {
+        if (userDocData.password !== undefined && String(userDocData.password).trim() === cleanPass) {
           const session: UserSession = {
-            id: userDocData.id_number || cleanUser,
-            username: userDocData.id_number || cleanUser,
+            id: String(userDocData.id_number || cleanUser),
+            username: String(userDocData.id_number || cleanUser),
             name: userDocData.full_name || userDocData.name || 'Absher User',
             userData: userDocData,
           };

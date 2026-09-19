@@ -20,7 +20,7 @@ export const firebaseConfig = {
 
 // Safe initialization to prevent duplicate app instances
 export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-export const rtdb = getDatabase(app);
+export const rtdb = getDatabase(app, firebaseConfig.databaseURL);
 export const db = rtdb; // primary Realtime Database reference
 export const firestore = getFirestore(app);
 export const storage = getStorage(app);
