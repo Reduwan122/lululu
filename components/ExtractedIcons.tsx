@@ -178,11 +178,11 @@ export const QuickUserCircleIcon = ({ size = 26, color = '#1E6B4E', ...props }: 
 );
 
 // My Weapons: 100% Exact Handgun Silhouette pointing right (matching media_1789847762105.jpg)
-export const QuickWeaponsIcon = ({ size = 24, color = '#1E6B4E', ...props }: ExtractedIconProps) => (
+export const QuickWeaponsIcon = ({ size = 26, color = '#1E6B4E', ...props }: ExtractedIconProps) => (
   <Svg width={size} height={size} viewBox="-46 -526 668 668" fill="none" {...props}>
     <Path
       fill={color}
-      d="M48 -392Q50 -414 72 -416Q94 -414 96 -392L96 -384L96 -384L544 -384L544 -384Q558 -384 567 -375Q576 -366 576 -352L576 -240L576 -240Q576 -226 567 -217Q558 -208 544 -208L534 -208L534 -208Q518 -207 509 -196Q500 -184 503 -168L543 -8L543 -8Q546 7 537 20Q528 32 512 32L416 32L416 32Q392 31 385 8L359 -96L359 -96L254 -96L254 -96Q236 -96 222 -106Q208 -116 202 -133L175 -208L175 -208L144 -208L144 -208Q131 -208 121 -217L99 -240L99 -240L32 -240L32 -240Q18 -240 9 -249Q0 -258 0 -272L0 -352L0 -352Q0 -366 9 -375Q18 -384 32 -384L48 -384L48 -384L48 -392ZM255 -144L347 -144L255 -144L347 -144L331 -208L331 -208L226 -208L226 -208L247 -149L247 -149Q249 -144 254 -144ZM496 -320L112 -320L496 -320L112 -320Q97 -319 96 -304Q97 -289 112 -288L496 -288L496 -288Q511 -289 512 -304Q511 -319 496 -320Z"
+      d="M528 -392Q526 -414 504 -416Q482 -414 480 -392L480 -384L480 -384L32 -384L32 -384Q18 -384 9 -375Q0 -366 0 -352L0 -240L0 -240Q0 -226 9 -217Q18 -208 32 -208L42 -208L42 -208Q58 -207 67 -196Q76 -184 73 -168L33 -8L33 -8Q30 7 39 20Q48 32 64 32L160 32L160 32Q184 31 191 8L217 -96L217 -96L322 -96L322 -96Q340 -96 354 -106Q368 -116 374 -133L401 -208L401 -208L432 -208L432 -208Q445 -208 455 -217L477 -240L477 -240L544 -240L544 -240Q558 -240 567 -249Q576 -258 576 -272L576 -352L576 -352Q576 -366 567 -375Q558 -384 544 -384L528 -384L528 -384L528 -392ZM321 -144L229 -144L321 -144L229 -144L245 -208L245 -208L350 -208L350 -208L329 -149L329 -149Q327 -144 322 -144ZM80 -320L464 -320L80 -320L464 -320Q479 -319 480 -304Q479 -289 464 -288L80 -288L80 -288Q65 -289 64 -304Q65 -319 80 -320Z"
     />
   </Svg>
 );
@@ -212,16 +212,21 @@ export const ChatDotsIcon = ({
   </Svg>
 );
 
-// Solid filled speech bubble for Survey Banner green badge
-export const SurveyChatIcon = ({ size = 20, color = '#FFFFFF', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+// Solid filled speech bubble for Survey Banner green badge (100% exact vector matching media_1789848342786.png)
+export const SurveyChatIcon = ({
+  size = 22,
+  color = '#FFFFFF',
+  dotsColor = '#175438',
+  ...props
+}: ExtractedIconProps & { dotsColor?: string }) => (
+  <Svg width={size} height={size} viewBox="-25 -472 560 560" fill="none" {...props}>
     <Path
-      d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
       fill={color}
+      d="M256 0Q328 -1 385 -28Q443 -56 477 -103Q511 -150 512 -208Q511 -266 477 -313Q443 -360 385 -388Q328 -415 256 -416Q184 -415 127 -388Q69 -360 35 -313Q1 -266 0 -208Q1 -139 48 -87Q43 -50 26 -24Q18 -10 11 -3Q8 1 6 3Q6 4 5 4L5 5Q-2 12 1 22Q6 32 16 32Q60 30 98 13Q133 -3 152 -18Q200 0 256 0Z"
     />
-    <Circle cx="7.5" cy="10" r="1.3" fill="#1E6B4E" />
-    <Circle cx="12" cy="10" r="1.3" fill="#1E6B4E" />
-    <Circle cx="16.5" cy="10" r="1.3" fill="#1E6B4E" />
+    <Circle cx="128" cy="-208" r="32" fill={dotsColor} />
+    <Circle cx="256" cy="-208" r="32" fill={dotsColor} />
+    <Circle cx="384" cy="-208" r="32" fill={dotsColor} />
   </Svg>
 );
 

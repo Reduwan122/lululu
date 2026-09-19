@@ -114,8 +114,9 @@ export default function HomeScreen() {
               <View style={styles.surveyTopRow}>
                 <View style={styles.surveyIconWrap}>
                   <SurveyChatIcon
-                    size={20}
+                    size={22}
                     color="#FFFFFF"
+                    dotsColor="#175438"
                   />
                 </View>
                 <View style={styles.surveyContent}>
@@ -340,10 +341,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   surveyIconWrap: {
-    width: 36,
-    height: 36,
+    width: 38,
+    height: 38,
     borderRadius: 10,
-    backgroundColor: '#1E6B4E',
+    backgroundColor: '#175438',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 12,
@@ -352,15 +353,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   surveyTitle: {
-    fontSize: 16,
+    fontSize: 16.5,
     fontWeight: '700',
     color: '#17211C',
     letterSpacing: -0.2,
   },
   surveySub: {
     fontSize: 13.5,
-    color: '#3A4A40',
-    marginTop: 4,
+    color: '#34473D',
+    marginTop: 3,
     lineHeight: 18,
   },
   surveyCta: {
@@ -368,7 +369,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   surveyCtaText: {
-    color: '#1E6B4E',
+    color: '#175438',
     fontSize: 14.5,
     fontWeight: '700',
   },
