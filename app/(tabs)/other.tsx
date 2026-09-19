@@ -197,9 +197,12 @@ const styles = StyleSheet.create({
   headerIcons: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
   },
   iconBtn: {
-    marginLeft: 16,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: 28,

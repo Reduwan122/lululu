@@ -144,11 +144,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    gap: 12,
     marginBottom: 14,
   },
   iconBtn: {
-    padding: 4,
-    marginLeft: 16,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logoRow: {
     flexDirection: 'row',

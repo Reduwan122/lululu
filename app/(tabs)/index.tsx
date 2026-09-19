@@ -55,7 +55,7 @@ export default function HomeScreen() {
             <TouchableOpacity
               style={styles.iconBtn}
               activeOpacity={0.7}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              hitSlop={{ top: 12, bottom: 12, left: 6, right: 6 }}
             >
               <HeaderSearchIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
@@ -63,14 +63,14 @@ export default function HomeScreen() {
               style={styles.iconBtn}
               onPress={() => router.push('/settings')}
               activeOpacity={0.7}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              hitSlop={{ top: 12, bottom: 12, left: 6, right: 6 }}
             >
               <HeaderSettingsIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.iconBtn}
               activeOpacity={0.7}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              hitSlop={{ top: 12, bottom: 12, left: 6, right: 6 }}
             >
               <HeaderNotificationsIcon size={22} color="#1E6B4E" />
             </TouchableOpacity>
@@ -285,10 +285,12 @@ const styles = StyleSheet.create({
   headerIconsRight: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 12,
   },
   iconBtn: {
-    marginLeft: 16,
-    padding: 4,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollContent: {
     paddingBottom: 24,
