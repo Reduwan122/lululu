@@ -5,7 +5,9 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
+import { router } from 'expo-router';
 import { useEmployee } from '../context/EmployeeContext';
 
 export default function MyDigitalId() {
@@ -28,15 +30,21 @@ export default function MyDigitalId() {
       />
 
       <Text style={[styles.label, { marginTop: 24 }]}>Digital ID Card</Text>
-      <Image
-        source={
-          cardUrl
-            ? { uri: cardUrl }
-            : require('../assets/images/iqama_card.png')
-        }
-        style={styles.cardImage}
-        resizeMode="contain"
-      />
+      <TouchableOpacity
+        activeOpacity={0.88}
+        onPress={() => router.push('/digital-documents')}
+        style={{ width: '100%' }}
+      >
+        <Image
+          source={
+            cardUrl
+              ? { uri: cardUrl }
+              : require('../assets/images/iqama_card.png')
+          }
+          style={styles.cardImage}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
     </ScrollView>
   );
 }
