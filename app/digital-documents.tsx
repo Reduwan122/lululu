@@ -178,7 +178,7 @@ export default function DigitalDocumentsScreen() {
                   ]}
                 >
                   <Image
-                    source={require('../assets/extracted_assets/00_Brand_Launcher_And_Splash/absher_logo_primary_emblem.png')}
+                    source={require('../assets/images/absher_logo_primary_emblem.png')}
                     style={{ width: logoImgWidth, height: logoImgHeight }}
                     resizeMode="contain"
                   />

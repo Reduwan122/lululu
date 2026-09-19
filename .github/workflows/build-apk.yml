@@ -46,6 +46,7 @@ jobs:
 
       - name: 🔨 Build Android Release APK
         run: |
+          set -o pipefail
           cd android
           ./gradlew assembleRelease --no-daemon -Pandroid.kotlinVersion=2.0.21 --stacktrace 2>&1 | tee ../gradle.log
 
