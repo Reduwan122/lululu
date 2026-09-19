@@ -18,7 +18,6 @@ import { IconClose } from '../components/ExtractedIcons';
 export default function DigitalDocumentsScreen() {
   const { employee } = useEmployee();
   const [timer, setTimer] = useState(30);
-  const [qrSeed, setQrSeed] = useState(0);
   const [windowDimensions, setWindowDimensions] = useState(Dimensions.get('window'));
   const scrollRef = useRef<ScrollView>(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,16 +35,10 @@ export default function DigitalDocumentsScreen() {
     };
   }, []);
 
-  // 2. 30-Second Countdown Timer with dynamic QR regeneration
+  // 2. 30-Second Countdown Timer (cosmetic live update cycle)
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer((prev) => {
-        if (prev <= 1) {
-          setQrSeed((s) => s + 1);
-          return 30;
-        }
-        return prev - 1;
-      });
+      setTimer((prev) => (prev <= 1 ? 30 : prev - 1));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -55,8 +48,12 @@ export default function DigitalDocumentsScreen() {
   };
 
   const idNumber = employee?.id_number || '2631567092';
-  // Dynamic cryptographic payload changing every 30 seconds
-  const qrPayload = `https://absher.sa/verify/id?id=${idNumber}&cycle=${qrSeed}&ts=${Date.now()}&hash=${Math.random().toString(36).substring(2, 12).toUpperCase()}`;
+  const fullName = employee?.full_name || 'MD SUMON MIA';
+  const birthDate = employee?.date_of_birth || '18/08/2002';
+  const nationality = employee?.birth_country || 'Bangladesh';
+
+  // Constant & deterministic per user — stays the exact same for this user, but unique for different users
+  const qrPayload = employee?.qr_code_url || `https://absher.sa/verify/digital-id?id=${idNumber}&name=${encodeURIComponent(fullName)}&dob=${encodeURIComponent(birthDate)}&nat=${encodeURIComponent(nationality)}&v=1.0`;
 
   const { width, height } = windowDimensions;
   // Calculate landscape card dimensions matching 85.6mm x 53.98mm ratio
