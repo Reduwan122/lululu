@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
+import { ref, get, onValue, Unsubscribe } from 'firebase/database';
 import { authManager, UserSession } from '../lib/auth';
+import { rtdb } from '../lib/firebase';
 
 export interface Employee {
   id: string;
@@ -99,18 +101,65 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
   const [employee, setEmployee] = useState<Employee | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const rtdbUnsubRef = useRef<Unsubscribe | null>(null);
 
-  const applySession = (sess: UserSession | null) => {
+  const fetchUserData = async (username: string) => {
+    try {
+      const snap = await get(ref(rtdb, `users/${username}`));
+      if (snap.exists()) {
+        return snap.val();
+      }
+    } catch (e: any) {
+      console.warn('[EmployeeContext] Failed to fetch Realtime DB user:', e.message);
+    }
+    return null;
+  };
+
+  const applySession = async (sess: UserSession | null) => {
+    // Unsubscribe previous realtime listener if active
+    if (rtdbUnsubRef.current) {
+      rtdbUnsubRef.current();
+      rtdbUnsubRef.current = null;
+    }
+
     setSession(sess);
     if (sess) {
+      let data = sess.userData;
+      if (!data) {
+        data = await fetchUserData(sess.username);
+      }
+
       setEmployee({
         ...DEFAULT_EMPLOYEE,
+        ...(data || {}),
         id: sess.username,
         id_number: sess.username,
-        resident_id_number: sess.username,
-        full_name: sess.name || DEFAULT_EMPLOYEE.full_name,
+        resident_id_number: data?.resident_id_number || sess.username,
+        full_name: data?.full_name || sess.name || DEFAULT_EMPLOYEE.full_name,
+        photo_url: data?.photo_url || DEFAULT_EMPLOYEE.photo_url,
+        id_card_image_url: data?.id_card_image_url || DEFAULT_EMPLOYEE.id_card_image_url,
+        id_profile_image_url: data?.id_profile_image_url || data?.photo_url || DEFAULT_EMPLOYEE.id_profile_image_url,
       });
       setError(null);
+
+      // Subscribe to Realtime Database changes live
+      try {
+        const userRef = ref(rtdb, `users/${sess.username}`);
+        rtdbUnsubRef.current = onValue(userRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const liveData = snapshot.val();
+            setEmployee((prev) => ({
+              ...DEFAULT_EMPLOYEE,
+              ...(prev || {}),
+              ...liveData,
+              id: sess.username,
+              id_number: sess.username,
+            }));
+          }
+        });
+      } catch (subErr: any) {
+        console.warn('[EmployeeContext] Realtime listener error:', subErr.message);
+      }
     } else {
       setEmployee(null);
     }
@@ -133,19 +182,29 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
     const result = await authManager.signIn(idNumber, pass);
     if (result.success) {
       const sess = authManager.getSession();
-      applySession(sess);
+      await applySession(sess);
     }
     return result;
   };
 
   const logout = async () => {
+    if (rtdbUnsubRef.current) {
+      rtdbUnsubRef.current();
+      rtdbUnsubRef.current = null;
+    }
     await authManager.signOut();
-    applySession(null);
+    await applySession(null);
   };
 
   const refresh = async () => {
     const sess = authManager.getSession();
-    applySession(sess);
+    if (sess) {
+      const liveData = await fetchUserData(sess.username);
+      if (liveData) {
+        sess.userData = liveData;
+      }
+      await applySession(sess);
+    }
   };
 
   return (

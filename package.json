@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "admin": "node admin-portal/server.js"
   },
   "dependencies": {
     "@expo/vector-icons": "~14.0.4",
@@ -22,6 +23,7 @@
     "expo-splash-screen": "~0.29.0",
     "expo-status-bar": "~2.0.0",
     "expo-system-ui": "~4.0.0",
+    "firebase": "^12.19.0",
     "lucide-react-native": "^1.45.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
