@@ -21,6 +21,7 @@ import {
   QuickUserCircleIcon,
   QuickWeaponsIcon,
   ChatDotsIcon,
+  SurveyChatIcon,
 } from '../../components/ExtractedIcons';
 import { useEmployee } from '../../context/EmployeeContext';
 
@@ -112,7 +113,7 @@ export default function HomeScreen() {
             <View style={styles.surveyBanner}>
               <View style={styles.surveyTopRow}>
                 <View style={styles.surveyIconWrap}>
-                  <ChatDotsIcon
+                  <SurveyChatIcon
                     size={20}
                     color="#FFFFFF"
                   />
