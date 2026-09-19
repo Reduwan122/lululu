@@ -40,3 +40,4 @@ res += `);\n\n`;
 
 fs.writeFileSync('./scripts/add_snippet.txt', res, 'utf8');
 console.log('scripts/add_snippet.txt successfully written!');
+

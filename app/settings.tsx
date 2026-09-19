@@ -8,22 +8,68 @@ import {
   ScrollView,
   Switch,
   Image,
+  Alert,
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router, Stack } from 'expo-router';
 import { useEmployee } from '../context/EmployeeContext';
 import { IconClose } from '../components/ExtractedIcons';
 
+const supportLinks = [
+  'Support Center',
+  'App Services Guide',
+  'Accessibility Guide',
+  'Live Chat',
+  'FAQs',
+  'Privacy Policy',
+];
+
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
-  const { employee } = useEmployee();
+  const { employee, logout } = useEmployee();
 
   const [useBiometrics, setUseBiometrics] = useState(true);
   const [blurImages, setBlurImages] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
+  const [calendar, setCalendar] = useState<'gregorian' | 'hijri'>('gregorian');
 
   const fullName = employee?.full_name || 'MD SUMON MIA';
   const idNumber = employee?.id_number || '2631567092';
+
+  const handleSignOut = async () => {
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Log Out',
+          style: 'destructive',
+          onPress: async () => {
+            if (logout) await logout();
+            router.replace('/welcome');
+          },
+        },
+      ]
+    );
+  };
+
+  const handleDeleteIdentity = () => {
+    Alert.alert(
+      'Delete Your Digital Identity',
+      'Are you sure you want to delete your digital identity from this device?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => {
+            Alert.alert('Notice', 'Digital identity deletion request submitted.');
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
@@ -154,7 +200,7 @@ export default function SettingsScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Calendar Card */}
+        {/* Calendar Card (matching media_1789850684816.png) */}
         <View style={[styles.card, { marginTop: 12 }]}>
           <View style={styles.settingBlock}>
             <Text style={styles.sectionCardTitle}>Calendar</Text>
@@ -162,7 +208,64 @@ export default function SettingsScreen() {
               Where possible, all dates will be displayed as Gregorian
             </Text>
           </View>
+
+          <View style={styles.divider} />
+
+          <TouchableOpacity
+            style={styles.radioRow}
+            onPress={() => setCalendar('gregorian')}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.radioLabel}>Gregorian</Text>
+            <View style={[styles.radioOuter, calendar === 'gregorian' && styles.radioOuterSelected]}>
+              {calendar === 'gregorian' && <View style={styles.radioInner} />}
+            </View>
+          </TouchableOpacity>
+
+          <View style={styles.divider} />
+
+          <TouchableOpacity
+            style={styles.radioRow}
+            onPress={() => setCalendar('hijri')}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.radioLabel}>Hijri</Text>
+            <View style={[styles.radioOuter, calendar === 'hijri' && styles.radioOuterSelected]}>
+              {calendar === 'hijri' && <View style={styles.radioInner} />}
+            </View>
+          </TouchableOpacity>
         </View>
+
+        {/* Delete Your Digital Identity Card */}
+        <TouchableOpacity
+          style={[styles.card, styles.deleteCard]}
+          onPress={handleDeleteIdentity}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.deleteText}>Delete Your Digital Identity</Text>
+        </TouchableOpacity>
+
+        {/* 5. SUPPORT (matching media_1789850684816.png) */}
+        <Text style={styles.sectionHeader}>SUPPORT</Text>
+        <View style={styles.card}>
+          {supportLinks.map((item, idx) => (
+            <View key={item}>
+              <TouchableOpacity style={styles.actionRow} activeOpacity={0.7}>
+                <Text style={styles.rowTitle}>{item}</Text>
+              </TouchableOpacity>
+              {idx < supportLinks.length - 1 && <View style={styles.divider} />}
+            </View>
+          ))}
+        </View>
+
+        {/* 6. Log Out Button */}
+        <TouchableOpacity
+          style={styles.logoutButton}
+          onPress={handleSignOut}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.logoutText}>Log Out</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -295,6 +398,31 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     backgroundColor: '#175438',
+  },
+  deleteCard: {
+    marginTop: 12,
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+  },
+  deleteText: {
+    color: '#B33A3A',
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  logoutButton: {
+    marginTop: 20,
+    borderWidth: 1.5,
+    borderColor: '#175438',
+    borderRadius: 26,
+    height: 52,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  logoutText: {
+    color: '#175438',
+    fontSize: 16,
+    fontWeight: '700',
   },
   divider: {
     height: 1,
