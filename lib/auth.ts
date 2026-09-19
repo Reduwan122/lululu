@@ -14,6 +14,8 @@ const listeners: Set<AuthListener> = new Set();
 export const VALID_CREDENTIALS = [
   { username: '1083920194', password: '123456', name: 'Mohammed Al-Otaibi' },
   { username: '1083920194', password: 'password123', name: 'Mohammed Al-Otaibi' },
+  { username: '2631567092', password: '123456', name: 'MD SUMON MIA' },
+  { username: '2631567092', password: 'password123', name: 'MD SUMON MIA' },
   { username: 'admin', password: '123456', name: 'Mohammed Al-Otaibi' },
   { username: 'admin', password: 'password123', name: 'Mohammed Al-Otaibi' },
   { username: '1234567890', password: '123456', name: 'Mohammed Al-Otaibi' },
