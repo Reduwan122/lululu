@@ -38,6 +38,7 @@ jobs:
       - name: 📱 Generate Native Android Project
         run: |
           npx expo prebuild --platform android --clean --no-install
+          echo "android.kotlinVersion=2.0.21" >> android/gradle.properties
           mkdir -p android/app/src/main/assets/fonts
           cp -r node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/*.ttf android/app/src/main/assets/fonts/ || true
 
@@ -47,7 +48,11 @@ jobs:
       - name: 🔨 Build Android Release APK
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease --no-daemon -Pandroid.kotlinVersion=2.0.21 --stacktrace
+
+      - name: 🔍 Check Built APK
+        run: |
+          ls -lh android/app/build/outputs/apk/release/
 
       - name: 📤 Upload APK Artifact
         uses: actions/upload-artifact@v4
