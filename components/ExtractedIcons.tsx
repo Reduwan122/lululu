@@ -235,6 +235,127 @@ export const SurveyChatIcon = ({
 );
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 5. SERVICES & OTHER TABS AUTHENTIC VECTOR ICONS
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Register Newborn & Birth Certificates (Universal Access / Vitruvian silhouette)
+export const IconUniversalAccess = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-77 -525 666 666" fill={color} {...props}>
+    <Path d="M0 -192Q1 -262 34 -320Q68 -378 128 -414Q189 -448 256 -448Q323 -448 384 -414Q444 -378 478 -320Q511 -262 512 -192Q511 -122 478 -64Q444 -6 384 30Q323 64 256 64Q189 64 128 30Q68 -6 34 -64Q1 -122 0 -192ZM162 -278Q141 -285 130 -265Q123 -244 143 -234L155 -229Q180 -218 208 -213L208 -162Q208 -156 206 -150L177 -64Q172 -42 193 -33Q214 -28 223 -49L247 -122Q250 -128 256 -128Q263 -128 265 -122L289 -49Q298 -28 320 -33Q340 -42 335 -64L306 -150Q304 -156 304 -162L304 -213Q332 -218 358 -229L370 -234Q389 -244 382 -265Q372 -285 351 -278L339 -273Q299 -256 256 -256Q213 -256 173 -273L161 -278ZM256 -288Q279 -289 291 -308Q301 -328 291 -348Q279 -367 256 -368Q233 -367 221 -348Q211 -328 221 -308Q233 -289 256 -288Z" />
+  </Svg>
+);
+
+// Credit Card (Driving License, Resident ID, Death Certificates, Resident ID Requests, Border Number)
+export const IconCreditCard = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-86 -566 749 749" fill={color} {...props}>
+    <Path d="M64 -416Q37 -415 19 -397Q1 -379 0 -352L0 -320L576 -320L576 -352Q575 -379 557 -397Q539 -415 512 -416L64 -416ZM576 -224L0 -224L0 -32Q1 -5 19 13Q37 31 64 32L512 32Q539 31 557 13Q575 -5 576 -32L576 -224ZM112 -96L176 -96Q191 -95 192 -80Q191 -65 176 -64L112 -64Q97 -65 96 -80Q97 -95 112 -96ZM224 -80Q225 -95 240 -96L368 -96Q383 -95 384 -80Q383 -65 368 -64L240 -64Q225 -65 224 -80Z" />
+  </Svg>
+);
+
+// Update Passport Information (Authentic Globe)
+export const IconGlobe = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-41 -489 594 594" fill={color} {...props}>
+    <Path d="M352-192Q352-159 349-128L163-128Q160-159 160-192Q160-225 163-256L349-256Q352-225 352-192M381-256L504-256Q512-225 512-192Q512-159 504-128L381-128Q384-159 384-192Q384-225 381-256M493-288L377-288Q361-386 321-440Q381-423 426-384Q470-344 493-288M344-288L168-288Q177-343 195-383Q211-418 228-434Q245-449 256-448Q267-449 284-434Q301-418 317-383Q335-343 344-288M135-288L19-288Q42-344 86-384Q131-423 191-440Q151-386 135-288M8-256L131-256Q128-225 128-192Q128-159 131-128L8-128Q0-159 0-192Q0-225 8-256M195-1Q177-41 168-96L344-96Q335-41 317-1Q301 34 284 50Q267 65 256 64Q245 65 228 50Q211 34 195-1M135-96Q151 2 191 56Q131 39 86 0Q42-40 19-96L135-96M494-96L493-96Q470-40 426 0Q381 39 322 56Q361 2 377-96" />
+  </Svg>
+);
+
+// Manage Appointments (Clock)
+export const IconClock = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-77 -525 666 666" fill={color} {...props}>
+    <Path d="M256 -448Q326 -447 384 -414Q442 -380 478 -320Q512 -259 512 -192Q512 -125 478 -64Q442 -4 384 30Q326 63 256 64Q186 63 128 30Q70 -4 34 -64Q0 -125 0 -192Q0 -259 34 -320Q70 -380 128 -414Q186 -447 256 -448ZM232 -328L232 -192Q232 -179 243 -172L339 -108Q358 -97 372 -115Q383 -134 365 -148L280 -205L280 -328Q278 -350 256 -352Q234 -350 232 -328Z" />
+  </Svg>
+);
+
+// Document Delivery (Isometric Cube)
+export const IconCube = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-79 -527 671 671" fill={color} {...props}>
+    <Path d="M235 -442Q256 -450 278 -442L470 -374Q489 -366 500 -350Q512 -334 512 -313L512 -70Q512 -50 500 -34Q489 -17 470 -10L278 58Q256 66 234 58L42 -10Q23 -17 12 -34Q0 -50 0 -71L0 -313Q0 -334 12 -350Q23 -366 43 -374L235 -442ZM256 -382L82 -320L256 -258L430 -320L256 -382ZM288 -13L448 -70L448 -258L288 -201L288 -13Z" />
+  </Svg>
+);
+
+// Manage Authorizations (Square Checkmark)
+export const IconSquareCheck = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-67 -483 582 582" fill={color} {...props}>
+    <Path d="M64 -416Q37 -415 19 -397Q1 -379 0 -352L0 -32Q1 -5 19 13Q37 31 64 32L384 32Q411 31 429 13Q447 -5 448 -32L448 -352Q447 -379 429 -397Q411 -415 384 -416L64 -416ZM337 -239L209 -111Q192 -97 175 -111L111 -175Q97 -192 111 -209Q128 -223 145 -209L192 -162L303 -273Q320 -287 337 -273Q351 -256 337 -239Z" />
+  </Svg>
+);
+
+// Donate with Furijat & Ehsan (Outline Heart)
+export const IconHeart = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-77 -521 666 666" fill="none" {...props}>
+    <Path
+      d="M48 -148L228 21Q240 32 256 32Q272 32 284 21L464 -148Q511 -192 512 -257L512 -263Q511 -317 478 -355Q445 -394 393 -404Q358 -409 325 -399Q293 -389 268 -364L256 -352L244 -364Q219 -389 187 -399Q154 -409 119 -404Q67 -394 34 -355Q1 -317 0 -263L0 -257Q1 -192 48 -148Z"
+      stroke={color}
+      strokeWidth={36}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </Svg>
+);
+
+// Manage Visit Visa (File Lines)
+export const IconFileLines = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-141 -525 666 666" fill={color} {...props}>
+    <Path d="M64 -448Q37 -447 19 -429Q1 -411 0 -384L0 0Q1 27 19 45Q37 63 64 64L320 64Q347 63 365 45Q383 27 384 0L384 -288L256 -288Q242 -288 233 -297Q224 -306 224 -320L224 -448L64 -448ZM256 -448L256 -320L384 -320L256 -448ZM112 -192L272 -192Q287 -191 288 -176Q287 -161 272 -160L112 -160Q97 -161 96 -176Q97 -191 112 -192ZM112 -128L272 -128Q287 -127 288 -112Q287 -97 272 -96L112 -96Q97 -97 96 -112Q97 -127 112 -128ZM112 -64L272 -64Q287 -63 288 -48Q287 -33 272 -32L112 -32Q97 -33 96 -48Q97 -63 112 -64Z" />
+  </Svg>
+);
+
+// Service Activation Sites (Mobile Screen)
+export const IconMobileScreen = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-141 -525 666 666" fill={color} {...props}>
+    <Path d="M16 -384Q17 -411 35 -429Q53 -447 80 -448L304 -448Q331 -447 349 -429Q367 -411 368 -384L368 0Q367 27 349 45Q331 63 304 64L80 64Q53 63 35 45Q17 27 16 0L16 -384ZM144 0Q145 15 160 16L224 16Q239 15 240 0Q239 -15 224 -16L160 -16Q145 -15 144 0ZM304 -384L80 -384L80 -64L304 -64L304 -384Z" />
+  </Svg>
+);
+
+// Manage Qabul Requests (Double Checkmark)
+export const IconCheckDouble = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-67 -483 582 582" fill={color} {...props}>
+    <Path d="M343 -361Q352 -371 352 -384Q352 -397 343 -407Q333 -416 320 -416Q307 -416 297 -407L160 -269L103 -327Q93 -336 80 -336Q67 -336 57 -327Q48 -317 48 -304Q48 -291 57 -281L137 -201Q147 -192 160 -192Q173 -192 183 -201L343 -361ZM439 -233Q448 -243 448 -256Q448 -269 439 -279Q429 -288 416 -288Q403 -288 393 -279L160 -45L55 -151Q45 -160 32 -160Q19 -160 9 -151Q0 -141 0 -128Q0 -115 9 -105L137 23Q147 32 160 32Q173 32 183 23L439 -233Z" />
+  </Svg>
+);
+
+// Government Payments (Building)
+export const IconBuilding = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-141 -525 666 666" fill={color} {...props}>
+    <Path d="M48 -448Q28 -447 14 -434Q1 -420 0 -400L0 16Q1 36 14 50Q28 63 48 64L144 64L144 -16Q145 -36 158 -50Q172 -63 192 -64Q212 -63 226 -50Q239 -36 240 -16L240 64L336 64Q356 63 370 50Q383 36 384 16L384 -400Q383 -420 370 -434Q356 -447 336 -448L48 -448ZM64 -208Q65 -223 80 -224L112 -224Q127 -223 128 -208L128 -176Q127 -161 112 -160L80 -160Q65 -161 64 -176L64 -208ZM176 -224L208 -224Q223 -223 224 -208L224 -176Q223 -161 208 -160L176 -160Q161 -161 160 -176L160 -208ZM256 -208Q257 -223 272 -224L304 -224Q319 -223 320 -208L320 -176Q319 -161 304 -160L272 -160Q257 -161 256 -176L256 -208ZM80 -352L112 -352Q127 -351 128 -336L128 -304Q127 -289 112 -288L80 -288Q65 -289 64 -304L64 -336Q65 -351 80 -352ZM160 -336Q161 -351 176 -352L208 -352Q223 -351 224 -336L224 -304Q223 -289 208 -288L176 -288Q161 -289 160 -304L160 -336ZM272 -352L304 -352Q319 -351 320 -336L320 -304Q319 -289 304 -288L272 -288Q257 -289 256 -304L256 -336Z" />
+  </Svg>
+);
+
+// Layer Group (Badge stack icon on Birth & Death Certificates)
+export const IconLayerGroup = ({ size = 18, color = '#8E9590', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-51 -531 679 679" fill={color} {...props}>
+    <Path d="M265 -443Q288 -453 312 -443L530 -342Q543 -335 544 -320Q543 -305 530 -298L311 -197Q288 -187 264 -197L46 -298Q33 -305 32 -320Q33 -335 46 -342L265 -443ZM477 -238L530 -214Q543 -207 544 -192Q543 -177 530 -170L311 -69Q288 -59 264 -69L46 -170Q33 -177 32 -192Q33 -207 46 -214L99 -238L251 -168Q288 -152 325 -168L477 -238ZM325 -40L477 -110L530 -86Q543 -79 544 -64Q543 -49 530 -42L311 59Q288 69 264 59L46 -42Q33 -49 32 -64Q33 -79 46 -86L99 -110L251 -40Q288 -24 325 -40Z" />
+  </Svg>
+);
+
+// Personalise Space Pencil Icon
+export const IconPencil = ({ size = 16, color = '#23A365', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="-80 -525 668 668" fill={color} {...props}>
+    <Path d="M410 -217L388 -262L326 -324L292 -358L280 -347L258 -324L59 -125Q43 -109 36 -88L1 33Q-3 46 7 56Q17 66 31 63L151 27Q173 21 189 5L388 -194L410 -217ZM160 -49L151 -26Q145 -21 138 -19L59 4L82 -74Q85 -81 89 -87L112 -96L112 -64Q113 -50 128 -48L160 -48ZM363 -429L348 -415L326 -392L314 -381L348 -347L410 -285L444 -251L455 -262L478 -285L493 -299Q511 -319 511 -345Q511 -370 493 -390L453 -429Q434 -448 408 -448Q383 -448 363 -429ZM315 -261L171 -117Q160 -108 149 -117Q139 -129 149 -140L293 -284Q304 -293 315 -284Q325 -273 315 -261Z" />
+  </Svg>
+);
+
+// Empty State Two People Outline Icon (Family & Workers screens)
+export const IconEmptyPeople = ({ size = 68, color = '#8E9590', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 48 48" fill="none" {...props}>
+    <Circle cx="18" cy="15" r="5.5" stroke={color} strokeWidth={3} />
+    <Path
+      d="M7 36c0-5.5 4.8-10 11-10s11 4.5 11 10"
+      stroke={color}
+      strokeWidth={3}
+      strokeLinecap="round"
+    />
+    <Circle cx="32" cy="17" r="4.5" stroke={color} strokeWidth={3} />
+    <Path
+      d="M25 36c0-4.5 3.5-8 8-8s8 3.5 8 8"
+      stroke={color}
+      strokeWidth={3}
+      strokeLinecap="round"
+    />
+  </Svg>
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
 // REGISTRY DICTIONARY
 // ─────────────────────────────────────────────────────────────────────────────
 export const extractedIconRegistry: Record<string, React.ComponentType<ExtractedIconProps>> = {
@@ -259,4 +380,20 @@ export const extractedIconRegistry: Record<string, React.ComponentType<Extracted
   'quick-weapons': QuickWeaponsIcon,
   'chat-dots': ChatDotsIcon,
   'survey-chat': SurveyChatIcon,
+
+  // Services & Other
+  'service-universal': IconUniversalAccess,
+  'service-card': IconCreditCard,
+  'service-globe': IconGlobe,
+  'service-clock': IconClock,
+  'service-cube': IconCube,
+  'service-square-check': IconSquareCheck,
+  'service-heart': IconHeart,
+  'service-file-lines': IconFileLines,
+  'service-mobile': IconMobileScreen,
+  'service-check-double': IconCheckDouble,
+  'service-building': IconBuilding,
+  'service-layer-group': IconLayerGroup,
+  'service-pencil': IconPencil,
+  'empty-people': IconEmptyPeople,
 };

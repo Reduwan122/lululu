@@ -12,30 +12,50 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Ionicons } from '../../components/AppIcon';
-import { useAppColors } from '../../hooks/useAppColors';
+import {
+  HeaderSettingsIcon,
+  HeaderNotificationsIcon,
+  HeaderSearchIcon,
+  QuickFingerprintIcon,
+  QuickUserCircleIcon,
+  QuickAccidentCarIcon,
+  IconUniversalAccess,
+  IconCreditCard,
+  IconGlobe,
+  ChatDotsIcon,
+} from '../../components/ExtractedIcons';
 
-const serviceList = [
-  { label: 'Register Newborn', icon: 'body-outline' },
-  { label: 'Renew Driving License', icon: 'card-outline' },
-  { label: 'Renew Resident ID', icon: 'card-outline' },
-  { label: 'Authentication Services', icon: 'finger-print-outline' },
-  { label: 'Update Resident Photo', icon: 'person-circle-outline' },
-  { label: 'Report Minor Accident', icon: 'car-sport-outline' },
-  { label: 'Update Passport Information', icon: 'globe-outline' },
+interface ServiceItem {
+  id: string;
+  label: string;
+  icon: React.ComponentType<{ size?: number; color?: string }>;
+  route?: string;
+}
+
+const serviceList: ServiceItem[] = [
+  { id: '1', label: 'Register Newborn', icon: IconUniversalAccess },
+  { id: '2', label: 'Renew Driving License', icon: IconCreditCard, route: '/(tabs)/services' },
+  { id: '3', label: 'Renew Resident ID', icon: IconCreditCard, route: '/(tabs)/services' },
+  { id: '4', label: 'Authentication Services', icon: QuickFingerprintIcon },
+  { id: '5', label: 'Update Resident Photo', icon: QuickUserCircleIcon, route: '/profile' },
+  { id: '6', label: 'Report Minor Accident', icon: QuickAccidentCarIcon },
+  { id: '7', label: 'Update Passport Information', icon: IconGlobe },
 ];
 
 export default function ServicesScreen() {
-  const colors = useAppColors();
   const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
 
-  const handleServicePress = (_service: any) => {
+  const handleServicePress = (service: ServiceItem) => {
+    if (service.route) {
+      router.push(service.route as any);
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1400);
+    }, 1200);
   };
 
   const filteredServices = serviceList.filter((s) =>
@@ -43,62 +63,62 @@ export default function ServicesScreen() {
   );
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: colors.bg }]} edges={['bottom', 'left', 'right']}>
-      <StatusBar
-        barStyle={colors.scheme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor={colors.bg}
-      />
+    <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
+      <StatusBar barStyle="light-content" backgroundColor="#101412" />
 
       {/* Header */}
-      <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <View style={styles.headerTopRow}>
           <View style={{ flex: 1 }} />
           <View style={styles.headerIcons}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/settings')}>
-              <Ionicons name="settings-outline" size={22} color={colors.accent} />
+              <HeaderSettingsIcon size={22} color="#23A365" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconBtn}>
-              <Ionicons name="notifications-outline" size={22} color={colors.accent} />
+              <HeaderNotificationsIcon size={22} color="#23A365" />
             </TouchableOpacity>
           </View>
         </View>
 
-        <Text style={[styles.title, { color: colors.white }]}>Services</Text>
+        <Text style={styles.title}>My Services</Text>
 
-        <View style={[styles.searchBar, { backgroundColor: colors.cardAlt }]}>
-          <Ionicons name="search" size={20} color={colors.greyText} />
+        <View style={styles.searchBar}>
+          <HeaderSearchIcon size={20} color="#8E9590" />
           <TextInput
             placeholder="Search by Service..."
-            placeholderTextColor={colors.greyText}
-            style={[styles.searchInput, { color: colors.white }]}
+            placeholderTextColor="#7B8580"
+            style={styles.searchInput}
             value={search}
             onChangeText={setSearch}
           />
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.grid}>
-          {filteredServices.map((service, idx) => (
-            <TouchableOpacity
-              key={idx}
-              style={[styles.gridCard, { backgroundColor: colors.card }]}
-              onPress={() => handleServicePress(service)}
-              activeOpacity={0.8}
-            >
-              <Ionicons name={service.icon as any} size={28} color={colors.accent} />
-              <Text style={[styles.gridTitle, { color: colors.white }]}>{service.label}</Text>
-            </TouchableOpacity>
-          ))}
+          {filteredServices.map((service) => {
+            const IconComponent = service.icon;
+            return (
+              <TouchableOpacity
+                key={service.id}
+                style={styles.gridCard}
+                onPress={() => handleServicePress(service)}
+                activeOpacity={0.8}
+              >
+                <IconComponent size={26} color="#23A365" />
+                <Text style={styles.gridTitle}>{service.label}</Text>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </ScrollView>
 
       {/* Loading Modal */}
       <Modal visible={loading} transparent animationType="fade">
-        <View style={[styles.loadingOverlay, { backgroundColor: colors.overlay }]}>
-          <View style={[styles.loadingBox, { backgroundColor: colors.card }]}>
-            <ActivityIndicator size="large" color={colors.accent} />
-            <Text style={{ color: colors.white, marginTop: 12, fontWeight: '600' }}>
+        <View style={styles.loadingOverlay}>
+          <View style={styles.loadingBox}>
+            <ActivityIndicator size="large" color="#23A365" />
+            <Text style={{ color: '#FFFFFF', marginTop: 12, fontWeight: '600' }}>
               Loading service...
             </Text>
           </View>
@@ -106,11 +126,8 @@ export default function ServicesScreen() {
       </Modal>
 
       {/* FAB */}
-      <TouchableOpacity
-        style={[styles.fab, { backgroundColor: colors.accent }]}
-        activeOpacity={0.8}
-      >
-        <Ionicons name="chatbubble-ellipses-outline" size={26} color="#FFFFFF" />
+      <TouchableOpacity style={styles.fab} activeOpacity={0.85}>
+        <ChatDotsIcon size={24} color="#FFFFFF" />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -119,6 +136,7 @@ export default function ServicesScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
+    backgroundColor: '#101412',
   },
   header: {
     paddingHorizontal: 16,
@@ -131,29 +149,35 @@ const styles = StyleSheet.create({
   },
   headerIcons: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   iconBtn: {
     marginLeft: 16,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: -0.3,
     marginBottom: 16,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 24,
+    backgroundColor: '#1E2320',
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    height: 48,
   },
   searchInput: {
-    marginLeft: 8,
+    marginLeft: 10,
     flex: 1,
+    color: '#FFFFFF',
+    fontSize: 15,
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 32,
+    paddingBottom: 40,
   },
   grid: {
     flexDirection: 'row',
@@ -162,36 +186,46 @@ const styles = StyleSheet.create({
   },
   gridCard: {
     width: '48.5%',
-    borderRadius: 14,
+    backgroundColor: '#191E1B',
+    borderRadius: 16,
     padding: 16,
     marginBottom: 12,
-    minHeight: 120,
+    minHeight: 118,
     justifyContent: 'space-between',
   },
   gridTitle: {
-    fontSize: 15,
+    fontSize: 14.5,
     fontWeight: '600',
-    marginTop: 12,
-  },
-  fab: {
-    position: 'absolute',
-    right: 20,
-    bottom: 20,
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    alignItems: 'center',
-    justifyContent: 'center',
-    elevation: 4,
+    color: '#FFFFFF',
+    lineHeight: 20,
+    marginTop: 14,
   },
   loadingOverlay: {
     flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.6)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   loadingBox: {
     padding: 24,
     borderRadius: 16,
+    backgroundColor: '#191E1B',
     alignItems: 'center',
+  },
+  fab: {
+    position: 'absolute',
+    right: 16,
+    bottom: 20,
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#23A365',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 6,
   },
 });

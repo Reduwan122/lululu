@@ -6,65 +6,65 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-  ScrollView,
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Ionicons } from '../../components/AppIcon';
-import { useAppColors } from '../../hooks/useAppColors';
+import {
+  HeaderSettingsIcon,
+  HeaderNotificationsIcon,
+  HeaderSearchIcon,
+  IconEmptyPeople,
+  ChatDotsIcon,
+} from '../../components/ExtractedIcons';
 
 export default function FamilyScreen() {
-  const colors = useAppColors();
   const insets = useSafeAreaInsets();
   const [search, setSearch] = useState('');
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: colors.bg }]} edges={['bottom', 'left', 'right']}>
-      <StatusBar
-        barStyle={colors.scheme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor={colors.bg}
-      />
+    <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
+      <StatusBar barStyle="light-content" backgroundColor="#101412" />
 
-      <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
+      {/* Header */}
+      <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <View style={styles.headerTopRow}>
           <View style={{ flex: 1 }} />
           <View style={styles.headerIcons}>
             <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/settings')}>
-              <Ionicons name="settings-outline" size={22} color={colors.accent} />
+              <HeaderSettingsIcon size={22} color="#23A365" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.iconBtn}>
-              <Ionicons name="notifications-outline" size={22} color={colors.accent} />
+              <HeaderNotificationsIcon size={22} color="#23A365" />
             </TouchableOpacity>
           </View>
         </View>
 
-        <Text style={[styles.title, { color: colors.white }]}>Family Members</Text>
+        <Text style={styles.title}>Family</Text>
 
-        <View style={[styles.searchBar, { backgroundColor: colors.cardAlt }]}>
-          <Ionicons name="search" size={20} color={colors.greyText} />
+        <View style={styles.searchBar}>
+          <HeaderSearchIcon size={20} color="#8E9590" />
           <TextInput
             placeholder="Search by name, ID"
-            placeholderTextColor={colors.greyText}
-            style={[styles.searchInput, { color: colors.white }]}
+            placeholderTextColor="#7B8580"
+            style={styles.searchInput}
             value={search}
             onChangeText={setSearch}
           />
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.emptyWrap}>
-        <Ionicons name="people-outline" size={72} color={colors.greyText} />
-        <Text style={[styles.emptyTitle, { color: colors.white }]}>No Family Members</Text>
-        <Text style={[styles.emptySub, { color: colors.greyText }]}>
-          You do not have any registered family members linked to your profile.
+      {/* Empty State Centered */}
+      <View style={styles.emptyContainer}>
+        <IconEmptyPeople size={68} color="#8E9590" />
+        <Text style={styles.emptyTitle}>No Family Members</Text>
+        <Text style={styles.emptySub}>
+          Once you have family members, they will display here.
         </Text>
-      </ScrollView>
+      </View>
 
-      <TouchableOpacity
-        style={[styles.fab, { backgroundColor: colors.accent }]}
-        activeOpacity={0.8}
-      >
-        <Ionicons name="chatbubble-ellipses-outline" size={26} color="#FFFFFF" />
+      {/* FAB */}
+      <TouchableOpacity style={styles.fab} activeOpacity={0.85}>
+        <ChatDotsIcon size={24} color="#FFFFFF" />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -73,6 +73,7 @@ export default function FamilyScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
+    backgroundColor: '#101412',
   },
   header: {
     paddingHorizontal: 16,
@@ -85,52 +86,66 @@ const styles = StyleSheet.create({
   },
   headerIcons: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   iconBtn: {
     marginLeft: 16,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: -0.3,
     marginBottom: 16,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 24,
+    backgroundColor: '#1E2320',
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    height: 48,
   },
   searchInput: {
-    marginLeft: 8,
+    marginLeft: 10,
     flex: 1,
+    color: '#FFFFFF',
+    fontSize: 15,
   },
-  emptyWrap: {
-    flex: 1,
+  emptyContainer: {
+    flex: 0.75,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 32,
+    paddingHorizontal: 36,
   },
   emptyTitle: {
     fontSize: 20,
     fontWeight: '700',
+    color: '#FFFFFF',
     marginTop: 20,
+    textAlign: 'center',
   },
   emptySub: {
     fontSize: 14,
+    color: '#8E9590',
     textAlign: 'center',
     marginTop: 8,
     lineHeight: 20,
   },
   fab: {
     position: 'absolute',
-    right: 20,
+    right: 16,
     bottom: 20,
-    width: 52,
-    height: 52,
-    borderRadius: 26,
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#23A365',
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 6,
   },
 });
