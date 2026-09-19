@@ -220,7 +220,7 @@ export default function HomeScreen() {
               onPress={() => router.push('/(tabs)/services')}
             >
               <View style={styles.accessIconBadge}>
-                <QuickWeaponsIcon size={24} color="#1E6B4E" />
+                <QuickWeaponsIcon size={26} color="#1E6B4E" />
               </View>
               <View style={styles.accessTextWrap}>
                 <Text style={styles.accessTitle}>My Weapons</Text>

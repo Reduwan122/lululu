@@ -177,10 +177,13 @@ export const QuickUserCircleIcon = ({ size = 26, color = '#1E6B4E', ...props }: 
   </Svg>
 );
 
-// My Weapons: Sleek Solid Green Handgun Silhouette (pointing left)
+// My Weapons: 100% Exact Handgun Silhouette pointing right (matching media_1789847762105.jpg)
 export const QuickWeaponsIcon = ({ size = 24, color = '#1E6B4E', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    <Path d="M21 8h-9l-1-2H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4l1 7a2 2 0 0 0 2 1.8h3a1 1 0 0 0 1-1l.7-6.8H21a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm-9 4h-2l-.5-2.5h2.5L12 12z" />
+  <Svg width={size} height={size} viewBox="-46 -526 668 668" fill="none" {...props}>
+    <Path
+      fill={color}
+      d="M48 -392Q50 -414 72 -416Q94 -414 96 -392L96 -384L96 -384L544 -384L544 -384Q558 -384 567 -375Q576 -366 576 -352L576 -240L576 -240Q576 -226 567 -217Q558 -208 544 -208L534 -208L534 -208Q518 -207 509 -196Q500 -184 503 -168L543 -8L543 -8Q546 7 537 20Q528 32 512 32L416 32L416 32Q392 31 385 8L359 -96L359 -96L254 -96L254 -96Q236 -96 222 -106Q208 -116 202 -133L175 -208L175 -208L144 -208L144 -208Q131 -208 121 -217L99 -240L99 -240L32 -240L32 -240Q18 -240 9 -249Q0 -258 0 -272L0 -352L0 -352Q0 -366 9 -375Q18 -384 32 -384L48 -384L48 -384L48 -392ZM255 -144L347 -144L255 -144L347 -144L331 -208L331 -208L226 -208L226 -208L247 -149L247 -149Q249 -144 254 -144ZM496 -320L112 -320L496 -320L112 -320Q97 -319 96 -304Q97 -289 112 -288L496 -288L496 -288Q511 -289 512 -304Q511 -319 496 -320Z"
+    />
   </Svg>
 );
 
