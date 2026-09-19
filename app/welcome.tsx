@@ -23,91 +23,105 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.headerBg} />
+      <StatusBar barStyle="dark-content" backgroundColor="#D8ECE1" />
       <Stack.Screen options={{ headerShown: false }} />
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={[styles.header, { paddingTop: insets.top + 16 }]}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Top Header with curved bottom */}
+        <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
           <View style={styles.headerTopRow}>
             <View style={{ flex: 1 }} />
-            <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/settings')}>
-              <AppIcon name="settings-outline" size={22} color={colors.accent} />
+            <TouchableOpacity
+              style={styles.iconBtn}
+              onPress={() => router.push('/settings')}
+              activeOpacity={0.7}
+            >
+              <AppIcon name="settings-outline" size={22} color="#166444" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBtn}>
-              <AppIcon name="notifications-outline" size={22} color={colors.accent} />
+            <TouchableOpacity style={styles.iconBtn} activeOpacity={0.7}>
+              <AppIcon name="notifications-outline" size={22} color="#166444" />
             </TouchableOpacity>
           </View>
 
+          {/* Absher & Saudi Emblem Logos */}
           <View style={styles.logoRow}>
             <AppIcon
               name="business-outline"
               pngKey="logo-1"
-              size={140}
-              color={colors.accent}
-              style={{ width: 52, height: 140 }}
+              size={64}
+              style={styles.logo1}
             />
             <AppIcon
               name="apps-outline"
               pngKey="logo-2"
-              size={87}
-              color={colors.accent}
-              style={{ marginLeft: 16 }}
+              size={64}
+              style={styles.logo2}
             />
           </View>
+
           <Text style={styles.appTitle}>Absher E-Services</Text>
 
-          <TouchableOpacity style={styles.loginBtn} onPress={() => router.push('/login')}>
+          <TouchableOpacity
+            style={styles.loginBtn}
+            onPress={() => router.push('/login')}
+            activeOpacity={0.85}
+          >
             <Text style={styles.loginBtnText}>Log In</Text>
           </TouchableOpacity>
         </View>
 
+        {/* Public Services Section */}
         <View style={styles.publicSection}>
           <View style={styles.publicHeaderRow}>
             <Text style={styles.sectionTitle}>Public Services</Text>
-            <TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7}>
               <Text style={styles.seeAll}>See All</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.grid}>
             {publicServices.map((item, idx) => (
-              <TouchableOpacity key={idx} style={styles.gridCard} activeOpacity={0.8}>
-                <AppIcon name={item.icon as any} size={26} color={colors.accent} />
+              <TouchableOpacity
+                key={idx}
+                style={styles.gridCard}
+                activeOpacity={0.8}
+              >
+                <AppIcon name={item.icon} size={28} color="#166444" />
                 <Text style={styles.gridTitle}>{item.label}</Text>
               </TouchableOpacity>
             ))}
           </View>
 
-          <Text style={styles.footerText}>Powered by  National Information Center</Text>
-          <Text style={styles.footerText}>All rights are reserved by the Ministry of Interior</Text>
+          {/* Footer Branding */}
+          <View style={styles.footerContainer}>
+            <Text style={styles.footerText}>
+              Powered by National Information Center
+            </Text>
+            <Text style={styles.footerSubText}>
+              All rights are reserved by the Ministry of Interior
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const colors = {
-  bg: '#F4F6F5',
-  headerBg: '#D9EDE2',
-  card: '#FFFFFF',
-  textDark: '#14200D',
-  textBody: '#3A4A40',
-  greyText: '#5C6B62',
-  accent: '#1E6B4E',
-};
-
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.bg,
+    backgroundColor: '#F3F6F4',
   },
   scrollContent: {
-    paddingBottom: 32,
+    paddingBottom: 40,
   },
   header: {
-    backgroundColor: colors.headerBg,
+    backgroundColor: '#D8ECE1',
     paddingHorizontal: 20,
-    paddingBottom: 28,
+    paddingBottom: 24,
     borderBottomLeftRadius: 28,
     borderBottomRightRadius: 28,
     alignItems: 'center',
@@ -117,32 +131,48 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   iconBtn: {
-    padding: 8,
-    marginLeft: 8,
+    padding: 6,
+    marginLeft: 6,
   },
   logoRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 8,
-    marginBottom: 14,
+    marginTop: 4,
+    marginBottom: 16,
+  },
+  logo1: {
+    width: 48,
+    height: 64,
+  },
+  logo2: {
+    width: 64,
+    height: 64,
+    marginLeft: 16,
   },
   appTitle: {
-    color: colors.textDark,
-    fontSize: 22,
+    color: '#18251C',
+    fontSize: 20,
     fontWeight: '700',
-    marginBottom: 20,
+    marginBottom: 18,
     textAlign: 'center',
+    letterSpacing: -0.2,
   },
   loginBtn: {
     width: '100%',
-    backgroundColor: colors.accent,
+    backgroundColor: '#1E6B4E',
     paddingVertical: 14,
     borderRadius: 24,
     alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   loginBtnText: {
     color: '#FFFFFF',
@@ -150,22 +180,22 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   publicSection: {
-    paddingHorizontal: 20,
-    paddingTop: 24,
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
   publicHeaderRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 14,
   },
   sectionTitle: {
-    color: colors.textDark,
     fontSize: 18,
     fontWeight: '700',
+    color: '#18251C',
   },
   seeAll: {
-    color: colors.accent,
+    color: '#1E6B4E',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -173,29 +203,41 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    rowGap: 12,
   },
   gridCard: {
-    width: '48%',
-    backgroundColor: colors.card,
-    borderRadius: 14,
+    width: '48.2%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
     padding: 16,
-    marginBottom: 14,
+    minHeight: 104,
+    justifyContent: 'space-between',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
-    shadowRadius: 3,
+    shadowRadius: 4,
     elevation: 2,
   },
   gridTitle: {
-    color: colors.textDark,
     fontSize: 14,
     fontWeight: '600',
-    marginTop: 10,
+    color: '#18251C',
+    lineHeight: 18,
+    marginTop: 14,
+  },
+  footerContainer: {
+    marginTop: 36,
+    alignItems: 'center',
   },
   footerText: {
-    color: colors.greyText,
-    fontSize: 11,
+    fontSize: 12,
+    color: '#5C6B64',
     textAlign: 'center',
-    marginTop: 10,
+  },
+  footerSubText: {
+    fontSize: 11,
+    color: '#8A9690',
+    marginTop: 6,
+    textAlign: 'center',
   },
 });

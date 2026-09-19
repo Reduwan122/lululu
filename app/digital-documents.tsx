@@ -57,17 +57,15 @@ export default function DigitalDocumentsScreen() {
       <ScrollView horizontal pagingEnabled style={{ flex: 1 }}>
         {/* Page 1: ID Card */}
         <View style={[styles.page, { width, height }]}>
-          {employee?.id_card_image_url ? (
-            <Image
-              source={{ uri: employee.id_card_image_url }}
-              style={{ width, height: contentHeight }}
-              resizeMode="contain"
-            />
-          ) : (
-            <Text style={styles.placeholderText}>
-              এখনো কোনো ডকুমেন্ট আপলোড করা হয়নি
-            </Text>
-          )}
+          <Image
+            source={
+              employee?.id_card_image_url
+                ? { uri: employee.id_card_image_url }
+                : require('../assets/images/iqama_card.png')
+            }
+            style={{ width, height: contentHeight }}
+            resizeMode="contain"
+          />
         </View>
 
         {/* Page 2: QR Code */}

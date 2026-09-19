@@ -17,18 +17,26 @@ export default function MyDigitalId() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.label}>Profile Picture</Text>
-      {profileUrl ? (
-        <Image source={{ uri: profileUrl }} style={styles.profileImage} resizeMode="cover" />
-      ) : (
-        <Text style={styles.emptyText}>এখনো আপলোড করা হয়নি</Text>
-      )}
+      <Image
+        source={
+          profileUrl
+            ? { uri: profileUrl }
+            : require('../assets/images/profile_user.png')
+        }
+        style={styles.profileImage}
+        resizeMode="cover"
+      />
 
       <Text style={[styles.label, { marginTop: 24 }]}>Digital ID Card</Text>
-      {cardUrl ? (
-        <Image source={{ uri: cardUrl }} style={styles.cardImage} resizeMode="contain" />
-      ) : (
-        <Text style={styles.emptyText}>এখনো আপলোড করা হয়নি</Text>
-      )}
+      <Image
+        source={
+          cardUrl
+            ? { uri: cardUrl }
+            : require('../assets/images/iqama_card.png')
+        }
+        style={styles.cardImage}
+        resizeMode="contain"
+      />
     </ScrollView>
   );
 }

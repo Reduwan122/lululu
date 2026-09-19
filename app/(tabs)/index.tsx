@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Ionicons, AppIcon } from '../../components/AppIcon';
+import { AppIcon } from '../../components/AppIcon';
 import { useEmployee } from '../../context/EmployeeContext';
 
 export default function HomeScreen() {
@@ -19,386 +19,419 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.headerBg} />
+      <StatusBar barStyle="dark-content" backgroundColor="#D8ECE0" />
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        {/* Header */}
-        <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
+      {/* Top Header with Soft Mint Background and Rounded Bottom Corners */}
+      <View style={[styles.headerContainer, { paddingTop: insets.top + 8 }]}>
+        <View style={styles.headerRow}>
+          {/* Left Header Action Icons */}
           <View style={styles.headerIconsLeft}>
-            <TouchableOpacity style={styles.iconBtn} onPress={() => router.push('/settings')}>
-              <AppIcon name="options-outline" size={24} color={colors.accent} />
+            <TouchableOpacity style={styles.headerIconBtn} activeOpacity={0.7}>
+              <AppIcon name="tune-vertical" size={24} color="#166444" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBtn}>
-              <AppIcon name="globe-outline" size={24} color={colors.accent} />
+            <TouchableOpacity style={styles.headerIconBtn} activeOpacity={0.7}>
+              <AppIcon name="globe-outline" size={24} color="#166444" />
             </TouchableOpacity>
           </View>
 
+          {/* Right Header Action Icons */}
           <View style={styles.headerIconsRight}>
-            <TouchableOpacity style={styles.iconBtn}>
-              <AppIcon name="notifications-outline" size={24} color={colors.accent} />
+            <TouchableOpacity style={styles.headerIconBtn} activeOpacity={0.7}>
+              <AppIcon name="notifications-outline" size={24} color="#166444" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.iconBtn}>
-              <AppIcon name="search-outline" size={24} color={colors.accent} />
+            <TouchableOpacity style={styles.headerIconBtn} activeOpacity={0.7}>
+              <AppIcon name="search-outline" size={24} color="#166444" />
             </TouchableOpacity>
           </View>
         </View>
+      </View>
 
-        {/* Profile Card */}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* User Profile Card */}
         <TouchableOpacity
           style={styles.profileCard}
           onPress={() => router.push('/profile')}
-          activeOpacity={0.8}
+          activeOpacity={0.85}
         >
-          {employee?.photo_url ? (
-            <Image source={{ uri: employee.photo_url }} style={styles.avatarImage} />
-          ) : (
-            <View style={styles.avatarPlaceholder}>
-              <Ionicons name="person" size={28} color={colors.greyText} />
-            </View>
-          )}
-          <View style={{ flex: 1, marginLeft: 14 }}>
-            <Text style={styles.profileName}>{employee?.full_name || 'Your Name'}</Text>
-            <Text style={styles.profileSub}>{employee?.id_number || '-'}</Text>
+          <View style={styles.avatarWrap}>
+            {employee?.photo_url ? (
+              <Image
+                source={{ uri: employee.photo_url }}
+                style={styles.avatarImage}
+                resizeMode="cover"
+              />
+            ) : (
+              <AppIcon name="person-outline" size={26} color="#8C9991" />
+            )}
           </View>
-          <Ionicons name="chevron-forward" size={20} color={colors.greyText} />
+
+          <View style={styles.profileInfo}>
+            <Text style={styles.profileName}>
+              {employee?.full_name || 'Mohammed Al-Otaibi'}
+            </Text>
+            <Text style={styles.profileId}>
+              {employee?.id_number || '1083920194'}
+            </Text>
+          </View>
+
+          <AppIcon name="chevron-forward" size={20} color="#8C9991" />
         </TouchableOpacity>
 
-        {/* Banner: Take a Quick Survey */}
-        <View style={styles.banner}>
-          <View style={styles.bannerIconWrap}>
-            <AppIcon name="chatbubble-ellipses-outline" size={22} color="#FFFFFF" />
+        {/* Take a Quick Survey Banner */}
+        <View style={styles.surveyBanner}>
+          <View style={styles.surveyIconWrap}>
+            <AppIcon name="chatbubble-outline" size={22} color="#FFFFFF" />
           </View>
-          <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={styles.bannerTitle}>Take a Quick Survey</Text>
-            <Text style={styles.bannerSub}>Share your experience with Absher services</Text>
-            <TouchableOpacity style={styles.bannerCta}>
-              <Text style={styles.bannerCtaText}>Start Survey</Text>
+          <View style={styles.surveyContent}>
+            <Text style={styles.surveyTitle}>Take a Quick Survey</Text>
+            <Text style={styles.surveySub}>
+              Share your experience with Absher services
+            </Text>
+            <TouchableOpacity style={styles.surveyButton} activeOpacity={0.85}>
+              <Text style={styles.surveyButtonText}>Start Survey</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* My Digital Documents Preview */}
+        {/* My Digital Documents Section */}
         <Text style={styles.sectionTitle}>My Digital Documents</Text>
         <TouchableOpacity
-          style={styles.documentsBox}
+          style={styles.documentsCard}
           activeOpacity={0.85}
           onPress={() => router.push('/digital-documents')}
         >
-          {employee?.id_card_image_url ? (
-            <Image
-              source={{ uri: employee.id_card_image_url }}
-              style={styles.documentsPreview}
-              resizeMode="contain"
-            />
-          ) : (
-            <View style={styles.documentsPlaceholder}>
-              <AppIcon name="card-outline" size={48} color={colors.accent} />
-              <Text style={styles.documentsPlaceholderText}>View Digital ID & Verification</Text>
-            </View>
-          )}
+          <AppIcon name="card-outline" size={48} color="#166444" />
+          <Text style={styles.documentsCardText}>
+            View Digital ID & Verification
+          </Text>
         </TouchableOpacity>
 
-        {/* Quick Access */}
-        <View style={styles.quickAccessHeader}>
-          <Text style={styles.sectionTitleDark}>Quick Access</Text>
-        </View>
+        {/* Quick Access Section */}
+        <Text style={styles.sectionTitle}>Quick Access</Text>
 
-        <View style={styles.quickAccessBody}>
-          {/* Big Card 1: My Vehicles */}
-          <TouchableOpacity style={styles.bigCard} activeOpacity={0.8}>
-            <View style={styles.quickIconWrap}>
-              <AppIcon name="car-outline" size={26} color={colors.accent} />
-            </View>
-            <View style={{ flex: 1, marginLeft: 14 }}>
-              <Text style={styles.quickTitle}>My Vehicles</Text>
-              <Text style={styles.quickSub}>View details, renew registration & more</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={20} color={colors.greyText} />
-          </TouchableOpacity>
-
-          {/* Grid Cards */}
-          <View style={styles.grid}>
-            <TouchableOpacity style={styles.gridCard} activeOpacity={0.8}>
-              <AppIcon name="finger-print-outline" size={26} color={colors.accent} />
-              <Text style={styles.gridTitle}>Authentication Services</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.gridCard} activeOpacity={0.8}>
-              <AppIcon name="airplane-outline" size={26} color={colors.accent} />
-              <Text style={styles.gridTitle}>Absher Travel</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.gridCard} activeOpacity={0.8}>
-              <AppIcon name="alert-circle-outline" size={26} color={colors.accent} />
-              <Text style={styles.gridTitle}>Report Minor Accidents</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.gridCard} activeOpacity={0.8}>
-              <AppIcon name="person-circle-outline" size={26} color={colors.accent} />
-              <Text style={styles.gridTitle}>Update Resident Profile</Text>
-            </TouchableOpacity>
+        {/* 1. My Vehicles */}
+        <TouchableOpacity
+          style={styles.bigAccessCard}
+          activeOpacity={0.85}
+          onPress={() => router.push('/(tabs)/services')}
+        >
+          <View style={styles.accessIconBadge}>
+            <AppIcon name="car-outline" size={24} color="#166444" />
           </View>
+          <View style={styles.accessTextWrap}>
+            <Text style={styles.accessTitle}>My Vehicles</Text>
+            <Text style={styles.accessSub}>
+              View details, renew registration & more
+            </Text>
+          </View>
+          <AppIcon name="chevron-forward" size={20} color="#8C9991" />
+        </TouchableOpacity>
 
-          {/* Big Card 2: My Weapons */}
-          <TouchableOpacity style={styles.bigCard} activeOpacity={0.8}>
-            <View style={styles.quickIconWrap}>
-              <AppIcon name="shield-outline" size={26} color={colors.accent} />
-            </View>
-            <View style={{ flex: 1, marginLeft: 14 }}>
-              <Text style={styles.quickTitle}>My Weapons</Text>
-              <Text style={styles.quickSub}>View weapons details & licenses</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={20} color={colors.greyText} />
+        {/* 2x2 Grid */}
+        <View style={styles.gridContainer}>
+          {/* Authentication Services */}
+          <TouchableOpacity
+            style={styles.gridCard}
+            activeOpacity={0.85}
+            onPress={() => router.push('/(tabs)/services')}
+          >
+            <AppIcon name="finger-print-outline" size={28} color="#166444" />
+            <Text style={styles.gridTitle}>Authentication Services</Text>
+          </TouchableOpacity>
+
+          {/* Absher Travel */}
+          <TouchableOpacity
+            style={styles.gridCard}
+            activeOpacity={0.85}
+            onPress={() => router.push('/(tabs)/services')}
+          >
+            <AppIcon name="airplane-outline" size={28} color="#166444" />
+            <Text style={styles.gridTitle}>Absher Travel</Text>
+          </TouchableOpacity>
+
+          {/* Report Minor Accidents */}
+          <TouchableOpacity
+            style={styles.gridCard}
+            activeOpacity={0.85}
+            onPress={() => router.push('/(tabs)/services')}
+          >
+            <AppIcon name="alert-circle-outline" size={28} color="#166444" />
+            <Text style={styles.gridTitle}>Report Minor Accidents</Text>
+          </TouchableOpacity>
+
+          {/* Update Resident Profile */}
+          <TouchableOpacity
+            style={styles.gridCard}
+            activeOpacity={0.85}
+            onPress={() => router.push('/profile')}
+          >
+            <AppIcon name="account-circle-outline" size={28} color="#166444" />
+            <Text style={styles.gridTitle}>Update Resident Profile</Text>
           </TouchableOpacity>
         </View>
+
+        {/* 2. My Weapons */}
+        <TouchableOpacity
+          style={styles.bigAccessCard}
+          activeOpacity={0.85}
+          onPress={() => router.push('/(tabs)/services')}
+        >
+          <View style={styles.accessIconBadge}>
+            <AppIcon name="shield-outline" size={24} color="#166444" />
+          </View>
+          <View style={styles.accessTextWrap}>
+            <Text style={styles.accessTitle}>My Weapons</Text>
+            <Text style={styles.accessSub}>
+              View weapons details & licenses
+            </Text>
+          </View>
+          <AppIcon name="chevron-forward" size={20} color="#8C9991" />
+        </TouchableOpacity>
       </ScrollView>
 
-      {/* Floating Action Button */}
-      <TouchableOpacity style={styles.fab} activeOpacity={0.85}>
-        <AppIcon name="chatbubble-outline" size={26} color="#FFFFFF" />
+      {/* Floating Action Button (FAB) for Chat / Help */}
+      <TouchableOpacity
+        style={styles.fab}
+        activeOpacity={0.85}
+        onPress={() => {}}
+      >
+        <AppIcon name="chatbubble-outline" size={24} color="#FFFFFF" />
       </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
-const colors = {
-  bg: '#F4F6F5',
-  headerBg: '#D9EDE2',
-  card: '#FFFFFF',
-  textDark: '#14200D',
-  greyText: '#5C6B62',
-  bannerBg: '#1E6B4E',
-  accent: '#1E6B4E',
-  border: '#DDE3DF',
-  quickAccessBg: '#FFFFFF',
-};
-
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.bg,
+    backgroundColor: '#F3F6F4',
   },
-  scrollContent: {
-    paddingBottom: 100,
-  },
-  header: {
-    backgroundColor: colors.headerBg,
-    paddingHorizontal: 20,
-    paddingBottom: 14,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  headerContainer: {
+    backgroundColor: '#D8ECE0',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   headerIconsLeft: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 16,
   },
   headerIconsRight: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 16,
   },
-  iconBtn: {
-    padding: 6,
-    marginRight: 8,
+  headerIconBtn: {
+    padding: 4,
+  },
+  scrollContent: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 32,
   },
   profileCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.card,
-    marginHorizontal: 16,
-    marginTop: 16,
-    padding: 16,
-    borderRadius: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
   },
-  avatarImage: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-  },
-  avatarPlaceholder: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: '#EDF2EF',
+  avatarWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#EDF2EE',
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  avatarImage: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+  },
+  profileInfo: {
+    flex: 1,
+    marginLeft: 14,
   },
   profileName: {
-    color: colors.textDark,
-    fontSize: 17,
-    fontWeight: '700',
-  },
-  profileSub: {
-    color: colors.greyText,
-    fontSize: 13,
-    marginTop: 3,
-  },
-  banner: {
-    flexDirection: 'row',
-    backgroundColor: colors.bannerBg,
-    marginHorizontal: 16,
-    marginTop: 14,
-    padding: 16,
-    borderRadius: 16,
-  },
-  bannerIconWrap: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bannerTitle: {
-    color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
+    color: '#18251C',
+    letterSpacing: -0.2,
   },
-  bannerSub: {
-    color: 'rgba(255,255,255,0.85)',
-    fontSize: 12,
+  profileId: {
+    fontSize: 14,
+    color: '#707C74',
+    marginTop: 3,
+  },
+  surveyBanner: {
+    backgroundColor: '#166444',
+    borderRadius: 16,
+    marginTop: 14,
+    padding: 18,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  surveyIconWrap: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: 'rgba(255, 255, 255, 0.16)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 14,
     marginTop: 2,
-    marginBottom: 8,
   },
-  bannerCta: {
-    alignSelf: 'flex-start',
+  surveyContent: {
+    flex: 1,
+  },
+  surveyTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  surveySub: {
+    fontSize: 13,
+    color: '#E0EDE5',
+    marginTop: 4,
+    lineHeight: 18,
+  },
+  surveyButton: {
     backgroundColor: '#FFFFFF',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 14,
+    borderRadius: 20,
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    alignSelf: 'flex-start',
+    marginTop: 12,
   },
-  bannerCtaText: {
-    color: colors.bannerBg,
-    fontSize: 12,
+  surveyButtonText: {
+    color: '#166444',
+    fontSize: 13,
     fontWeight: '700',
   },
   sectionTitle: {
-    color: colors.textDark,
     fontSize: 18,
     fontWeight: '700',
-    marginHorizontal: 16,
-    marginTop: 20,
-    marginBottom: 10,
+    color: '#18251C',
+    marginTop: 24,
+    marginBottom: 12,
+    letterSpacing: -0.3,
   },
-  documentsBox: {
-    backgroundColor: colors.card,
-    marginHorizontal: 16,
+  documentsCard: {
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
-    padding: 12,
+    paddingVertical: 36,
+    paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 140,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
   },
-  documentsPreview: {
-    width: '100%',
-    height: 180,
-    borderRadius: 12,
-  },
-  documentsPlaceholder: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 20,
-  },
-  documentsPlaceholderText: {
-    color: colors.accent,
-    fontSize: 14,
+  documentsCardText: {
+    color: '#166444',
+    fontSize: 15,
     fontWeight: '600',
-    marginTop: 8,
+    marginTop: 14,
   },
-  quickAccessHeader: {
-    marginHorizontal: 16,
-    marginTop: 22,
-    marginBottom: 10,
-  },
-  sectionTitleDark: {
-    color: colors.textDark,
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  quickAccessBody: {
-    marginHorizontal: 16,
-  },
-  bigCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.card,
+  bigAccessCard: {
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 16,
-    marginBottom: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
-    shadowRadius: 3,
+    shadowRadius: 4,
     elevation: 2,
   },
-  quickIconWrap: {
+  accessIconBadge: {
     width: 44,
     height: 44,
-    borderRadius: 22,
-    backgroundColor: '#EDF2EF',
+    borderRadius: 14,
+    backgroundColor: '#EAF4EE',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  quickTitle: {
-    color: colors.textDark,
-    fontSize: 15,
-    fontWeight: '700',
+  accessTextWrap: {
+    flex: 1,
+    marginLeft: 14,
   },
-  quickSub: {
-    color: colors.greyText,
+  accessTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#18251C',
+  },
+  accessSub: {
     fontSize: 12,
-    marginTop: 2,
+    color: '#707C74',
+    marginTop: 3,
   },
-  grid: {
+  gridContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginBottom: 2,
+    marginVertical: 12,
+    rowGap: 12,
   },
   gridCard: {
-    width: '48.5%',
-    backgroundColor: colors.card,
+    width: '48.2%',
+    backgroundColor: '#FFFFFF',
     borderRadius: 16,
     padding: 16,
-    marginBottom: 12,
+    minHeight: 104,
+    justifyContent: 'space-between',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
-    shadowRadius: 3,
+    shadowRadius: 4,
     elevation: 2,
   },
   gridTitle: {
-    color: colors.textDark,
     fontSize: 14,
     fontWeight: '600',
-    marginTop: 10,
+    color: '#18251C',
+    lineHeight: 18,
+    marginTop: 14,
   },
   fab: {
     position: 'absolute',
     bottom: 24,
     right: 20,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: colors.accent,
+    width: 54,
+    height: 54,
+    borderRadius: 27,
+    backgroundColor: '#166444',
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 6,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.25,
     shadowRadius: 5,
+    elevation: 6,
   },
 });

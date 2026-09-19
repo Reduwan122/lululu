@@ -1,20 +1,24 @@
 import React from 'react';
 import { Tabs } from 'expo-router';
-import { Ionicons } from '../../components/AppIcon';
-import { useAppColors } from '../../hooks/useAppColors';
+import { AppIcon } from '../../components/AppIcon';
 
 export default function TabLayout() {
-  const colors = useAppColors();
-
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colors.active,
-        tabBarInactiveTintColor: colors.inactive,
+        tabBarActiveTintColor: '#22C55E',
+        tabBarInactiveTintColor: '#8E9590',
         tabBarStyle: {
-          backgroundColor: colors.card,
-          borderTopColor: colors.border,
+          backgroundColor: '#161917',
+          borderTopColor: '#161917',
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 6,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
         },
       }}
     >
@@ -22,8 +26,8 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <AppIcon name="home" size={22} color={color} />
           ),
         }}
       />
@@ -31,8 +35,8 @@ export default function TabLayout() {
         name="services"
         options={{
           title: 'Services',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="grid-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <AppIcon name="grid-outline" size={22} color={color} />
           ),
         }}
       />
@@ -40,8 +44,8 @@ export default function TabLayout() {
         name="family"
         options={{
           title: 'Family',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="people-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <AppIcon name="people-outline" size={22} color={color} />
           ),
         }}
       />
@@ -49,8 +53,8 @@ export default function TabLayout() {
         name="workers"
         options={{
           title: 'Workers',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="briefcase-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <AppIcon name="briefcase-outline" size={22} color={color} />
           ),
         }}
       />
@@ -58,8 +62,8 @@ export default function TabLayout() {
         name="other"
         options={{
           title: 'Other',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="ellipsis-horizontal" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <AppIcon name="ellipsis-horizontal" size={22} color={color} />
           ),
         }}
       />
