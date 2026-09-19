@@ -8,53 +8,57 @@ export interface ExtractedIconProps extends SvgProps {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 1. BOTTOM NAVIGATION TABS (Solid Icons)
+// 1. BOTTOM NAVIGATION TABS (100% Authentic APK Vectors matching media_1789848717376.png)
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Tab 1: Home (Solid House with Chimney and Centered Doorway)
+// Tab 1: Home (Authentic FontAwesome 6 house-chimney vector with chimney on right and central doorway)
 export const TabHomeIcon = ({ size = 24, color = '#23A365', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    <Path d="M12 2.5L2 11.5h3v9a1 1 0 0 0 1 1h4v-5.5h4v5.5h4a1 1 0 0 0 1-1v-9h3L12 2.5z" />
-    <Path d="M17 4v3.5l2 1.8V4h-2z" />
+  <Svg width={size} height={size} viewBox="-32 -512 640 640" fill="none" {...props}>
+    <Path
+      fill={color}
+      d="M544 -160Q557 -161 566 -170Q575 -179 576 -192Q577 -206 565 -216L512 -263L512 -384Q512 -398 503 -407Q494 -416 480 -416L448 -416Q434 -416 425 -407Q416 -398 416 -384L416 -347L310 -441Q300 -448 289 -448Q278 -449 267 -440L10 -216Q0 -206 0 -192Q0 -179 9 -170Q18 -161 32 -160L64 -160L64 -91Q64 -89 64 -88L64 24Q64 41 76 52Q87 64 104 64L120 64Q122 64 124 64Q125 64 126 64Q127 64 128 64L160 64L184 64Q201 64 212 52Q223 41 224 24L224 0L224 -64Q224 -78 233 -87Q242 -96 256 -96L320 -96Q334 -96 343 -87Q352 -78 352 -64L352 0L352 24Q352 41 364 52Q375 64 392 64L416 64L448 64Q451 64 453 64Q454 64 456 64L472 64Q489 64 500 52Q511 41 512 24L512 8Q512 4 512 0L512 -160L544 -160Z"
+    />
   </Svg>
 );
 
-// Tab 2: Services (Crossed Open-End Wrench and Screwdriver / Hammer)
+// Tab 2: Services (Authentic FontAwesome 6 screwdriver-wrench crossed tools vector)
 export const TabServicesIcon = ({ size = 24, color = '#8E9590', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    {/* Screwdriver */}
-    <Path d="M4.2 9.2L7 6.4l1.4 1.4-1.1 1.1 2.8 2.8 1.8-1.8c.4-.4 1-.4 1.4 0l.7.7-4.2 4.2-2.1-2.1c-.4-.4-.4-1 0-1.4l1.8-1.8-2.8-2.8 1.1-1.1-1.4-1.4-2.8 2.8c-.4.4-.4 1 0 1.4l.7.7z" />
-    <Path d="M11 13l7.3 7.3c.6.6 1.5.6 2.1 0l.6-.6c.6-.6.6-1.5 0-2.1L13.7 10.3 11 13z" />
-    {/* Open-End Wrench */}
-    <Path d="M19.8 4.2a4.2 4.2 0 0 0-5.5.6l2.1 2.1-1.4 1.4-2.1-2.1a4.2 4.2 0 0 0-.6 5.5l-8.1 8.1c-.6.6-.6 1.5 0 2.1l.6.6c.6.6 1.5.6 2.1 0l8.1-8.1a4.2 4.2 0 0 0 5.5-.6 4.2 4.2 0 0 0-.7-5.6z" />
+  <Svg width={size} height={size} viewBox="-37 -485 580 580" fill="none" {...props}>
+    <Path
+      fill={color}
+      fillRule="evenodd"
+      d="M79 -443Q62 -454 47 -441L7 -401Q-6 -386 5 -369L85 -265Q92 -256 104 -256L158 -256L267 -147Q256 -125 260 -100Q263 -76 281 -57L393 55Q403 64 416 64Q429 64 439 55L503 -9Q512 -19 512 -32Q512 -45 503 -55L391 -167Q372 -185 348 -188Q323 -192 301 -181L192 -290L192 -344Q192 -356 183 -363L79 -443ZM20 -52Q0 -32 0 -4Q1 25 20 44Q39 63 68 64Q96 64 116 44L234 -74Q222 -106 230 -139L168 -201L20 -52ZM512 -304Q512 -320 509 -334Q506 -343 499 -345Q491 -346 485 -340L421 -277Q416 -272 409 -272L352 -272Q337 -273 336 -288L336 -345Q336 -352 341 -357L405 -421Q411 -427 409 -435Q407 -442 399 -445Q384 -448 368 -448Q307 -446 266 -406Q226 -365 224 -304L224 -303L309 -218Q337 -225 364 -218Q392 -210 413 -189L429 -173Q466 -191 489 -226Q511 -260 512 -304ZM56 -16Q58 -38 80 -40Q102 -38 104 -16Q102 6 80 8Q58 6 56 -16Z"
+    />
   </Svg>
 );
 
-// Tab 3: Family (Two Figures: Adult on Left, Child on Right)
+// Tab 3: Family (Authentic FontAwesome 6 user-group vector: smaller behind on left, larger in front on right)
 export const TabFamilyIcon = ({ size = 24, color = '#8E9590', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    <Circle cx="8" cy="8.5" r="2.8" />
-    <Path d="M4 19c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5v1H4v-1z" />
-    <Circle cx="16" cy="10" r="2.3" />
-    <Path d="M13.5 19.5v-.8c0-1.8 1.6-3.2 3.5-3.2s3.5 1.4 3.5 3.2v.8h-7z" />
+  <Svg width={size} height={size} viewBox="-30 -542 700 700" fill="none" {...props}>
+    <Path
+      fill={color}
+      d="M544 -320Q544 -355 527 -384Q510 -413 480 -431Q450 -448 416 -448Q382 -448 352 -431Q322 -413 305 -384Q288 -355 288 -320Q288 -285 305 -256Q322 -227 352 -209Q382 -192 416 -192Q450 -192 480 -209Q510 -227 527 -256Q544 -285 544 -320ZM640 34Q638 -41 588 -92Q537 -142 462 -144L370 -144Q295 -142 244 -92Q194 -41 192 34Q192 47 201 55Q209 64 222 64L610 64Q623 64 631 55Q640 47 640 34ZM31 64L168 64Q160 50 160 32L160 24Q160 -22 179 -61Q197 -100 230 -128Q226 -128 223 -128L161 -128Q93 -126 47 -81Q2 -35 0 33Q0 46 9 55Q18 64 31 64ZM208 -192Q256 -193 287 -225Q257 -266 256 -320Q256 -361 274 -394Q246 -415 208 -416Q160 -415 129 -383Q97 -352 96 -304Q97 -256 129 -225Q160 -193 208 -192Z"
+    />
   </Svg>
 );
 
-// Tab 4: Workers (Solid Briefcase / Toolbox with Handle)
+// Tab 4: Workers (Authentic FontAwesome 6 briefcase vector with handle, central clasp, and latch opening)
 export const TabWorkersIcon = ({ size = 24, color = '#8E9590', ...props }: ExtractedIconProps) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    <Path d="M9 5.5h6a1 1 0 0 1 1 1v1h2.5a2 2 0 0 1 2 2v2H3.5v-2a2 2 0 0 1 2-2H8v-1a1 1 0 0 1 1-1zm1.5 2h3V6.8h-3V7.5z" />
-    <Path d="M3.5 13h6.2v1.5a1 1 0 0 0 1 1h2.6a1 1 0 0 0 1-1V13h6.2v5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-5z" />
+  <Svg width={size} height={size} viewBox="-34 -498 580 580" fill="none" {...props}>
+    <Path
+      fill={color}
+      d="M184 -400L328 -400Q335 -399 336 -392L336 -352L176 -352L176 -392Q177 -399 184 -400ZM128 -392L128 -352L64 -352Q37 -351 19 -333Q1 -315 0 -288L0 -192L192 -192L512 -192L512 -288Q511 -315 493 -333Q475 -351 448 -352L384 -352L384 -392Q383 -416 368 -432Q352 -447 328 -448L184 -448Q160 -447 144 -432Q129 -416 128 -392ZM512 -160L320 -160L320 -128Q320 -114 311 -105Q302 -96 288 -96L224 -96Q210 -96 201 -105Q192 -114 192 -128L192 -160L0 -160L0 -32Q1 -5 19 13Q37 31 64 32L448 32Q475 31 493 13Q511 -5 512 -32L512 -160Z"
+    />
   </Svg>
 );
 
-// Tab 5: Other (EXACT 4 Rounded Squares in 2x2 Grid, matching screenshot)
+// Tab 5: Other (Authentic 4 Rounded Squares in 2x2 Grid matching media_1789848717376.png)
 export const TabOtherIcon = ({ size = 24, color = '#8E9590', ...props }: ExtractedIconProps) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill={color} {...props}>
-    <Rect x="3.5" y="3.5" width="7" height="7" rx="2" />
-    <Rect x="13.5" y="3.5" width="7" height="7" rx="2" />
-    <Rect x="3.5" y="13.5" width="7" height="7" rx="2" />
-    <Rect x="13.5" y="13.5" width="7" height="7" rx="2" />
+    <Rect x="3" y="3" width="8" height="8" rx="2" />
+    <Rect x="13" y="3" width="8" height="8" rx="2" />
+    <Rect x="3" y="13" width="8" height="8" rx="2" />
+    <Rect x="13" y="13" width="8" height="8" rx="2" />
   </Svg>
 );
 
