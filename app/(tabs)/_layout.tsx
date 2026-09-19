@@ -7,18 +7,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#22C55E',
+        tabBarActiveTintColor: '#23A365',
         tabBarInactiveTintColor: '#8E9590',
         tabBarStyle: {
-          backgroundColor: '#161917',
-          borderTopColor: '#161917',
-          height: 60,
+          backgroundColor: '#191E1B',
+          borderTopColor: '#191E1B',
+          height: 64,
           paddingBottom: 8,
           paddingTop: 6,
         },
         tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '600',
+          fontSize: 11,
+          fontWeight: '500',
+          marginTop: 2,
         },
       }}
     >
@@ -27,7 +28,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="home" size={22} color={color} />
+            <AppIcon name="home" size={24} color={color} />
           ),
         }}
       />
@@ -36,7 +37,7 @@ export default function TabLayout() {
         options={{
           title: 'Services',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="construct-outline" size={22} color={color} />
+            <AppIcon name="services" size={24} color={color} />
           ),
         }}
       />
@@ -45,7 +46,7 @@ export default function TabLayout() {
         options={{
           title: 'Family',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="people-outline" size={22} color={color} />
+            <AppIcon name="family" size={24} color={color} />
           ),
         }}
       />
@@ -54,7 +55,7 @@ export default function TabLayout() {
         options={{
           title: 'Workers',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="briefcase-outline" size={22} color={color} />
+            <AppIcon name="workers" size={24} color={color} />
           ),
         }}
       />
@@ -63,7 +64,7 @@ export default function TabLayout() {
         options={{
           title: 'Other',
           tabBarIcon: ({ color }) => (
-            <AppIcon name="grid-outline" size={22} color={color} />
+            <AppIcon name="other" size={24} color={color} />
           ),
         }}
       />

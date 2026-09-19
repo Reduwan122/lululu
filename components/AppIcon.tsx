@@ -13,63 +13,50 @@ export const customIcons: Record<string, any> = {
   'profile-user': require('../assets/images/profile_user.png'),
 };
 
-// 1. Home Tab Icon
-const SvgHome = ({ size = 24, color = '#22C55E' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M3 10.5L12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 14 20v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5A1.5 1.5 0 0 1 8.5 21.5h-4A1.5 1.5 0 0 1 3 20v-9.5z"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      fill={color === '#22C55E' || color === '#23A365' || color === '#1EAE66' ? color : 'none'}
-    />
+// 1. Home Tab Icon (Solid filled house with chimney and centered door)
+const SvgHome = ({ size = 24, color = '#23A365' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    <Path d="M12 3L2 12h3v8a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-8h3L12 3z" />
+    <Path d="M17 4.5v3.2l2 1.8V4.5h-2z" />
   </Svg>
 );
 
-// 2. Services Tab Icon (Crossed Tools / Wrench & Screwdriver)
+// 2. Services Tab Icon (Solid crossed hammer and open-end wrench)
 const SvgServices = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path
-      d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.4 6.4a2 2 0 0 1-2.8-2.8l6.4-6.4a6 6 0 0 1 7.9-7.9l-4 3.6z"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M5 19l4-4M19 5l-2 2"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-    />
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    {/* Hammer */}
+    <Path d="M4.2 9.2L7 6.4l1.4 1.4-1.1 1.1 2.8 2.8 1.8-1.8c.4-.4 1-.4 1.4 0l.7.7-4.2 4.2-2.1-2.1c-.4-.4-.4-1 0-1.4l1.8-1.8-2.8-2.8 1.1-1.1-1.4-1.4-2.8 2.8c-.4.4-.4 1 0 1.4l.7.7z" />
+    <Path d="M11 13l7.3 7.3c.6.6 1.5.6 2.1 0l.6-.6c.6-.6.6-1.5 0-2.1L13.7 10.3 11 13z" />
+    {/* Wrench */}
+    <Path d="M19.8 4.2a4.2 4.2 0 0 0-5.5.6l2.1 2.1-1.4 1.4-2.1-2.1a4.2 4.2 0 0 0-.6 5.5l-8.1 8.1c-.6.6-.6 1.5 0 2.1l.6.6c.6.6 1.5.6 2.1 0l8.1-8.1a4.2 4.2 0 0 0 5.5-.6 4.2 4.2 0 0 0-.7-5.6z" />
   </Svg>
 );
 
-// 3. Family Tab Icon (Users / People)
+// 3. Family Tab Icon (Two solid filled people silhouettes: adult & child)
 const SvgFamily = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-    <Circle cx="9" cy="7" r="4" stroke={color} strokeWidth={1.8} strokeLinecap="round" />
-    <Path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    <Circle cx="8" cy="9" r="2.8" />
+    <Path d="M4 19c0-2.8 2.2-4.5 5-4.5s5 1.7 5 4.5v1H4v-1z" />
+    <Circle cx="16" cy="8" r="3.2" />
+    <Path d="M13.5 19v-1c0-1.2.4-2.2 1.1-3 1-.8 2.4-1.2 3.9-1.2s3.5 1.5 3.5 4.2v1h-8.5z" />
   </Svg>
 );
 
-// 4. Workers Tab Icon (Briefcase)
+// 4. Workers Tab Icon (Solid filled briefcase / toolbox with handle)
 const SvgWorkers = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="2" y="7" width="20" height="14" rx="2" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
-    <Path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M2 12h20" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" />
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    <Path d="M9 5h6a1 1 0 0 1 1 1v1h2a2 2 0 0 1 2 2v2H4V9a2 2 0 0 1 2-2h2V6a1 1 0 0 1 1-1zm1 2h4V6.5h-4V7z" />
+    <Path d="M4 12.5h6v1.5a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1.5h6V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5.5z" />
   </Svg>
 );
 
-// 5. Other Tab Icon (4-Square Grid)
+// 5. Other Tab Icon (4 solid filled rounded squares)
 const SvgOther = ({ size = 24, color = '#8E9590' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <Rect x="3" y="3" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
-    <Rect x="14" y="3" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
-    <Rect x="14" y="14" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
-    <Rect x="3" y="14" width="7" height="7" rx="1.5" stroke={color} strokeWidth={1.8} />
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    <Rect x="3.5" y="3.5" width="7.5" height="7.5" rx="2" />
+    <Rect x="13" y="3.5" width="7.5" height="7.5" rx="2" />
+    <Rect x="3.5" y="13" width="7.5" height="7.5" rx="2" />
+    <Rect x="13" y="13" width="7.5" height="7.5" rx="2" />
   </Svg>
 );
 

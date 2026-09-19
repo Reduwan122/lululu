@@ -19,204 +19,221 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['bottom', 'left', 'right']}>
-      <StatusBar barStyle="dark-content" backgroundColor="#D9EDE2" />
+      <StatusBar barStyle="dark-content" backgroundColor="#D9EDE2" translucent={false} />
 
-      {/* Top Header Bar */}
-      <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-        {/* Left Official Logos */}
-        <View style={styles.headerLogos}>
-          <Image
-            source={require('../../assets/icons/logo1.png')}
-            style={styles.logoAbsher}
-            resizeMode="contain"
-          />
-          <Image
-            source={require('../../assets/icons/logo2.png')}
-            style={styles.logoEmblem}
-            resizeMode="contain"
-          />
-        </View>
-
-        {/* Right Action Icons (Search, Settings, Notifications) */}
-        <View style={styles.headerIconsRight}>
-          <TouchableOpacity style={styles.iconBtn} activeOpacity={0.7}>
-            <AppIcon name="search-outline" size={22} color="#1E6B4E" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.iconBtn}
-            onPress={() => router.push('/settings')}
-            activeOpacity={0.7}
-          >
-            <AppIcon name="settings-outline" size={22} color="#1E6B4E" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconBtn} activeOpacity={0.7}>
-            <AppIcon name="notifications-outline" size={22} color="#1E6B4E" />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* User Profile Card */}
-        <TouchableOpacity
-          style={styles.profileCard}
-          onPress={() => router.push('/profile')}
-          activeOpacity={0.85}
-        >
-          <Image
-            source={
-              employee?.photo_url
-                ? { uri: employee.photo_url }
-                : require('../../assets/images/profile_user.png')
-            }
-            style={styles.avatarImage}
-            resizeMode="cover"
-          />
-          <View style={styles.profileInfo}>
-            <Text style={styles.profileName}>
-              {employee?.full_name || 'MD SUMON MIA'}
-            </Text>
-            <Text style={styles.profileSub}>
-              ID No.: {employee?.id_number || '2631567092'}
-            </Text>
+      <View style={styles.containerWrapper}>
+        {/* Top Header Bar */}
+        <View style={[styles.header, { paddingTop: Math.max(insets.top, 16) + 4 }]}>
+          {/* Left Official Logos */}
+          <View style={styles.headerLogos}>
+            <Image
+              source={require('../../assets/icons/logo1.png')}
+              style={styles.logoAbsher}
+              resizeMode="contain"
+            />
+            <Image
+              source={require('../../assets/icons/logo2.png')}
+              style={styles.logoEmblem}
+              resizeMode="contain"
+            />
           </View>
-        </TouchableOpacity>
 
-        {/* Take a Quick Survey Banner */}
-        <View style={styles.surveyBanner}>
-          <View style={styles.surveyTopRow}>
-            <View style={styles.surveyIconWrap}>
-              <AppIcon
-                name="chatbubble-ellipses-outline"
-                size={20}
-                color="#FFFFFF"
+          {/* Right Action Icons (Search, Settings, Notifications) */}
+          <View style={styles.headerIconsRight}>
+            <TouchableOpacity
+              style={styles.iconBtn}
+              activeOpacity={0.7}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <AppIcon name="search-outline" size={22} color="#1E6B4E" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconBtn}
+              onPress={() => router.push('/settings')}
+              activeOpacity={0.7}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <AppIcon name="settings-outline" size={22} color="#1E6B4E" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.iconBtn}
+              activeOpacity={0.7}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            >
+              <AppIcon name="notifications-outline" size={22} color="#1E6B4E" />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          bounces={false}
+        >
+          {/* Main Top Content (User Card, Survey Banner, My Digital Documents) */}
+          <View style={styles.topSection}>
+            {/* User Profile Card */}
+            <TouchableOpacity
+              style={styles.profileCard}
+              onPress={() => router.push('/profile')}
+              activeOpacity={0.85}
+            >
+              <Image
+                source={
+                  employee?.photo_url
+                    ? { uri: employee.photo_url }
+                    : require('../../assets/images/profile_user.png')
+                }
+                style={styles.avatarImage}
+                resizeMode="cover"
               />
-            </View>
-            <View style={styles.surveyContent}>
-              <Text style={styles.surveyTitle}>Take a Quick Survey</Text>
-              <Text style={styles.surveySub}>
-                Share your experience to help us improve.
-              </Text>
-            </View>
-          </View>
-          <TouchableOpacity style={styles.surveyCta} activeOpacity={0.7}>
-            <Text style={styles.surveyCtaText}>Start Survey</Text>
-          </TouchableOpacity>
-        </View>
+              <View style={styles.profileInfo}>
+                <Text style={styles.profileName}>
+                  {employee?.full_name || 'MD SUMON MIA'}
+                </Text>
+                <Text style={styles.profileSub}>
+                  ID No.: {employee?.id_number || '2631567092'}
+                </Text>
+              </View>
+            </TouchableOpacity>
 
-        {/* My Digital Documents Section */}
-        <Text style={styles.sectionTitle}>My Digital Documents</Text>
+            {/* Take a Quick Survey Banner */}
+            <View style={styles.surveyBanner}>
+              <View style={styles.surveyTopRow}>
+                <View style={styles.surveyIconWrap}>
+                  <AppIcon
+                    name="chatbubble-ellipses-outline"
+                    size={20}
+                    color="#FFFFFF"
+                  />
+                </View>
+                <View style={styles.surveyContent}>
+                  <Text style={styles.surveyTitle}>Take a Quick Survey</Text>
+                  <Text style={styles.surveySub}>
+                    Share your experience to help us improve.
+                  </Text>
+                </View>
+              </View>
+              <TouchableOpacity style={styles.surveyCta} activeOpacity={0.7}>
+                <Text style={styles.surveyCtaText}>Start Survey</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* My Digital Documents Section */}
+            <Text style={styles.sectionTitle}>My Digital Documents</Text>
+            <TouchableOpacity
+              style={styles.digitalDocCard}
+              activeOpacity={0.9}
+              onPress={() => router.push('/digital-documents')}
+            >
+              <Image
+                source={
+                  employee?.id_card_image_url
+                    ? { uri: employee.id_card_image_url }
+                    : require('../../assets/extracted/iqama_card_full.png')
+                }
+                style={styles.iqamaCardImage}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* Quick Access Section (Mint Green Background #D9EDE2) */}
+          <View style={styles.quickAccessSection}>
+            <Text style={styles.quickAccessTitle}>Quick Access</Text>
+
+            {/* 1. My Vehicles */}
+            <TouchableOpacity
+              style={styles.bigAccessCard}
+              activeOpacity={0.85}
+              onPress={() => router.push('/(tabs)/services')}
+            >
+              <View style={styles.accessIconBadge}>
+                <AppIcon name="car-outline" size={24} color="#1E6B4E" />
+              </View>
+              <View style={styles.accessTextWrap}>
+                <Text style={styles.accessTitle}>My Vehicles</Text>
+                <Text style={styles.accessSub}>
+                  View details, renew documents, report accidents, and much more.
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            {/* 2x2 Grid */}
+            <View style={styles.gridContainer}>
+              {/* Authentication Services */}
+              <TouchableOpacity
+                style={styles.gridCard}
+                activeOpacity={0.85}
+                onPress={() => router.push('/(tabs)/services')}
+              >
+                <AppIcon name="finger-print-outline" size={26} color="#1E6B4E" />
+                <Text style={styles.gridTitle}>Authentication{'\n'}Services</Text>
+              </TouchableOpacity>
+
+              {/* Absher Travel */}
+              <TouchableOpacity
+                style={styles.gridCard}
+                activeOpacity={0.85}
+                onPress={() => router.push('/(tabs)/services')}
+              >
+                <AppIcon name="map-outline" size={26} color="#1E6B4E" />
+                <Text style={styles.gridTitle}>Absher Travel</Text>
+              </TouchableOpacity>
+
+              {/* Report Minor Accident */}
+              <TouchableOpacity
+                style={styles.gridCard}
+                activeOpacity={0.85}
+                onPress={() => router.push('/(tabs)/services')}
+              >
+                <AppIcon name="car-emergency" size={26} color="#1E6B4E" />
+                <Text style={styles.gridTitle}>Report Minor{'\n'}Accident</Text>
+              </TouchableOpacity>
+
+              {/* Update Resident Photo */}
+              <TouchableOpacity
+                style={styles.gridCard}
+                activeOpacity={0.85}
+                onPress={() => router.push('/profile')}
+              >
+                <AppIcon name="person-circle-outline" size={26} color="#1E6B4E" />
+                <Text style={styles.gridTitle}>Update Resident{'\n'}Photo</Text>
+              </TouchableOpacity>
+            </View>
+
+            {/* 2. My Weapons */}
+            <TouchableOpacity
+              style={styles.bigAccessCard}
+              activeOpacity={0.85}
+              onPress={() => router.push('/(tabs)/services')}
+            >
+              <View style={styles.accessIconBadge}>
+                <AppIcon name="pistol-outline" size={24} color="#1E6B4E" />
+              </View>
+              <View style={styles.accessTextWrap}>
+                <Text style={styles.accessTitle}>My Weapons</Text>
+                <Text style={styles.accessSub}>
+                  View weapons details, issue and view carry permits.
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+
+        {/* Floating Action Button (FAB) */}
         <TouchableOpacity
-          style={styles.digitalDocCard}
-          activeOpacity={0.9}
-          onPress={() => router.push('/digital-documents')}
+          style={styles.fab}
+          activeOpacity={0.85}
+          onPress={() => {}}
         >
-          <Image
-            source={
-              employee?.id_card_image_url
-                ? { uri: employee.id_card_image_url }
-                : require('../../assets/extracted/iqama_card_full.png')
-            }
-            style={styles.iqamaCardImage}
-            resizeMode="cover"
+          <AppIcon
+            name="chatbubble-ellipses-outline"
+            size={24}
+            color="#FFFFFF"
           />
         </TouchableOpacity>
-
-        {/* Quick Access Section */}
-        <Text style={styles.sectionTitle}>Quick Access</Text>
-
-        {/* 1. My Vehicles */}
-        <TouchableOpacity
-          style={styles.bigAccessCard}
-          activeOpacity={0.85}
-          onPress={() => router.push('/(tabs)/services')}
-        >
-          <View style={styles.accessIconBadge}>
-            <AppIcon name="car-outline" size={24} color="#1E6B4E" />
-          </View>
-          <View style={styles.accessTextWrap}>
-            <Text style={styles.accessTitle}>My Vehicles</Text>
-            <Text style={styles.accessSub}>
-              View details, renew documents, report accidents, and much more.
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        {/* 2x2 Grid */}
-        <View style={styles.gridContainer}>
-          {/* Authentication Services */}
-          <TouchableOpacity
-            style={styles.gridCard}
-            activeOpacity={0.85}
-            onPress={() => router.push('/(tabs)/services')}
-          >
-            <AppIcon name="finger-print-outline" size={26} color="#1E6B4E" />
-            <Text style={styles.gridTitle}>Authentication{'\n'}Services</Text>
-          </TouchableOpacity>
-
-          {/* Absher Travel */}
-          <TouchableOpacity
-            style={styles.gridCard}
-            activeOpacity={0.85}
-            onPress={() => router.push('/(tabs)/services')}
-          >
-            <AppIcon name="map-outline" size={26} color="#1E6B4E" />
-            <Text style={styles.gridTitle}>Absher Travel</Text>
-          </TouchableOpacity>
-
-          {/* Report Minor Accident */}
-          <TouchableOpacity
-            style={styles.gridCard}
-            activeOpacity={0.85}
-            onPress={() => router.push('/(tabs)/services')}
-          >
-            <AppIcon name="car-emergency" size={26} color="#1E6B4E" />
-            <Text style={styles.gridTitle}>Report Minor{'\n'}Accident</Text>
-          </TouchableOpacity>
-
-          {/* Update Resident Photo */}
-          <TouchableOpacity
-            style={styles.gridCard}
-            activeOpacity={0.85}
-            onPress={() => router.push('/profile')}
-          >
-            <AppIcon name="person-circle-outline" size={26} color="#1E6B4E" />
-            <Text style={styles.gridTitle}>Update Resident{'\n'}Photo</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* 2. My Weapons */}
-        <TouchableOpacity
-          style={styles.bigAccessCard}
-          activeOpacity={0.85}
-          onPress={() => router.push('/(tabs)/services')}
-        >
-          <View style={styles.accessIconBadge}>
-            <AppIcon name="pistol-outline" size={24} color="#1E6B4E" />
-          </View>
-          <View style={styles.accessTextWrap}>
-            <Text style={styles.accessTitle}>My Weapons</Text>
-            <Text style={styles.accessSub}>
-              View weapons details, issue and view carry permits.
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </ScrollView>
-
-      {/* Floating Action Button (FAB) */}
-      <TouchableOpacity
-        style={styles.fab}
-        activeOpacity={0.85}
-        onPress={() => {}}
-      >
-        <AppIcon
-          name="chatbubble-ellipses-outline"
-          size={24}
-          color="#FFFFFF"
-        />
-      </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -226,13 +243,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D9EDE2',
   },
+  containerWrapper: {
+    flex: 1,
+    width: '100%',
+    maxWidth: 440,
+    alignSelf: 'center',
+    backgroundColor: '#F4F6F5',
+  },
   header: {
     backgroundColor: '#D9EDE2',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingBottom: 12,
+    paddingBottom: 14,
   },
   headerLogos: {
     flexDirection: 'row',
@@ -245,27 +269,30 @@ const styles = StyleSheet.create({
   logoEmblem: {
     width: 44,
     height: 44,
-    marginLeft: 10,
+    marginLeft: 12,
   },
   headerIconsRight: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   iconBtn: {
-    marginLeft: 14,
+    marginLeft: 16,
     padding: 4,
   },
   scrollContent: {
+    paddingBottom: 24,
+  },
+  topSection: {
     paddingHorizontal: 16,
-    paddingBottom: 36,
+    backgroundColor: '#F4F6F5',
   },
   profileCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 14,
     padding: 14,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 12,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1.5 },
     shadowOpacity: 0.05,
@@ -284,17 +311,17 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#14200D',
+    color: '#17211C',
     letterSpacing: -0.2,
   },
   profileSub: {
-    fontSize: 13,
-    color: '#5C6B62',
-    marginTop: 4,
+    fontSize: 13.5,
+    color: '#5C6B64',
+    marginTop: 3,
   },
   surveyBanner: {
-    backgroundColor: '#CCE8D8',
-    borderRadius: 16,
+    backgroundColor: '#BEE3D1',
+    borderRadius: 14,
     marginTop: 14,
     padding: 16,
   },
@@ -303,9 +330,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   surveyIconWrap: {
-    width: 38,
-    height: 38,
-    borderRadius: 12,
+    width: 36,
+    height: 36,
+    borderRadius: 10,
     backgroundColor: '#1E6B4E',
     alignItems: 'center',
     justifyContent: 'center',
@@ -317,30 +344,31 @@ const styles = StyleSheet.create({
   surveyTitle: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#14200D',
+    color: '#17211C',
+    letterSpacing: -0.2,
   },
   surveySub: {
-    fontSize: 13,
-    color: '#4E5F55',
+    fontSize: 13.5,
+    color: '#3A4A40',
     marginTop: 4,
     lineHeight: 18,
   },
   surveyCta: {
     alignSelf: 'flex-end',
-    marginTop: 6,
+    marginTop: 8,
   },
   surveyCtaText: {
     color: '#1E6B4E',
-    fontSize: 15,
+    fontSize: 14.5,
     fontWeight: '700',
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
-    color: '#14200D',
-    marginTop: 20,
+    color: '#17211C',
+    marginTop: 22,
     marginBottom: 12,
-    letterSpacing: -0.2,
+    letterSpacing: -0.3,
   },
   digitalDocCard: {
     width: '100%',
@@ -350,16 +378,32 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 5,
-    elevation: 3,
+    elevation: 2.5,
     backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E8ECE9',
   },
   iqamaCardImage: {
     width: '100%',
-    height: 220,
+    height: 218,
+  },
+  quickAccessSection: {
+    backgroundColor: '#D9EDE2',
+    marginTop: 22,
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    paddingBottom: 40,
+  },
+  quickAccessTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#17211C',
+    marginBottom: 14,
+    letterSpacing: -0.3,
   },
   bigAccessCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 14,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
@@ -370,10 +414,10 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   accessIconBadge: {
-    width: 44,
-    height: 44,
-    borderRadius: 14,
-    backgroundColor: '#EAF4EE',
+    width: 46,
+    height: 46,
+    borderRadius: 12,
+    backgroundColor: '#E6F4ED',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -383,14 +427,14 @@ const styles = StyleSheet.create({
   },
   accessTitle: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#14200D',
+    fontWeight: '700',
+    color: '#17211C',
   },
   accessSub: {
-    fontSize: 12,
-    color: '#5C6B62',
-    marginTop: 3,
-    lineHeight: 16,
+    fontSize: 13,
+    color: '#5C6B64',
+    marginTop: 2,
+    lineHeight: 18,
   },
   gridContainer: {
     flexDirection: 'row',
@@ -402,27 +446,27 @@ const styles = StyleSheet.create({
   gridCard: {
     width: '48.2%',
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 14,
     padding: 16,
-    minHeight: 104,
+    minHeight: 114,
     justifyContent: 'space-between',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1.5 },
-    shadowOpacity: 0.05,
+    shadowOpacity: 0.04,
     shadowRadius: 4,
-    elevation: 2,
+    elevation: 1.5,
   },
   gridTitle: {
-    fontSize: 14,
+    fontSize: 14.5,
     fontWeight: '600',
-    color: '#14200D',
-    lineHeight: 18,
+    color: '#17211C',
+    lineHeight: 20,
     marginTop: 14,
   },
   fab: {
     position: 'absolute',
-    bottom: 24,
-    right: 20,
+    bottom: 16,
+    right: 16,
     width: 54,
     height: 54,
     borderRadius: 27,
@@ -430,9 +474,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.22,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
