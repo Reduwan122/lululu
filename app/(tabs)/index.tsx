@@ -240,7 +240,7 @@ export default function HomeScreen() {
           onPress={() => {}}
         >
           <ChatDotsIcon
-            size={24}
+            size={28}
             color="#FFFFFF"
           />
         </TouchableOpacity>

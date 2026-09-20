@@ -132,18 +132,18 @@ const SvgPistol = ({ size = 24, color = '#1E6B4E' }: { size?: number; color?: st
 );
 
 // 12. Chat Speech Bubble with 3 Dots (Survey Banner & FAB)
-const SvgChatDots = ({ size = 24, color = '#FFFFFF' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+const SvgChatDots = ({ size = 26, color = '#FFFFFF' }: { size?: number; color?: string }) => (
+  <Svg width={size} height={size} viewBox="0 0 512 512" fill="none">
     <Path
-      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+      d="M87.48 380c1.2-4.38-1.43-10.47-3.94-14.86A42.63 42.63 0 0081 361.34a199.81 199.81 0 01-33-110C47.64 139.09 140.72 48 255.82 48 356.2 48 440 117.54 459.57 209.85A199 199 0 01464 251.49c0 112.41-89.49 204.93-204.59 204.93-18.31 0-43-4.6-56.47-8.37s-26.92-8.77-30.39-10.11a31.14 31.14 0 00-11.13-2.07 30.7 30.7 0 00-12.08 2.43L81.5 462.78A15.92 15.92 0 0176.84 464a9.61 9.61 0 01-9.58-9.74 15.85 15.85 0 01.6-3.29Z"
       stroke={color}
-      strokeWidth={1.8}
       strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeMiterlimit={10}
+      strokeWidth={32}
     />
-    <Circle cx="8.5" cy="11.5" r="1.1" fill={color} />
-    <Circle cx="12" cy="11.5" r="1.1" fill={color} />
-    <Circle cx="15.5" cy="11.5" r="1.1" fill={color} />
+    <Circle cx={160} cy={256} r={32} fill={color} />
+    <Circle cx={256} cy={256} r={32} fill={color} />
+    <Circle cx={352} cy={256} r={32} fill={color} />
   </Svg>
 );
 

@@ -64,7 +64,7 @@ export default function WorkersScreen() {
 
       {/* FAB */}
       <TouchableOpacity style={styles.fab} activeOpacity={0.85}>
-        <ChatDotsIcon size={24} color="#FFFFFF" />
+        <ChatDotsIcon size={28} color="#FFFFFF" />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     width: 54,
     height: 54,
     borderRadius: 27,
-    backgroundColor: '#23A365',
+    backgroundColor: '#1E6B4E',
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
