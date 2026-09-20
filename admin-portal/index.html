@@ -528,6 +528,303 @@
     </div>
   </div>
 
+  <!-- Modal: Edit User -->
+  <div id="modalEditUser" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-4xl w-full my-auto shadow-2xl border border-slate-100 flex flex-col max-h-[92vh] overflow-hidden">
+      <!-- Modal Header (Sticky) -->
+      <div class="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+            <i data-lucide="user-cog" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center space-x-2">
+              <span>Edit User Profile</span>
+              <span id="editModalBadgeId" class="text-xs font-mono font-semibold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300/60"></span>
+            </h3>
+            <p class="text-xs text-slate-500">Update identity credentials, personal details, documents, and photos.</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEditUserModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 flex items-center justify-center transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable Form) -->
+      <form id="editUserForm" onsubmit="handleSaveEditUser(event)" class="overflow-y-auto p-6 space-y-6">
+        <input type="hidden" id="editOriginalUserId" />
+
+        <!-- 1. Document & Photo Uploads Grid -->
+        <div>
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3 flex items-center space-x-2">
+            <i data-lucide="image" class="w-4 h-4 text-emerald-600"></i>
+            <span>Document & Profile Images</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Avatar / Profile Photo -->
+            <div class="bg-slate-50/60 rounded-xl p-3 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-800 flex items-center space-x-1.5">
+                    <i data-lucide="user" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Profile Photo</span>
+                  </span>
+                </div>
+                <div onclick="document.getElementById('editFilePhoto').click()" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-xl p-2 text-center cursor-pointer transition bg-white flex flex-col items-center justify-center min-h-[115px] relative overflow-hidden group">
+                  <img id="editPreviewPhoto" class="hidden w-16 h-16 object-cover rounded-full shadow border-2 border-emerald-500/20" />
+                  <div id="editPlaceholderPhoto" class="flex flex-col items-center">
+                    <i data-lucide="camera" class="w-6 h-6 text-slate-400 group-hover:text-emerald-600 mb-1"></i>
+                    <span class="text-[11px] font-semibold text-slate-600">Upload Photo</span>
+                  </div>
+                </div>
+                <input type="file" id="editFilePhoto" accept="image/*" class="hidden" onchange="previewFile(event, 'editPreviewPhoto', 'editPlaceholderPhoto')" />
+              </div>
+              <div class="mt-2 pt-2 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <button type="button" onclick="document.getElementById('editFilePhoto').click()" class="text-emerald-700 hover:underline font-medium">Change</button>
+                <button type="button" onclick="clearPreview('editFilePhoto', 'editPreviewPhoto', 'editPlaceholderPhoto')" class="text-slate-400 hover:text-rose-500">Remove</button>
+              </div>
+            </div>
+
+            <!-- Iqama Card -->
+            <div class="bg-slate-50/60 rounded-xl p-3 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-800 flex items-center space-x-1.5">
+                    <i data-lucide="id-card" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Resident ID Card</span>
+                  </span>
+                </div>
+                <div onclick="document.getElementById('editFileIqama').click()" class="border-2 border-dashed border-slate-300 hover:border-emerald-500 rounded-xl p-2 text-center cursor-pointer transition bg-white flex flex-col items-center justify-center min-h-[115px] relative overflow-hidden group">
+                  <img id="editPreviewIqama" class="hidden absolute inset-0 w-full h-full object-cover rounded-xl" />
+                  <div id="editPlaceholderIqama" class="flex flex-col items-center">
+                    <i data-lucide="upload-cloud" class="w-6 h-6 text-slate-400 group-hover:text-emerald-600 mb-1"></i>
+                    <span class="text-[11px] font-semibold text-slate-600">Upload Card</span>
+                  </div>
+                </div>
+                <input type="file" id="editFileIqama" accept="image/*" class="hidden" onchange="previewFile(event, 'editPreviewIqama', 'editPlaceholderIqama')" />
+              </div>
+              <div class="mt-2 pt-2 border-t border-slate-200 flex items-center justify-between text-[11px]">
+                <button type="button" onclick="document.getElementById('editFileIqama').click()" class="text-emerald-700 hover:underline font-medium">Change</button>
+                <button type="button" onclick="clearPreview('editFileIqama', 'editPreviewIqama', 'editPlaceholderIqama')" class="text-slate-400 hover:text-rose-500">Remove</button>
+              </div>
+            </div>
+
+            <!-- Iqama Details Sheet -->
+            <div class="bg-slate-50/60 rounded-xl p-3 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-800 flex items-center space-x-1.5">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Details Sheet</span>
+                  </span>
+                  <span class="text-[10px] text-emerald-700 bg-emerald-100 px-1 py-0.2 rounded font-bold">OCR</span>
+                </div>
+                <div onclick="document.getElementById('editFileIqamaSheet').click()" class="border-2 border-dashed border-emerald-300 hover:border-emerald-600 rounded-xl p-2 text-center cursor-pointer transition bg-white flex flex-col items-center justify-center min-h-[115px] relative overflow-hidden group">
+                  <img id="editPreviewIqamaSheet" class="hidden absolute inset-0 w-full h-full object-cover rounded-xl" />
+                  <div id="editPlaceholderIqamaSheet" class="flex flex-col items-center">
+                    <i data-lucide="scan-text" class="w-6 h-6 text-emerald-600 group-hover:scale-110 mb-1 transition"></i>
+                    <span class="text-[11px] font-semibold text-emerald-900">Upload Sheet</span>
+                  </div>
+                </div>
+                <input type="file" id="editFileIqamaSheet" accept="image/*" class="hidden" onchange="handleEditIqamaSheetUpload(event)" />
+              </div>
+              <div class="mt-2 pt-2 border-t border-slate-200 flex flex-col space-y-1 text-[11px]">
+                <div id="statusEditIqamaSheetOcr" class="hidden text-[10px] flex items-center space-x-1 text-emerald-700"></div>
+                <div class="flex items-center justify-between">
+                  <button type="button" onclick="document.getElementById('editFileIqamaSheet').click()" class="text-emerald-700 hover:underline font-medium">Change</button>
+                  <button type="button" onclick="clearPreview('editFileIqamaSheet', 'editPreviewIqamaSheet', 'editPlaceholderIqamaSheet')" class="text-slate-400 hover:text-rose-500">Remove</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Passport Document -->
+            <div class="bg-slate-50/60 rounded-xl p-3 border border-slate-200 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-800 flex items-center space-x-1.5">
+                    <i data-lucide="book" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Passport Bio</span>
+                  </span>
+                  <span class="text-[10px] text-emerald-700 bg-emerald-100 px-1 py-0.2 rounded font-bold">OCR</span>
+                </div>
+                <div onclick="document.getElementById('editFilePassport').click()" class="border-2 border-dashed border-emerald-300 hover:border-emerald-600 rounded-xl p-2 text-center cursor-pointer transition bg-white flex flex-col items-center justify-center min-h-[115px] relative overflow-hidden group">
+                  <img id="editPreviewPassport" class="hidden absolute inset-0 w-full h-full object-cover rounded-xl" />
+                  <div id="editPlaceholderPassport" class="flex flex-col items-center">
+                    <i data-lucide="scan-line" class="w-6 h-6 text-emerald-600 group-hover:scale-110 mb-1 transition"></i>
+                    <span class="text-[11px] font-semibold text-emerald-900">Upload Passport</span>
+                  </div>
+                </div>
+                <input type="file" id="editFilePassport" accept="image/*" class="hidden" onchange="handleEditPassportUpload(event)" />
+              </div>
+              <div class="mt-2 pt-2 border-t border-slate-200 flex flex-col space-y-1 text-[11px]">
+                <div id="statusEditPassportOcr" class="hidden text-[10px] flex items-center space-x-1 text-emerald-700"></div>
+                <div class="flex items-center justify-between">
+                  <button type="button" onclick="document.getElementById('editFilePassport').click()" class="text-emerald-700 hover:underline font-medium">Change</button>
+                  <button type="button" onclick="clearPreview('editFilePassport', 'editPreviewPassport', 'editPlaceholderPassport')" class="text-slate-400 hover:text-rose-500">Remove</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Account & Login Credentials -->
+        <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200 space-y-4">
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="key" class="w-4 h-4 text-emerald-600"></i>
+            <span>Account Credentials</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">User / Iqama ID Number *</label>
+              <input type="text" id="editUserId" required maxlength="10" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold font-mono text-slate-900 bg-white" />
+              <p class="text-[11px] text-slate-400 mt-1">If changed, database key will be updated automatically.</p>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Password *</label>
+              <input type="text" id="editPassword" required class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-mono text-slate-900 bg-white" />
+              <p class="text-[11px] text-slate-400 mt-1">Login password for mobile application.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Identity & Personal Details -->
+        <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200 space-y-4">
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="user-check" class="w-4 h-4 text-emerald-600"></i>
+            <span>Personal Information</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Full Name (English) *</label>
+              <input type="text" id="editFullName" required class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Full Name (Arabic)</label>
+              <input type="text" id="editFullNameAr" dir="rtl" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-arabic text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Date of Birth</label>
+              <input type="text" id="editDob" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Nationality</label>
+              <input type="text" id="editNationality" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Occupation (المهنة)</label>
+              <input type="text" id="editOccupation" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Religion</label>
+              <input type="text" id="editReligion" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Marital Status</label>
+              <input type="text" id="editMaritalStatus" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Blood Type</label>
+              <input type="text" id="editBloodType" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Resident ID & Sponsor Info -->
+        <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200 space-y-4">
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="building-2" class="w-4 h-4 text-emerald-600"></i>
+            <span>Resident ID & Sponsorship</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Iqama Expiry Date</label>
+              <input type="text" id="editIqamaExpiry" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Iqama Issue Date</label>
+              <input type="text" id="editIqamaIssue" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Iqama Version</label>
+              <input type="text" id="editIqamaVersion" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Sponsor ID Number</label>
+              <input type="text" id="editSponsorId" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Sponsor Name</label>
+              <input type="text" id="editSponsorName" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-arabic text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Work Permit</label>
+              <input type="text" id="editWorkPermit" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Biometrics</label>
+              <input type="text" id="editBiometrics" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Travel Status</label>
+              <input type="text" id="editTravelStatus" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Passport Details -->
+        <div class="bg-slate-50/70 rounded-xl p-4 border border-slate-200 space-y-4">
+          <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
+            <i data-lucide="plane" class="w-4 h-4 text-emerald-600"></i>
+            <span>Passport Information</span>
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Passport Number</label>
+              <input type="text" id="editPassportNum" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Passport Type</label>
+              <input type="text" id="editPassportType" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Issuing City</label>
+              <input type="text" id="editPassportCity" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Issuing Date</label>
+              <input type="text" id="editPassportIssue" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Expiry Date</label>
+              <input type="text" id="editPassportExpiry" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1">Passport Status</label>
+              <input type="text" id="editPassportStatus" class="w-full px-3 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-800 bg-white" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer Actions (Sticky) -->
+        <div class="pt-4 border-t border-slate-200 flex items-center justify-end space-x-3">
+          <button type="button" onclick="closeEditUserModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-100 transition">Cancel</button>
+          <button type="submit" id="btnSaveEdit" class="px-7 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow-md shadow-emerald-800/20 transition flex items-center space-x-2">
+            <i data-lucide="save" class="w-4 h-4"></i>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3 px-4 py-3 rounded-xl shadow-xl text-xs font-semibold text-white bg-slate-900 border border-slate-700">
+    <span id="toastIcon"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i></span>
+    <span id="toastMessage">Changes saved successfully!</span>
+  </div>
+
   <!-- Firebase Scripts (Modular via ESM) -->
   <script type="module">
     import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -972,16 +1269,357 @@
 
           <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
             <span class="text-slate-400 text-[11px]">${u.created_at ? new Date(u.created_at).toLocaleDateString() : 'Active'}</span>
-            <button onclick="deleteUser('${u.id_number}')" class="text-rose-600 hover:text-rose-700 font-semibold flex items-center space-x-1">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              <span>Delete</span>
-            </button>
+            <div class="flex items-center space-x-2">
+              <button onclick="openEditUserModal('${u.id_number}')" class="text-emerald-700 hover:text-emerald-800 font-semibold flex items-center space-x-1 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg border border-emerald-200 transition">
+                <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                <span>Edit</span>
+              </button>
+              <button onclick="deleteUser('${u.id_number}')" class="text-rose-600 hover:text-rose-700 font-semibold flex items-center space-x-1 bg-rose-50 hover:bg-rose-100 px-2.5 py-1.5 rounded-lg border border-rose-200 transition">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <span>Delete</span>
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
 
       lucide.createIcons();
     }
+
+    window.openEditUserModal = function(id) {
+      const localUsers = JSON.parse(localStorage.getItem('absher_local_users') || '{}');
+      const u = localUsers[id] || allUsers.find(x => String(x.id_number) === String(id) || String(x.id) === String(id));
+      if (!u) {
+        alert('User record not found');
+        return;
+      }
+
+      document.getElementById('editOriginalUserId').value = u.id_number || u.id;
+      document.getElementById('editModalBadgeId').innerText = `ID: ${u.id_number || u.id}`;
+
+      // Credentials
+      document.getElementById('editUserId').value = u.id_number || u.id || '';
+      document.getElementById('editPassword').value = u.password || '';
+
+      // Personal Information
+      document.getElementById('editFullName').value = u.full_name || '';
+      document.getElementById('editFullNameAr').value = u.full_name_ar || '';
+      document.getElementById('editDob').value = u.date_of_birth || '';
+      document.getElementById('editNationality').value = u.nationality || '';
+      document.getElementById('editOccupation').value = u.occupation || '';
+      document.getElementById('editReligion').value = u.religion || '';
+      document.getElementById('editMaritalStatus').value = u.marital_status || 'Single';
+      document.getElementById('editBloodType').value = u.blood_type || 'O+';
+
+      // Resident ID & Sponsor
+      document.getElementById('editIqamaExpiry').value = u.resident_id_expiry_date || '';
+      document.getElementById('editIqamaIssue').value = u.resident_id_issuing_date || '';
+      document.getElementById('editIqamaVersion').value = u.resident_id_version || '1';
+      document.getElementById('editSponsorId').value = u.sponsor_id_number || '';
+      document.getElementById('editSponsorName').value = u.sponsor_name || '';
+      document.getElementById('editWorkPermit').value = u.work_permit || 'Active';
+      document.getElementById('editBiometrics').value = u.biometrics_collected || 'Enrolled';
+      document.getElementById('editTravelStatus').value = u.travel_status || 'Inside KSA';
+
+      // Passport
+      document.getElementById('editPassportNum').value = u.passport_number || '';
+      document.getElementById('editPassportType').value = u.passport_type || 'Regular';
+      document.getElementById('editPassportCity').value = u.passport_issuing_city || '';
+      document.getElementById('editPassportIssue').value = u.passport_issuing_date || '';
+      document.getElementById('editPassportExpiry').value = u.passport_expiry_date || '';
+      document.getElementById('editPassportStatus').value = u.passport_status || 'Valid';
+
+      // Set image previews
+      const setImgState = (fileInputId, imgId, placeId, src) => {
+        document.getElementById(fileInputId).value = '';
+        const img = document.getElementById(imgId);
+        const place = document.getElementById(placeId);
+        if (src) {
+          img.src = src;
+          img.classList.remove('hidden');
+          place.classList.add('hidden');
+        } else {
+          img.src = '';
+          img.classList.add('hidden');
+          place.classList.remove('hidden');
+        }
+      };
+
+      setImgState('editFilePhoto', 'editPreviewPhoto', 'editPlaceholderPhoto', u.photo_url || u.id_profile_image_url);
+      setImgState('editFileIqama', 'editPreviewIqama', 'editPlaceholderIqama', u.id_card_image_url);
+      setImgState('editFileIqamaSheet', 'editPreviewIqamaSheet', 'editPlaceholderIqamaSheet', u.iqama_sheet_image_url);
+      setImgState('editFilePassport', 'editPreviewPassport', 'editPlaceholderPassport', u.passport_image_url);
+
+      const statusSheet = document.getElementById('statusEditIqamaSheetOcr');
+      if (statusSheet) statusSheet.classList.add('hidden');
+      const statusPass = document.getElementById('statusEditPassportOcr');
+      if (statusPass) statusPass.classList.add('hidden');
+
+      document.getElementById('modalEditUser').classList.remove('hidden');
+      lucide.createIcons();
+    };
+
+    window.closeEditUserModal = function() {
+      document.getElementById('modalEditUser').classList.add('hidden');
+    };
+
+    window.showToast = function(msg, isSuccess = true) {
+      const toast = document.getElementById('toastNotification');
+      const msgEl = document.getElementById('toastMessage');
+      const iconEl = document.getElementById('toastIcon');
+      if (!toast) return;
+      msgEl.innerText = msg;
+      iconEl.innerHTML = isSuccess ? `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>` : `<i data-lucide="alert-circle" class="w-4 h-4 text-rose-400"></i>`;
+      lucide.createIcons();
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    };
+
+    // OCR Handlers for Edit Modal
+    window.handleEditPassportUpload = async function(event) {
+      previewFile(event, 'editPreviewPassport', 'editPlaceholderPassport');
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const statusEl = document.getElementById('statusEditPassportOcr');
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        statusEl.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i><span>Scanning Passport OCR...</span>`;
+        lucide.createIcons();
+      }
+
+      try {
+        if (typeof Tesseract !== 'undefined') {
+          const worker = await Tesseract.createWorker('eng');
+          const ret = await worker.recognize(file);
+          const text = ret.data.text || '';
+          await worker.terminate();
+
+          let count = 0;
+          const passMatch = text.match(/(?:passport|no|number|num)[\s:.]*([A-Z0-9]{7,10})/i) || text.match(/\b([A-Z][0-9]{7,9})\b/);
+          if (passMatch) {
+            highlightField('editPassportNum', passMatch[1].toUpperCase());
+            count++;
+          }
+
+          const mrz = text.match(/P<[A-Z0-9<]+/g);
+          if (mrz && mrz.length > 0) {
+            const names = mrz[0].substring(5).split('<<').map(n => n.replace(/<+/g, ' ').trim()).filter(Boolean);
+            if (names.length > 0) {
+              highlightField('editFullName', names.join(' '));
+              count++;
+            }
+          }
+
+          const dates = text.match(/\b\d{2}[\/\-\.]\d{2}[\/\-\.]\d{4}\b/g) || [];
+          if (dates.length >= 1) {
+            highlightField('editDob', dates[0].replace(/[\-\.]/g, '/'));
+            count++;
+          }
+          if (dates.length >= 2) {
+            highlightField('editPassportExpiry', dates[dates.length - 1].replace(/[\-\.]/g, '/'));
+            count++;
+          }
+
+          const natMatch = text.match(/\b(BANGLADESH|SAUDI|EGYPT|INDIA|PAKISTAN|PHILIPPINES|YEMEN|SUDAN|JORDAN)\b/i);
+          if (natMatch) {
+            highlightField('editNationality', natMatch[1].toUpperCase());
+            count++;
+          }
+
+          if (statusEl) {
+            statusEl.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i><span class="text-emerald-700 font-semibold font-mono">Extracted ${count} fields!</span>`;
+            lucide.createIcons();
+          }
+        }
+      } catch (err) {
+        if (statusEl) statusEl.innerHTML = `<span class="text-amber-600">Manual review ready</span>`;
+      }
+    };
+
+    window.handleEditIqamaSheetUpload = async function(event) {
+      previewFile(event, 'editPreviewIqamaSheet', 'editPlaceholderIqamaSheet');
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const statusEl = document.getElementById('statusEditIqamaSheetOcr');
+      if (statusEl) {
+        statusEl.classList.remove('hidden');
+        statusEl.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i><span>Scanning Details Sheet OCR...</span>`;
+        lucide.createIcons();
+      }
+
+      try {
+        if (typeof Tesseract !== 'undefined') {
+          const worker = await Tesseract.createWorker('eng');
+          const ret = await worker.recognize(file);
+          const text = ret.data.text || '';
+          await worker.terminate();
+
+          let count = 0;
+          const idMatch = text.match(/\b([12]\d{9})\b/);
+          if (idMatch) {
+            highlightField('editUserId', idMatch[1]);
+            count++;
+          }
+
+          const sponsorIdMatch = text.match(/\b(7\d{9})\b/);
+          if (sponsorIdMatch) {
+            highlightField('editSponsorId', sponsorIdMatch[1]);
+            count++;
+          }
+
+          const allDates = text.match(/\b\d{2}[\/\-\.]\d{2}[\/\-\.]\d{4}\b/g) || text.match(/\b\d{4}[\/\-\.]\d{2}[\/\-\.]\d{2}\b/g) || [];
+          if (allDates.length >= 1) {
+            highlightField('editDob', allDates[0].replace(/[\-\.]/g, '/'));
+            count++;
+          }
+          if (allDates.length >= 2) {
+            highlightField('editIqamaExpiry', allDates[1].replace(/[\-\.]/g, '/'));
+            count++;
+          }
+          if (allDates.length >= 3) {
+            highlightField('editIqamaIssue', allDates[2].replace(/[\-\.]/g, '/'));
+            count++;
+          }
+
+          const occMatch = text.match(/(عامل مخزن|عامل عادي|سائق خاص|مهندس|فني|محاسب|مدير|طبيب|مندوب)/);
+          if (occMatch) {
+            highlightField('editOccupation', occMatch[1]);
+            count++;
+          }
+
+          const englishNameMatch = text.match(/\b([A-Z]{3,}\s+[A-Z]{3,}(?:\s+[A-Z]{3,})?)\b/);
+          if (englishNameMatch && !['KINGDOM', 'SAUDI ARABIA', 'MINISTRY OF'].some(kw => englishNameMatch[1].includes(kw))) {
+            highlightField('editFullName', englishNameMatch[1]);
+            count++;
+          }
+
+          if (statusEl) {
+            statusEl.innerHTML = `<i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i><span class="text-emerald-700 font-semibold font-mono">Extracted ${count} fields!</span>`;
+            lucide.createIcons();
+          }
+        }
+      } catch (err) {
+        if (statusEl) statusEl.innerHTML = `<span class="text-amber-600">Manual review ready</span>`;
+      }
+    };
+
+    window.handleSaveEditUser = async function(event) {
+      event.preventDefault();
+      const btn = document.getElementById('btnSaveEdit');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Saving...</span>`;
+      lucide.createIcons();
+
+      const origId = document.getElementById('editOriginalUserId').value.trim();
+      const newId = document.getElementById('editUserId').value.trim();
+      const password = document.getElementById('editPassword').value.trim();
+      const fullName = document.getElementById('editFullName').value.trim();
+      const fullNameAr = document.getElementById('editFullNameAr').value.trim();
+      const dob = document.getElementById('editDob').value.trim();
+      const nationality = document.getElementById('editNationality').value.trim();
+      const occupation = document.getElementById('editOccupation').value.trim();
+      const religion = document.getElementById('editReligion').value.trim();
+      const maritalStatus = document.getElementById('editMaritalStatus').value.trim();
+      const bloodType = document.getElementById('editBloodType').value.trim();
+
+      const iqamaExpiry = document.getElementById('editIqamaExpiry').value.trim();
+      const iqamaIssue = document.getElementById('editIqamaIssue').value.trim();
+      const iqamaVersion = document.getElementById('editIqamaVersion').value.trim();
+      const workPermit = document.getElementById('editWorkPermit').value.trim();
+      const biometrics = document.getElementById('editBiometrics').value.trim();
+      const travelStatus = document.getElementById('editTravelStatus').value.trim();
+
+      const sponsorId = document.getElementById('editSponsorId').value.trim();
+      const sponsorName = document.getElementById('editSponsorName').value.trim();
+
+      const passportNum = document.getElementById('editPassportNum').value.trim();
+      const passportType = document.getElementById('editPassportType').value.trim();
+      const passportCity = document.getElementById('editPassportCity').value.trim();
+      const passportIssue = document.getElementById('editPassportIssue').value.trim();
+      const passportExpiry = document.getElementById('editPassportExpiry').value.trim();
+      const passportStatus = document.getElementById('editPassportStatus').value.trim();
+
+      const getImgSrc = (id) => {
+        const el = document.getElementById(id);
+        return (el && !el.classList.contains('hidden') && el.src) ? el.src : null;
+      };
+
+      const photoImg = getImgSrc('editPreviewPhoto');
+      const idCardImg = getImgSrc('editPreviewIqama');
+      const iqamaSheetImg = getImgSrc('editPreviewIqamaSheet');
+      const passportImg = getImgSrc('editPreviewPassport');
+
+      const localUsers = JSON.parse(localStorage.getItem('absher_local_users') || '{}');
+      const existing = localUsers[origId] || {};
+
+      const updatedRecord = {
+        ...existing,
+        id: newId,
+        id_number: newId,
+        username: newId,
+        password: password,
+        full_name: fullName,
+        full_name_ar: fullNameAr || fullName,
+        date_of_birth: dob,
+        birth_country: nationality,
+        birth_city: nationality,
+        nationality: nationality,
+        occupation: occupation,
+        religion: religion,
+        marital_status: maritalStatus || existing.marital_status || 'Single',
+        work_permit: workPermit || existing.work_permit || 'Active',
+        biometrics_collected: biometrics || existing.biometrics_collected || 'Enrolled',
+        travel_status: travelStatus || existing.travel_status || 'Inside KSA',
+        blood_type: bloodType || existing.blood_type || 'O+',
+        resident_id_number: newId,
+        resident_id_expiry_date: iqamaExpiry,
+        resident_id_issuing_date: iqamaIssue,
+        resident_id_version: iqamaVersion,
+        sponsor_id_number: sponsorId,
+        sponsor_name: sponsorName,
+        passport_number: passportNum,
+        passport_type: passportType,
+        passport_issuing_city: passportCity,
+        passport_issuing_date: passportIssue,
+        passport_expiry_date: passportExpiry,
+        passport_status: passportStatus,
+        id_card_image_url: idCardImg,
+        iqama_sheet_image_url: iqamaSheetImg,
+        passport_image_url: passportImg,
+        photo_url: photoImg,
+        id_profile_image_url: photoImg,
+        updated_at: new Date().toISOString()
+      };
+
+      try {
+        if (rtdb) {
+          if (origId && origId !== newId) {
+            await remove(ref(rtdb, `users/${origId}`));
+          }
+          await set(ref(rtdb, `users/${newId}`), updatedRecord);
+        }
+
+        if (origId && origId !== newId) {
+          delete localUsers[origId];
+        }
+        localUsers[newId] = updatedRecord;
+        localStorage.setItem('absher_local_users', JSON.stringify(localUsers));
+
+        renderUsersList();
+        closeEditUserModal();
+        showToast(`User ${newId} updated successfully!`);
+      } catch (err) {
+        alert('Failed to save changes: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="save" class="w-4 h-4"></i><span>Save Changes</span>`;
+        lucide.createIcons();
+      }
+    };
 
     window.deleteUser = async function(id) {
       if (!confirm(`Delete user ${id}?`)) return;
