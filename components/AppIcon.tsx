@@ -102,20 +102,8 @@ const SvgMap = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: strin
 
 // 9. Report Minor Accident (Car with Siren Light on Roof)
 const SvgAccidentCar = ({ size = 26, color = '#1E6B4E' }: { size?: number; color?: string }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    {/* Siren light */}
-    <Path d="M11 2h2v2h-2z" fill={color} />
-    <Path d="M8 3.2l1 1.3M16 3.2l-1 1.3" stroke={color} strokeWidth={1.5} strokeLinecap="round" />
-    {/* Car body */}
-    <Path
-      d="M5 12l1.5-4.5A2 2 0 0 1 8.4 6h7.2a2 2 0 0 1 1.9 1.5L19 12M3 12h18v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1H8v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z"
-      stroke={color}
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Circle cx="7.5" cy="15" r="1.5" fill={color} />
-    <Circle cx="16.5" cy="15" r="1.5" fill={color} />
+  <Svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+    <Path d="M11 0V3H13V0H11M7.88 1.46L6.46 2.87L8.59 5L10 3.58L7.88 1.46M16.12 1.46L14 3.58L15.41 5L17.54 2.88L16.12 1.46M12 5A2 2 0 0 0 10 7V8H6.5C5.84 8 5.28 8.42 5.08 9L3 15V23A1 1 0 0 0 4 24H5A1 1 0 0 0 6 23V22H18V23A1 1 0 0 0 19 24H20A1 1 0 0 0 21 23V15L18.92 9C18.72 8.42 18.16 8 17.5 8H14V7A2 2 0 0 0 12 5M6.5 9.5H17.5L19 14H5L6.5 9.5M6.5 16A1.5 1.5 0 0 1 8 17.5A1.5 1.5 0 0 1 6.5 19A1.5 1.5 0 0 1 5 17.5A1.5 1.5 0 0 1 6.5 16M17.5 16A1.5 1.5 0 0 1 19 17.5A1.5 1.5 0 0 1 17.5 19A1.5 1.5 0 0 1 16 17.5A1.5 1.5 0 0 1 17.5 16Z" />
   </Svg>
 );
 
