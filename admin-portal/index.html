@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Absher Identity Admin Portal</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23175438'%3E%3Cpath d='M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z'/%3E%3C/svg%3E" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -1223,7 +1224,7 @@
       container.innerHTML = allUsers.map(u => `
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4 hover:shadow-md transition">
           <div class="flex items-center space-x-3.5">
-            <img src="${u.photo_url || '../assets/images/profile_user.png'}" class="w-13 h-13 rounded-full object-cover border-2 border-emerald-500/20 bg-slate-100" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(u.full_name)}&background=175438&color=fff'" />
+            <img src="${u.photo_url || './assets/images/profile_user.png'}" class="w-13 h-13 rounded-full object-cover border-2 border-emerald-500/20 bg-slate-100" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(u.full_name)}&background=175438&color=fff'" />
             <div class="flex-1 min-w-0">
               <h4 class="font-bold text-slate-900 text-sm truncate">${u.full_name}</h4>
               <p class="text-xs text-slate-500 font-mono">ID: ${u.id_number}</p>
