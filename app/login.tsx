@@ -121,10 +121,11 @@ export default function LoginScreen() {
 
           <TouchableOpacity
             style={styles.checkboxRow}
+            activeOpacity={0.8}
             onPress={() => setRememberMe(!rememberMe)}
           >
             <View style={[styles.checkbox, rememberMe && styles.checkboxChecked]}>
-              {rememberMe && <Ionicons name="checkmark" size={16} color="#FFFFFF" />}
+              {rememberMe && <Ionicons name="checkmark" size={14} color="#FFFFFF" />}
             </View>
             <Text style={styles.checkboxLabel}>Keep me logged in</Text>
           </TouchableOpacity>
@@ -218,11 +219,11 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   checkbox: {
-    width: 22,
-    height: 22,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: colors.border,
+    width: 20,
+    height: 20,
+    borderRadius: 4.5,
+    borderWidth: 1.8,
+    borderColor: '#C6D2CB',
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 10,
@@ -232,8 +233,9 @@ const styles = StyleSheet.create({
     borderColor: colors.accent,
   },
   checkboxLabel: {
-    color: colors.textDark,
-    fontSize: 14,
+    color: '#2A362E',
+    fontSize: 14.5,
+    fontWeight: '400',
   },
   errorText: {
     color: colors.danger,

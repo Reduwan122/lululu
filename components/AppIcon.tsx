@@ -263,6 +263,8 @@ import {
   QuickUserCircleIcon,
   QuickWeaponsIcon,
   ChatDotsIcon,
+  CheckmarkIcon,
+  CheckmarkCircleIcon,
 } from './ExtractedIcons';
 
 const iconMap: Record<string, React.ComponentType<any>> = {
@@ -339,6 +341,12 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   'close-outline': SvgClose,
   'document-text': SvgDocumentText,
   'document-text-outline': SvgDocumentText,
+  'checkmark': CheckmarkIcon,
+  'checkmark-outline': CheckmarkIcon,
+  'checkmark-sharp': CheckmarkIcon,
+  'check': CheckmarkIcon,
+  'checkmark-circle': CheckmarkCircleIcon,
+  'checkmark-circle-outline': CheckmarkCircleIcon,
 };
 
 export interface AppIconProps {

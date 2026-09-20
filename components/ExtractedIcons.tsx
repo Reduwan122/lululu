@@ -1,6 +1,5 @@
-// 100% Pixel-Perfect Authentic SVG Vector Icons matching Absher App Reference Screenshots
 import React from 'react';
-import Svg, { Path, Rect, Circle, SvgProps } from 'react-native-svg';
+import Svg, { Path, Rect, Circle, Polyline, SvgProps } from 'react-native-svg';
 
 export interface ExtractedIconProps extends SvgProps {
   size?: number;
@@ -224,6 +223,26 @@ export const ChatDotsIcon = ({ size = 26, color = '#FFFFFF', ...props }: Extract
   </Svg>
 );
 
+// CheckmarkIcon: 100% Authentic Ionicons (checkmark)
+export const CheckmarkIcon = ({ size = 16, color = '#FFFFFF', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 512 512" fill="none" {...props}>
+    <Polyline
+      points="416 128 192 384 96 288"
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={52}
+    />
+  </Svg>
+);
+
+// CheckmarkCircleIcon: 100% Authentic Ionicons (checkmark-circle)
+export const CheckmarkCircleIcon = ({ size = 20, color = '#1E6B4E', ...props }: ExtractedIconProps) => (
+  <Svg width={size} height={size} viewBox="0 0 512 512" fill={color} {...props}>
+    <Path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm108.25 138.29l-134.4 160a16 16 0 01-12 5.71h-.27a16 16 0 01-11.89-5.3l-57.6-64a16 16 0 1123.78-21.4l45.29 50.32L339.75 165.71a16 16 0 0124.5 20.58z" />
+  </Svg>
+);
+
 // IconUniversalAccess: 100% Authentic Ionicons (accessibility-outline)
 export const IconUniversalAccess = ({ size = 26, color = '#23A365', ...props }: ExtractedIconProps) => (
   <Svg width={size} height={size} viewBox="0 0 512 512" fill={color} {...props}>
@@ -412,6 +431,8 @@ export const extractedIconRegistry: Record<string, React.ComponentType<Extracted
   'quick-weapons': QuickWeaponsIcon,
   'chat-dots': ChatDotsIcon,
   'survey-chat': SurveyChatIcon,
+  'checkmark': CheckmarkIcon,
+  'checkmark-circle': CheckmarkCircleIcon,
 
   // Services & Other
   'service-universal': IconUniversalAccess,
