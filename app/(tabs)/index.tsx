@@ -101,10 +101,10 @@ export default function HomeScreen() {
               />
               <View style={styles.profileInfo}>
                 <Text style={styles.profileName}>
-                  {employee?.full_name || 'MD SUMON MIA'}
+                  {employee?.full_name || ''}
                 </Text>
                 <Text style={styles.profileSub}>
-                  ID No.: {employee?.id_number || '2631567092'}
+                  {employee?.id_number ? `ID No.: ${employee.id_number}` : ''}
                 </Text>
               </View>
             </TouchableOpacity>

@@ -45,37 +45,37 @@ export interface Employee {
 }
 
 export const DEFAULT_EMPLOYEE: Employee = {
-  id: '2631567092',
-  full_name: 'MD SUMON MIA',
-  id_number: '2631567092',
-  resident_id_number: '2631567092',
+  id: '',
+  full_name: '',
+  id_number: '',
+  resident_id_number: '',
   resident_id_version: '1',
-  resident_id_issuing_date: '1442/04/15',
-  resident_id_expiry_date: '17/02/2027',
-  passport_number: 'N01829348',
+  resident_id_issuing_date: '',
+  resident_id_expiry_date: '',
+  passport_number: '',
   passport_type: 'Regular',
-  passport_issuing_date: '2021/06/10',
-  passport_expiry_date: '2031/06/09',
-  passport_issuing_city: 'Dhaka',
+  passport_issuing_date: '',
+  passport_expiry_date: '',
+  passport_issuing_city: '',
   passport_status: 'Valid',
-  birth_city: 'Bangladesh',
-  birth_country: 'Bangladesh',
-  date_of_birth: '18/08/2002',
+  birth_city: '',
+  birth_country: '',
+  date_of_birth: '',
   marital_status: 'Single',
   sponsorship_transfers: '0',
   religion: 'Islam',
   work_permit: 'Active',
   biometrics_collected: 'Enrolled',
   travel_status: 'Inside KSA',
-  sponsor_id_number: '7052548919',
-  sponsor_name: 'شركة مها علي بن حسين الربيعي للمقاولات عامة',
+  sponsor_id_number: '',
+  sponsor_name: '',
   blood_type: 'O+',
-  health_issuing_date: '1445/01/01',
-  health_expiry_date: '1446/01/01',
+  health_issuing_date: '',
+  health_expiry_date: '',
   hajj_status: 'Eligible',
   hajj_last_year: 'None',
-  occupation: 'عامل مخزن',
-  nationality: 'بنجلاديش',
+  occupation: '',
+  nationality: '',
 };
 
 interface EmployeeContextValue {
@@ -127,6 +127,16 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
     return null;
   };
 
+  const logout = async () => {
+    if (rtdbUnsubRef.current) {
+      rtdbUnsubRef.current();
+      rtdbUnsubRef.current = null;
+    }
+    await authManager.signOut();
+    setSession(null);
+    setEmployee(null);
+  };
+
   const applySession = async (sess: UserSession | null) => {
     // Unsubscribe previous realtime listener if active
     if (rtdbUnsubRef.current) {
@@ -134,48 +144,59 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
       rtdbUnsubRef.current = null;
     }
 
-    setSession(sess);
-    if (sess) {
-      let data = sess.userData;
-      if (!data) {
-        data = await fetchUserData(sess.username);
-      }
-
-      setEmployee({
-        ...DEFAULT_EMPLOYEE,
-        ...(data || {}),
-        id: sess.username,
-        id_number: sess.username,
-        resident_id_number: data?.resident_id_number || sess.username,
-        full_name: data?.full_name || sess.name || DEFAULT_EMPLOYEE.full_name,
-        photo_url: data?.photo_url || DEFAULT_EMPLOYEE.photo_url,
-        id_card_image_url: data?.id_card_image_url || DEFAULT_EMPLOYEE.id_card_image_url,
-        id_profile_image_url: data?.id_profile_image_url || data?.photo_url || DEFAULT_EMPLOYEE.id_profile_image_url,
-        iqama_sheet_image_url: data?.iqama_sheet_image_url || undefined,
-        passport_image_url: data?.passport_image_url || undefined,
-      });
-      setError(null);
-
-      // Subscribe to Realtime Database changes live
-      try {
-        const userRef = ref(rtdb, `users/${sess.username}`);
-        rtdbUnsubRef.current = onValue(userRef, (snapshot) => {
-          if (snapshot.exists()) {
-            const liveData = snapshot.val();
-            setEmployee((prev) => ({
-              ...DEFAULT_EMPLOYEE,
-              ...(prev || {}),
-              ...liveData,
-              id: sess.username,
-              id_number: sess.username,
-            }));
-          }
-        });
-      } catch (subErr: any) {
-        console.warn('[EmployeeContext] Realtime listener error:', subErr.message);
-      }
-    } else {
+    if (!sess) {
+      setSession(null);
       setEmployee(null);
+      return;
+    }
+
+    // Verify user exists in the Realtime Database
+    const liveData = await fetchUserData(sess.username);
+    if (!liveData) {
+      console.warn(`[EmployeeContext] User ${sess.username} does not exist in database. Invalidating session.`);
+      await logout();
+      return;
+    }
+
+    setSession(sess);
+    const data = liveData;
+
+    setEmployee({
+      ...DEFAULT_EMPLOYEE,
+      ...(data || {}),
+      id: sess.username,
+      id_number: sess.username,
+      resident_id_number: data?.resident_id_number || sess.username,
+      full_name: data?.full_name || sess.name || 'Absher User',
+      photo_url: data?.photo_url || undefined,
+      id_card_image_url: data?.id_card_image_url || undefined,
+      id_profile_image_url: data?.id_profile_image_url || data?.photo_url || undefined,
+      iqama_sheet_image_url: data?.iqama_sheet_image_url || undefined,
+      passport_image_url: data?.passport_image_url || undefined,
+    });
+    setError(null);
+
+    // Subscribe to Realtime Database changes live
+    try {
+      const userRef = ref(rtdb, `users/${sess.username}`);
+      rtdbUnsubRef.current = onValue(userRef, async (snapshot) => {
+        if (snapshot.exists()) {
+          const updated = snapshot.val();
+          setEmployee((prev) => ({
+            ...DEFAULT_EMPLOYEE,
+            ...(prev || {}),
+            ...updated,
+            id: sess.username,
+            id_number: sess.username,
+          }));
+        } else {
+          // User was removed/deleted from the database!
+          console.warn(`[EmployeeContext] User ${sess.username} was deleted from database. Auto-logging out.`);
+          await logout();
+        }
+      });
+    } catch (subErr: any) {
+      console.warn('[EmployeeContext] Realtime listener error:', subErr.message);
     }
   };
 
@@ -201,14 +222,6 @@ export function EmployeeProvider({ children }: { children: React.ReactNode }) {
     return result;
   };
 
-  const logout = async () => {
-    if (rtdbUnsubRef.current) {
-      rtdbUnsubRef.current();
-      rtdbUnsubRef.current = null;
-    }
-    await authManager.signOut();
-    await applySession(null);
-  };
 
   const refresh = async () => {
     const sess = authManager.getSession();

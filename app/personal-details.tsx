@@ -42,11 +42,11 @@ export default function PersonalDetailsScreen() {
   };
 
   const personalFields = [
-    { label: 'Name', value: employee?.full_name || 'MD SUMON MIA' },
+    { label: 'Name', value: employee?.full_name || '-' },
     { label: 'Birth City', value: employee?.birth_city || '-' },
-    { label: 'Birth Country/Region', value: employee?.birth_country || 'Bangladesh' },
-    { label: 'Date of Birth', value: employee?.date_of_birth || '18/08/2002' },
-    { label: 'Marital Status', value: employee?.marital_status ? employee.marital_status.toUpperCase() : 'SINGLE' },
+    { label: 'Birth Country/Region', value: employee?.birth_country || employee?.nationality || '-' },
+    { label: 'Date of Birth', value: employee?.date_of_birth || '-' },
+    { label: 'Marital Status', value: employee?.marital_status ? employee.marital_status.toUpperCase() : '-' },
     { label: 'No. of sponsorship transfers', value: employee?.sponsorship_transfers || '0' },
     { label: 'Religion', value: employee?.religion || 'Islam' },
     { label: 'Work Permit', value: employee?.work_permit || '-' },

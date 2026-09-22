@@ -50,11 +50,11 @@ export default function DigitalDocumentsScreen() {
   // Deterministic QR payload: constant for this user, unique across different users
   const qrPayload = useMemo(() => {
     if (employee?.qr_code_url) return employee.qr_code_url;
-    const id = employee?.id_number || '2631567092';
-    const name = employee?.full_name || 'MD SUMON MIA';
-    const dob = employee?.date_of_birth || '18/08/2002';
-    const exp = employee?.expiry_date || '17/02/2027';
-    const nat = employee?.birth_country || 'Bangladesh';
+    const id = employee?.id_number || '';
+    const name = employee?.full_name || '';
+    const dob = employee?.date_of_birth || '';
+    const exp = employee?.expiry_date || employee?.resident_id_expiry_date || '';
+    const nat = employee?.birth_country || employee?.nationality || '';
 
     // Stable deterministic cryptographic token based on user's identity data
     const seed = `${id}-${name}-${dob}-${exp}-${nat}`;

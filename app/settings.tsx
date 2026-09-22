@@ -34,8 +34,8 @@ export default function SettingsScreen() {
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
   const [calendar, setCalendar] = useState<'gregorian' | 'hijri'>('gregorian');
 
-  const fullName = employee?.full_name || 'MD SUMON MIA';
-  const idNumber = employee?.id_number || '2631567092';
+  const fullName = employee?.full_name || 'Absher User';
+  const idNumber = employee?.id_number || '';
 
   const handleSignOut = async () => {
     const doLogout = async () => {

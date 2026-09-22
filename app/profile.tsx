@@ -30,8 +30,8 @@ export default function ProfileScreen() {
   const { employee } = useEmployee();
   const [copied, setCopied] = useState(false);
 
-  const idNumber = employee?.id_number || '2631567092';
-  const fullName = employee?.full_name || 'MD SUMON MIA';
+  const idNumber = employee?.id_number || '';
+  const fullName = employee?.full_name || 'Absher User';
 
   const handleCopyId = () => {
     Clipboard.setString(idNumber);
