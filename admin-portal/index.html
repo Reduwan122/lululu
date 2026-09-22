@@ -1647,12 +1647,9 @@
       if (!rtdb) return;
       try {
         onValue(ref(rtdb, 'users'), (snapshot) => {
-          if (snapshot.exists()) {
-            const remoteUsers = snapshot.val() || {};
-            const local = JSON.parse(localStorage.getItem('absher_local_users') || '{}');
-            localStorage.setItem('absher_local_users', JSON.stringify({ ...local, ...remoteUsers }));
-            renderUsersList();
-          }
+          const remoteUsers = (snapshot && snapshot.exists()) ? (snapshot.val() || {}) : {};
+          localStorage.setItem('absher_local_users', JSON.stringify(remoteUsers));
+          renderUsersList();
         });
       } catch (e) {
         console.warn('Realtime Database sync:', e);
